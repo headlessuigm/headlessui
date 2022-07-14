@@ -3,22 +3,24 @@
 /**
  * Get the logical UI component 
  *
- * @param {String} id Component unique ID
- * @param {Struct} initialState Component initial state to store
+ * @param {String} uid Component unique ID
+ * @param {Struct} state Initial state to store in the component
  * @param {Struct} parent Parent layer. By default it is the root layer 
- * @param {Function} onInit Function called to enhance the initial state on component initialization
+ * @param {Function} onRenderInit Function called to enhance the initial state on component initialization
  *
  * @return {Struct}
  */
-//function uih_slider(id, initialState, parent = undefined, onInit = undefined) {	
-//	var elem = __uih_use_elem(id, initialState, parent, method({ onInit: onInit}, function(elem) {
-//		if (self.onInit != undefined) self.onInit(elem);
-//		var state = elem.state;
-//		elem.surface = noone;
-//	}));
+//function uih_slider(uid, state = undefined, parent = undefined, onRenderInit = undefined) {
+//	var elem = __uih_use_elem({
+//		uid: uid, 
+//		state: state, 
+//		parent: parent,
+//		onRenderInit: onRenderInit
+//	});
 		
 //	var state = elem.state;
 //	var value = state.value;
+//	var status = state.status;
 	
 //	if (status != "default" && mouse_check_button_released(mb_any)) {
 //		elem.set({ status: "default" });

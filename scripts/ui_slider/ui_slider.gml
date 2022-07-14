@@ -4,16 +4,14 @@
  * Get the render UI component 
  *
  * @param {String} id Component unique ID
- * @param {Struct} initialState Component initial state to store
+ * @param {Struct} state Component initial state to store
  * @param {Struct} parent Parent layer. By default it is the root layer 
  *
  * @return {Struct}
  */
-//function ui_slider(id, initialState, parent = undefined) {	
-//	return uih_slider(id, initialState, parent, function(elem) {
-//		var state = elem.state;
-	
-//		state.render = function(state) {
+//function ui_slider(id, state, parent = undefined) {	
+//	return uih_slider(id, state, parent, function(elem) {
+//		elem.state.render = function(state) {
 //			var type = variable_struct_exists(state, "type") ? state.type : ui_enum_variants.primary;
 		
 //			// Draw the background

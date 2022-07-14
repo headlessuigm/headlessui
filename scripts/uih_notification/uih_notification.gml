@@ -1,40 +1,42 @@
 /**
  * Get the logical UI component 
  *
- * @param {String} id Component unique ID
- * @param {Struct} initialState Component initial state to store
+ * @param {String} uid Component unique ID
+ * @param {Struct} state Initial state to store in the component
  * @param {Struct} parent Parent layer. By default it is the root layer 
- * @param {Function} onInit Function called to enhance the initial state on component initialization
+ * @param {Function} onRenderInit Function called to enhance the initial state on component initialization
  *
  * @return {Struct}
  */
-function uih_notification(id, initialState, parent = undefined, onInit = undefined) {
-	var elem = __uih_use_elem(id, initialState, parent, method({ onInit: onInit}, function(elem) {
-		if (self.onInit != undefined) self.onInit(elem);
+function uih_notification(uid, state = undefined, parent = undefined, onRenderInit = undefined) {
+	var elem = __uih_use_elem({
+		uid: uid, 
+		state: state, 
+		parent: parent,
+		onRenderInit: onRenderInit, 
+		onLogicInit: function(elem) {
+			elem.state.items = [];
 		
-		var state = elem.state;
-		elem.surface = noone;
-		state.items = [];
-		
-		/** 
-		 * Add a notification item into the list
-		 *
-		 * @param {String} text Notification message
-		 * @param {String} type Kind of notification (primary/secondary)
-		 * @param {String} [timer] Time in steps before removing the notification
-		 */
-		elem.add_item = method({ elem: elem }, function(text, type = "primary", timer = 180) {
-			array_push(self.elem.state.items, { 
-				text: text,
-				type: type,
-				timer: timer,
-				alpha: 0,
-				created: true,
-				deleted: false
+			/** 
+			 * Add a notification item into the list
+			 *
+			 * @param {String} text Notification message
+			 * @param {String} type Kind of notification (primary/secondary)
+			 * @param {String} [timer] Time in steps before removing the notification
+			 */
+			elem.add_item = method({ elem: elem }, function(text, type = "primary", timer = 180) {
+				array_push(self.elem.state.items, { 
+					text: text,
+					type: type,
+					timer: timer,
+					alpha: 0,
+					created: true,
+					deleted: false
+				});
+				self.elem.set();
 			});
-			self.elem.set();
-		});
-	}));
+		}
+	});
 	
 	// Handle the items lifespan
 	var items = elem.state.items;	

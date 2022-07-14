@@ -2,13 +2,13 @@
  * Get the render UI component 
  *
  * @param {String} id Component unique ID
- * @param {Struct} initialState Component initial state to store
+ * @param {Struct} state Component initial state to store
  * @param {Struct} parent Parent layer. By default it is the root layer 
  *
  * @return {Struct}
  */
-function ui_notification(id, initialState, parent = undefined) {
-	return uih_notification(id, initialState, parent, function(elem) {
+function ui_notification(id, state, parent = undefined) {
+	return uih_notification(id, state, parent, function(elem) {
 		elem.state.render = function(state) {
 			var items = state.items;
 		
