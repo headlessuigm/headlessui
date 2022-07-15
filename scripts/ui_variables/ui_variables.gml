@@ -1,3 +1,9 @@
+// UI enums
+enum ui_enum_variants {
+	primary,
+	secondary
+}
+
 // Primary - used to represent primary interface elements for a player.
 // It's the color displayed most frequently across your game's screens and components.
 #macro ui_variable_col_primary #3f51b5

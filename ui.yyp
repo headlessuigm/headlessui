@@ -4,7 +4,7 @@
     {"id":{"name":"ui_draw","path":"scripts/ui_draw/ui_draw.yy",},"order":2,},
     {"id":{"name":"uih_notification","path":"scripts/uih_notification/uih_notification.yy",},"order":2,},
     {"id":{"name":"ui_notification","path":"scripts/ui_notification/ui_notification.yy",},"order":2,},
-    {"id":{"name":"__uih_use_elem","path":"scripts/__uih_use_elem/__uih_use_elem.yy",},"order":0,},
+    {"id":{"name":"uih_create_component","path":"scripts/uih_create_component/uih_create_component.yy",},"order":0,},
     {"id":{"name":"ui_button","path":"scripts/ui_button/ui_button.yy",},"order":1,},
     {"id":{"name":"ui_slider","path":"scripts/ui_slider/ui_slider.yy",},"order":4,},
     {"id":{"name":"ui_font","path":"fonts/ui_font/ui_font.yy",},"order":1,},
@@ -40,11 +40,11 @@
   "Folders": [
     {"folderPath":"folders/UI/UI Headless - Logical components.yy","order":1,"resourceVersion":"1.0","name":"UI Headless - Logical components","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/UI/UI Styled - Rendering components.yy","order":0,"resourceVersion":"1.0","name":"UI Styled - Rendering components","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/UI/UI Headless - Logical components/Internal.yy","order":2,"resourceVersion":"1.0","name":"Internal","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/UI/UI Styled - Rendering components/Components.yy","order":1,"resourceVersion":"1.0","name":"Components","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/UI.yy","order":6,"resourceVersion":"1.0","name":"UI","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/UI/UI Headless - Logical components/Components.yy","order":1,"resourceVersion":"1.0","name":"Components","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/UI/UI Headless - Logical components/Components.yy","order":0,"resourceVersion":"1.0","name":"Components","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/UI/UI Styled - Rendering components/Core.yy","order":0,"resourceVersion":"1.0","name":"Core","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/UI/UI Headless - Logical components/Internal.yy","order":1,"resourceVersion":"1.0","name":"Internal","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},

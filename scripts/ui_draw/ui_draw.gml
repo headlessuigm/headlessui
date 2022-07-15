@@ -1,18 +1,12 @@
 // Variable to enable the components render debug
 global.UI_ENABLE_RENDER_DEBUG = false;
 
-// UI enums
-enum ui_enum_variants {
-	primary,
-	secondary
-}
-
 /**
- * Re-render the elements if updated and draw their surfaces
+ * Re-render the childents if updated and draw their surfaces
  * 
- * @param {Array} sortedChildren
+ * @param {Array} children
  */
-function ui_draw(sortedChildren = global.UIH_ROOT_COMPONENT.sortedChildren) {
+function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 	// Store the drawing state (for later reset)
 	var color = draw_get_color();
 	var font = draw_get_font();
@@ -20,29 +14,34 @@ function ui_draw(sortedChildren = global.UIH_ROOT_COMPONENT.sortedChildren) {
 	var valign = draw_get_valign();
 	var alpha = draw_get_alpha();
 	
-	// Loop over the elements
-	for (var i = 0, len=array_length(sortedChildren); i<len; i++) {
-		var elem = sortedChildren[i];
+	// Loop over the childents
+	for (var i = 0; i<array_length(children); i++) {
+		var child = children[i];
 		
-		if (variable_struct_exists(elem, "surface")) {
-			var state = elem.state;
+		// Run the step component method
+		if (variable_struct_exists(child, "onStep")) {
+			child.onStep(child);
+		}
+		
+		if (variable_struct_exists(child, "surface")) {
+			var state = child.state;
 		
 			// If the surface has been deleted, force the re-rendering
-			if (!surface_exists(elem.surface)) {
-				elem.surface = surface_create(state.width, state.height);
-				elem.updated = true;
+			if (!surface_exists(child.surface)) {
+				child.surface = surface_create(state.width, state.height);
+				child.updated = true;
 			}
 		
-			// Re-render the element if it has been updated
-			if (elem.updated) {
-				surface_set_target(elem.surface);
+			// Re-render the childen if it has been updated
+			if (child.updated) {
+				surface_set_target(child.surface);
 				draw_clear_alpha(c_black, 0);
-				elem.state.render(elem.state);
+				child.onRender(child.state);
 				surface_reset_target();
-				elem.updated = false;
+				child.updated = false;
 				draw_set_alpha(1);
 			
-				// For debug purposes, draw an outline around the rendered element
+				// For debug purposes, draw an outline around the rendered component
 				if (global.UI_ENABLE_RENDER_DEBUG) {
 					draw_set_color(c_red);
 					for (var o=0; o<3; o++) {
@@ -51,11 +50,11 @@ function ui_draw(sortedChildren = global.UIH_ROOT_COMPONENT.sortedChildren) {
 				}
 			}
 		
-			// Draw the element surface
-			draw_surface(elem.surface, state.x, state.y);
+			// Draw the component surface
+			draw_surface(child.surface, state.x, state.y);
 		}
 		
-		ui_draw(elem.sortedChildren);
+		ui_draw(child.children);
 	}
 	
 	// Reset the drawing state

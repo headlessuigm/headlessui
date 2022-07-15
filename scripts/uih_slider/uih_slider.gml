@@ -3,19 +3,17 @@
 /**
  * Get the logical UI component 
  *
- * @param {String} uid Component unique ID
  * @param {Struct} state Initial state to store in the component
  * @param {Struct} parent Parent layer. By default it is the root layer 
- * @param {Function} onRenderInit Function called to enhance the initial state on component initialization
+ * @param {Function} onRender Function called to render the component
  *
  * @return {Struct}
  */
-//function uih_slider(uid, state = undefined, parent = undefined, onRenderInit = undefined) {
-//	var elem = __uih_use_elem({
-//		uid: uid, 
+//function uih_slider(state = undefined, parent = undefined, onRender = undefined) {
+//	var elem = uih_create_component({
 //		state: state, 
 //		parent: parent,
-//		onRenderInit: onRenderInit
+//		onRender: onRender, 
 //	});
 		
 //	var state = elem.state;

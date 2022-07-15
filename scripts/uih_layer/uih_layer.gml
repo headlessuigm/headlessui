@@ -1,33 +1,35 @@
 /**
  * Get the logical UI component 
  *
- * @param {String} uid Component unique ID
  * @param {Struct} state Initial state to store in the component
  * @param {Struct} parent Parent layer. By default it is the root layer 
- * @param {Function} onRenderInit Function called to enhance the initial state on component initialization
+ * @param {Function} onRender Function called to render the component
  *
  * @return {Struct}
  */
-function uih_layer(uid, state = undefined, parent = undefined, onRenderInit = undefined) {
-	return __uih_use_elem({
-		uid: uid, 
+function uih_layer(state = undefined, parent = undefined, onRender = undefined) {
+	return uih_create_component({
 		state: state, 
 		parent: parent,
-		onRenderInit: onRenderInit, 
+		skipLayerChecks: true,
+		surface: false,
+		onRender: onRender, 
+		
 		onLogicInit: function(elem) {
 			/**
 			 * Set the specified element as focused (if not already)
 			 */
 			elem.focus = method(elem, function(child) {
-				var topIdx = array_length(self.sortedChildren) - 1;
+				var children = self.children;
+				var topIdx = array_length(children) - 1;
 			
 				// Find the element to focus and move it on the top
 				for (var i=topIdx; i>=0; i--) {
-					var sortedChild = self.sortedChildren[i];
+					var sortedChild = children[i];
 					if (sortedChild != child || sortedChild.skipLayerChecks) continue;
 					if (i == topIdx) return;
-					array_push(self.sortedChildren, child);
-					array_delete(self.sortedChildren, i, 1);
+					array_push(children, child);
+					array_delete(children, i, 1);
 					break;
 				}
 			});
@@ -36,18 +38,16 @@ function uih_layer(uid, state = undefined, parent = undefined, onRenderInit = un
 			 * Check if the specified element is the most higher (on top) element, that is intersecting the mouse
 			 */
 			elem.is_hovered = method(elem,  function(elem) {
-				for (var i=array_length(self.sortedChildren)-1; i>=0; i--) {
-					var sortedChild = self.sortedChildren[i];
-					if (sortedChild.skipLayerChecks) continue;
-					var childX = sortedChild.state.x;
-					var childY = sortedChild.state.y;
-					if (!point_in_rectangle(mouse_x, mouse_y, childX, childY, childX + sortedChild.state.width, childY + sortedChild.state.height)) continue;
-					return sortedChild == elem;
+				for (var i=array_length(self.children)-1; i>=0; i--) {
+					var child = self.children[i];
+					if (child.skipLayerChecks) continue;
+					var childX = child.state.x;
+					var childY = child.state.y;
+					if (!point_in_rectangle(mouse_x, mouse_y, childX, childY, childX + child.state.width, childY + child.state.height)) continue;
+					return child == elem;
 				}
 				return undefined;
 			});
-		},
-		skipLayerChecks: true,
-		surface: false
+		}
 	});
 }

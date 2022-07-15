@@ -1,19 +1,18 @@
 /**
  * Get the logical UI component 
  *
- * @param {String} uid Component unique ID
  * @param {Struct} state Initial state to store in the component
  * @param {Struct} parent Parent layer. By default it is the root layer 
- * @param {Function} onRenderInit Function called to enhance the initial state on component initialization
+ * @param {Function} onRender Function called to render the component
  *
  * @return {Struct}
  */
-function uih_notification(uid, state = undefined, parent = undefined, onRenderInit = undefined) {
-	var elem = __uih_use_elem({
-		uid: uid, 
+function uih_notification(state = undefined, parent = undefined, onRender = undefined) {
+	return uih_create_component({
 		state: state, 
 		parent: parent,
-		onRenderInit: onRenderInit, 
+		onRender: onRender, 
+		
 		onLogicInit: function(elem) {
 			elem.state.items = [];
 		
@@ -35,41 +34,41 @@ function uih_notification(uid, state = undefined, parent = undefined, onRenderIn
 				});
 				self.elem.set();
 			});
+		},
+		
+		onStep: function(elem) {
+			// Handle the items lifespan
+			var items = elem.state.items;	
+	
+			for (var i=array_length(items)-1; i>=0; i--) {
+				var item = items[i];
+		
+				if (item.created) {
+					if (item.alpha < 1) {
+						item.alpha += .04;
+					} else {
+						item.created = false;
+					}
+					elem.set();
+					continue;	
+				}
+		
+				if (item.deleted) {
+					if (item.alpha > 0) {
+						item.alpha -= .03;
+					} else {
+						array_delete(items, i, 1);
+					}
+					elem.set();
+					continue;	
+				}
+		
+				if (item.timer > 0) {
+					item.timer--;	
+				} else {
+					item.deleted = true;			
+				}
+			}	
 		}
 	});
-	
-	// Handle the items lifespan
-	var items = elem.state.items;	
-	
-	for (var i=array_length(items)-1; i>=0; i--) {
-		var item = items[i];
-		
-		if (item.created) {
-			if (item.alpha < 1) {
-				item.alpha += .04;
-			} else {
-				item.created = false;
-			}
-			elem.set();
-			continue;	
-		}
-		
-		if (item.deleted) {
-			if (item.alpha > 0) {
-				item.alpha -= .03;
-			} else {
-				array_delete(items, i, 1);
-			}
-			elem.set();
-			continue;	
-		}
-		
-		if (item.timer > 0) {
-			item.timer--;	
-		} else {
-			item.deleted = true;			
-		}
-	}	
-	
-	return elem;
 }
