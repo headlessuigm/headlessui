@@ -118,3 +118,14 @@ var scrollbar_horizontal = ui_scrollbar({
 		scrollable_container.set({ scroll_x: (scrollable_container.state.scrollable_width - scrollable_container.state.width) * value });
 	}),
 });
+
+scrollable_container.set({
+	on_scroll: method({ scrollbar_vertical: scrollbar_vertical, scrollbar_horizontal: scrollbar_horizontal }, function(scroll_direction, scroll_value) {
+		show_debug_message("Scrolled: " + string(scroll_value));
+		if (scroll_direction == uih_enum_scroll_direction.vertical) {
+			scrollbar_vertical.set({ value: scroll_value });
+		} else {
+			scrollbar_horizontal.set({ value: scroll_value });
+		}
+	}),
+});
