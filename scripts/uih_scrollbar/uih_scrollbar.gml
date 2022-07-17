@@ -27,6 +27,7 @@ function uih_scrollbar(state = undefined, parent = undefined, onRender = undefin
 		
 		onLogicInit: function(elem) {
 			// Set the default scrollbar status
+			elem.state.type = variable_struct_exists(elem.state, "type") ? elem.state.type : ui_enum_variants.primary;
 			elem.state.status = uih_enum_button_status.idle;
 			elem.state.direction = variable_struct_exists(elem.state, "direction") ? elem.state.direction : uih_enum_scrollbar_direction.vertical;
 			elem.state.value = variable_struct_exists(elem.state, "value") ? elem.state.value : 0;
@@ -54,8 +55,8 @@ function uih_scrollbar(state = undefined, parent = undefined, onRender = undefin
 					value: value,
 				});
 				
-				if (variable_struct_exists(elem.state, "onValueChanged")) {
-					elem.state.onValueChanged(value);
+				if (variable_struct_exists(elem.state, "on_change")) {
+					elem.state.on_change(value);
 				}
 			} else if (hovered) {
 				if (status != uih_enum_scrollbar_status.hover) {

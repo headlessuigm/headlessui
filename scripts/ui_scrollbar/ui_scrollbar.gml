@@ -7,11 +7,9 @@
  * @return {Struct}
  */
 function ui_scrollbar(state, parent = undefined) {	
-	return uih_scrollbar(state, parent, function(state) {
-		var type = variable_struct_exists(state, "type") ? state.type : ui_enum_variants.primary;
-		
+	return uih_scrollbar(state, parent, function(state) {		
 		// Draw the track
-		var bgcolor = type == ui_enum_variants.primary ? ui_variable_col_primary_dark : ui_variable_col_secondary_dark;
+		var bgcolor = state.type == ui_enum_variants.primary ? ui_variable_col_primary_dark : ui_variable_col_secondary_dark;
 		
 		draw_set_color(bgcolor);
 		draw_rectangle(0, 0, state.width, state.height, false);
@@ -33,10 +31,10 @@ function ui_scrollbar(state, parent = undefined) {
 		var thumb_color;
 		switch (state.status) {
 			case uih_enum_scrollbar_status.dragging:
-				thumb_color = type == ui_enum_variants.primary ? ui_variable_col_primary_light : ui_variable_col_secondary_light;
+				thumb_color = state.type == ui_enum_variants.primary ? ui_variable_col_primary_light : ui_variable_col_secondary_light;
 				break;
 			default: 
-				thumb_color = type == ui_enum_variants.primary ? ui_variable_col_primary : ui_variable_col_primary;
+				thumb_color = state.type == ui_enum_variants.primary ? ui_variable_col_primary : ui_variable_col_primary;
 		}
 		
 		draw_set_color(thumb_color);

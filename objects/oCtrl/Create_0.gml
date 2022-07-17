@@ -89,12 +89,12 @@ var scrollbar_vertical = ui_scrollbar({
 	type: ui_enum_variants.primary,
 	direction: uih_enum_scrollbar_direction.vertical,
 	thumb_size: 50,
-	onValueChanged: method({scrollbar_horizontal: scrollbar_horizontal}, function(value) {
+	on_change: method({scrollbar_horizontal: scrollbar_horizontal}, function(value) {
 		scrollbar_horizontal.set({ value: value});
 	}),
 });
 
-scrollbar_horizontal.set({ onValueChanged: method({scrollbar_vertical: scrollbar_vertical}, function(value) {
+scrollbar_horizontal.set({ on_change: method({scrollbar_vertical: scrollbar_vertical}, function(value) {
 		scrollbar_vertical.set({ value: value});
 	}),
 });
