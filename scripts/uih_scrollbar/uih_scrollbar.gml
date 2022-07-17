@@ -15,17 +15,17 @@ enum uih_enum_scrollbar_direction {
  *
  * @param {Struct} state Initial state to store in the component
  * @param {Struct} parent Parent layer. By default it is the root layer 
- * @param {Function} onRender Function called to render the component
+ * @param {Function} on_render Function called to render the component
  *
  * @return {Struct}
  */
-function uih_scrollbar(state = undefined, parent = undefined, onRender = undefined) {
+function uih_scrollbar(state = undefined, parent = undefined, on_render = undefined) {
 	return uih_create_component({
 		state: state, 
 		parent: parent,
-		onRender: onRender, 
+		on_render: on_render, 
 		
-		onLogicInit: function(elem) {
+		on_init: function(elem) {
 			// Set the default scrollbar status
 			elem.state.type = variable_struct_exists(elem.state, "type") ? elem.state.type : ui_enum_variants.primary;
 			elem.state.status = uih_enum_button_status.idle;
@@ -34,7 +34,7 @@ function uih_scrollbar(state = undefined, parent = undefined, onRender = undefin
 			elem.state.thumb_size = variable_struct_exists(elem.state, "thumb_size") ? elem.state.thumb_size : 0;
 		},
 		
-		onStep: function(elem) {
+		on_step: function(elem) {
 			var status = elem.state.status;
 			var hovered = elem.parent.is_hovered(elem);
 			

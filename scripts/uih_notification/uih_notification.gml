@@ -3,17 +3,17 @@
  *
  * @param {Struct} state Initial state to store in the component
  * @param {Struct} parent Parent layer. By default it is the root layer 
- * @param {Function} onRender Function called to render the component
+ * @param {Function} on_render Function called to render the component
  *
  * @return {Struct}
  */
-function uih_notification(state = undefined, parent = undefined, onRender = undefined) {
+function uih_notification(state = undefined, parent = undefined, on_render = undefined) {
 	return uih_create_component({
 		state: state, 
 		parent: parent,
-		onRender: onRender, 
+		on_render: on_render, 
 		
-		onLogicInit: function(elem) {
+		on_init: function(elem) {
 			elem.state.items = [];
 		
 			/** 
@@ -36,7 +36,7 @@ function uih_notification(state = undefined, parent = undefined, onRender = unde
 			});
 		},
 		
-		onStep: function(elem) {
+		on_step: function(elem) {
 			// Handle the items lifespan
 			var items = elem.state.items;	
 	

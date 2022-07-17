@@ -3,19 +3,19 @@
  *
  * @param {Struct} state Initial state to store in the component
  * @param {Struct} parent Parent layer. By default it is the root layer 
- * @param {Function} onRender Function called to render the component
+ * @param {Function} on_render Function called to render the component
  *
  * @return {Struct}
  */
-function uih_layer(state = undefined, parent = undefined, onRender = undefined) {
+function uih_layer(state = undefined, parent = undefined, on_render = undefined) {
 	return uih_create_component({
 		state: state, 
 		parent: parent,
-		skipLayerChecks: true,
+		skip_layer_checks: true,
 		surface: false,
-		onRender: onRender, 
+		on_render: on_render, 
 		
-		onLogicInit: function(elem) {
+		on_init: function(elem) {
 			/**
 			 * Set the specified element as focused (if not already)
 			 */

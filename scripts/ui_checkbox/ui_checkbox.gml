@@ -30,8 +30,8 @@ function ui_checkbox(state, parent = undefined) {
 		// If checked, draw the inner rectangle
 		if (state.checked) {
 			draw_set_color(type == ui_enum_variants.primary ? ui_variable_col_primary_dark : ui_variable_col_secondary_dark);
-			var margin = 4;
-			draw_rectangle(margin, margin, checkboxWidth - margin, state.height - margin, false);
+			var padding = 4;
+			draw_rectangle(padding, padding, checkboxWidth - padding, state.height - padding, false);
 		}
 		
 		// Draw the text

@@ -8,9 +8,9 @@ global.UIH_ROOT_COMPONENT = uih_layer(undefined, { children: [] });
  * @param {Struct} params Compoment params
  * @param {Struct} [params.state] Initial data to store into the component state
  * @param {Struct} [params.parent] Parent component
- * @param {Function} [params.onLogicInit] Function called to enhance the initial state on component initialization
- * @param {Function} [params.onStep] Function called each tick to handle the component logic
- * @param {Function} [params.onRender] Function called each tick to render the component
+ * @param {Function} [params.on_init] Function called to enhance the initial state on component initialization
+ * @param {Function} [params.on_step] Function called each tick to handle the component logic
+ * @param {Function} [params.on_render] Function called each tick to render the component
  * @param {Bool} [params.skip_layer_checks] When to skip the parent layer children (eg. to avoid being hovered)
  * @params {Bool} [params.surface] If to enable the component surface (true by default)
  *
@@ -19,9 +19,9 @@ global.UIH_ROOT_COMPONENT = uih_layer(undefined, { children: [] });
 function uih_create_component(params) {
 	var state = variable_struct_exists(params, "state") && params.state ? params.state : {};
 	var parentComp = variable_struct_exists(params, "parent") && params.parent  ? params.parent : global.UIH_ROOT_COMPONENT;
-	var onLogicInit = variable_struct_exists(params, "onLogicInit") && params.onLogicInit ? params.onLogicInit : undefined;
-	var onStep = variable_struct_exists(params, "onStep") && params.onStep ? params.onStep : undefined;
-	var onRender = variable_struct_exists(params, "onRender") && params.onRender ? params.onRender : undefined;
+	var on_init = variable_struct_exists(params, "on_init") && params.on_init ? params.on_init : undefined;
+	var on_step = variable_struct_exists(params, "on_step") && params.on_step ? params.on_step : undefined;
+	var on_render = variable_struct_exists(params, "on_render") && params.on_render ? params.on_render : undefined;
 	var skip_layer_checks = variable_struct_exists(params, "skip_layer_checks") && params.skip_layer_checks ? params.skip_layer_checks : false;
 	var surface = variable_struct_exists(params, "surface") ? params.surface : true;
 	
@@ -31,8 +31,8 @@ function uih_create_component(params) {
 		parent: parentComp,
 		children: [],
 		skip_layer_checks: skip_layer_checks,
-		onStep: onStep,
-		onRender: onRender,
+		on_step: on_step,
+		on_render: on_render,
 		surface: surface ? noone : undefined,
 			
 		/**
@@ -124,8 +124,8 @@ function uih_create_component(params) {
 	};
 		
 	// Call the state initializer method (if provided)
-	if (onLogicInit) {
-		onLogicInit(elem);
+	if (on_init) {
+		on_init(elem);
 	}
 		
 	// Store the new element into the parent children

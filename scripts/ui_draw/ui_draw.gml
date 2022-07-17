@@ -19,8 +19,8 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 		var child = children[i];
 		
 		// Run the step component method
-		if (variable_struct_exists(child, "onStep")) {
-			child.onStep(child);
+		if (variable_struct_exists(child, "on_step")) {
+			child.on_step(child);
 		}
 		
 		if (variable_struct_exists(child, "surface")) {
@@ -36,7 +36,7 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 			if (child.updated) {
 				surface_set_target(child.surface);
 				draw_clear_alpha(c_black, 0);
-				child.onRender(child.state);
+				child.on_render(child.state);
 				surface_reset_target();
 				child.updated = false;
 				draw_set_alpha(1);

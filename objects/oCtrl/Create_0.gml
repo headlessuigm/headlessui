@@ -16,7 +16,7 @@ ui_button({
 	on_click: method({ notificationElem: notificationElem }, function(elem) {
 		notificationElem.add_item("Primary button has been pressed", ui_enum_variants.primary);
 		draw_set_font(ui_font);
-		elem.setText("Dynamically changed text");
+		elem.set_text("Dynamically changed text");
 	})
 });
 

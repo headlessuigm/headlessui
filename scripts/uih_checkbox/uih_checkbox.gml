@@ -9,22 +9,26 @@ enum uih_enum_checkbox_status {
  *
  * @param {Struct} state State to store in the component
  * @param {Struct} parent Parent layer. By default it is the root layer 
- * @param {Function} onRender Function called to render the component
+ * @param {Function} on_render Function called to render the component
  *
  * @return {Struct}
  */
-function uih_checkbox(state = undefined, parent = undefined, onRender = undefined) {
+function uih_checkbox(state = undefined, parent = undefined, on_render = undefined) {
 	return uih_create_component({
 		state: state, 
 		parent: parent,
-		onRender: onRender, 
+		on_render: on_render, 
 		
-		onLogicInit: function(elem) {
-			// Set the default checkbox status
-			elem.state.status = uih_enum_checkbox_status.idle;
+		on_init: function(elem) {
+			var state = elem.state;
+			
+			// Set the default checkbox status			
+			state.status = uih_enum_checkbox_status.idle;
+			
+			state.type = variable_struct_exists(state, "type") ? state.type : ui_enum_variants.primary;
 		},
 		
-		onStep: function(elem) {
+		on_step: function(elem) {
 			var elemState = elem.state;
 			var status = elemState.status;
 	

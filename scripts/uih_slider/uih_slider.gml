@@ -5,15 +5,15 @@
  *
  * @param {Struct} state Initial state to store in the component
  * @param {Struct} parent Parent layer. By default it is the root layer 
- * @param {Function} onRender Function called to render the component
+ * @param {Function} on_render Function called to render the component
  *
  * @return {Struct}
  */
-//function uih_slider(state = undefined, parent = undefined, onRender = undefined) {
+//function uih_slider(state = undefined, parent = undefined, on_render = undefined) {
 //	var elem = uih_create_component({
 //		state: state, 
 //		parent: parent,
-//		onRender: onRender, 
+//		on_render: on_render, 
 //	});
 		
 //	var state = elem.state;
