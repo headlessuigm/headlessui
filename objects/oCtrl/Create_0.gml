@@ -83,7 +83,7 @@ var scrollable_container = ui_scrollable_container({
 	scrollable_height: 800,
 });
 
-for (var i = 0; i < 3; i++) {
+for (var i = 0; i < 15; i++) {
 	ui_button({
 		x: 15,
 		y: 205 + i * 50,
