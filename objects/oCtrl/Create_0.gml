@@ -13,8 +13,10 @@ ui_button({
 	width: 190, 
 	height: 40, 
 	text: "Primary Button", 
-	onClick: method({ notificationElem: notificationElem }, function(elem) {
+	on_click: method({ notificationElem: notificationElem }, function(elem) {
 		notificationElem.add_item("Primary button has been pressed", ui_enum_variants.primary);
+		draw_set_font(ui_font);
+		elem.setText("Dynamically changed text");
 	})
 });
 
@@ -25,7 +27,7 @@ ui_button({
 	height: 40, 
 	text: "Click to delete this button",
 	type: ui_enum_variants.secondary, 
-	onClick: method({ notificationElem: notificationElem }, function(elem) {
+	on_click: method({ notificationElem: notificationElem }, function(elem) {
 		notificationElem.add_item("Secondary button has been pressed", ui_enum_variants.secondary);
 		elem.remove();
 	})
@@ -38,7 +40,7 @@ ui_checkbox({
 	height: 25, 
 	text: "Enable UI Render Debug",
 	checked: false,
-	onClick: method({ notificationElem: notificationElem }, function(elem) {
+	on_click: method({ notificationElem: notificationElem }, function(elem) {
 		notificationElem.add_item("Primary checkbox has been pressed", ui_enum_variants.primary);
 		global.UI_ENABLE_RENDER_DEBUG = !global.UI_ENABLE_RENDER_DEBUG;
 		elem.state.text = global.UI_ENABLE_RENDER_DEBUG ? "Disable UI Render Debug" : "Enable UI Render Debug";
@@ -53,7 +55,7 @@ ui_checkbox({
 	type: ui_enum_variants.secondary,
 	text: "Checkbox Secondary",
 	checked: true,
-	onClick: method({ notificationElem: notificationElem }, function(elem) {
+	on_click: method({ notificationElem: notificationElem }, function(elem) {
 		notificationElem.add_item("Secondary checkbox has been pressed", ui_enum_variants.secondary);
 	})
 });

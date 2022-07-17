@@ -20,11 +20,39 @@ function uih_button(state = undefined, parent = undefined, onRender = undefined)
 		onRender: onRender, 
 		
 		onLogicInit: function(elem) {
+			var state = elem.state;
+			
 			// Set the default button status
-			elem.state.status = uih_enum_button_status.idle;
+			state.status = uih_enum_button_status.idle;
+			
+			// Button style props
+			state.paddingHorizontal = variable_struct_exists(state, "paddingHorizontal") ? state.paddingHorizontal : 40;
+			state.paddingVertical = variable_struct_exists(state, "paddingVertical") ? state.paddingVertical : 20;
+			state.textSep = variable_struct_exists(state, "textSep") ? state.textSep : -1;
+			state.textMaxWidth = variable_struct_exists(state, "textMaxWidth") ? state.textMaxWidth : -1;
+			
+			/**
+			 * Set the text of the button, auto-resizing the container, according to the button padding
+			 * 
+			 * @param {String} text Button text
+			 * @param {Integer} sep
+			 * @param {Integer} maxWidth
+			 */
+			elem.setText = method({ elem: elem }, function(text, sep = -1, maxWidth = -1) {
+				var state = self.elem.state;
+				if (text == state.text) return;
+				state.text = text;
+				state.textSep = sep;
+				state.textMaxWidth = maxWidth;
+				self.elem.resize(
+					string_width_ext(text, sep, maxWidth) + state.paddingHorizontal,
+					string_height_ext(text, sep, maxWidth) + state.paddingVertical
+				);
+			});
 		},
 		
 		onStep: function(elem) {
+			// Handle the button status
 			var status = elem.state.status;
 	
 			if (status != uih_enum_button_status.idle && mouse_check_button_released(mb_any)) {

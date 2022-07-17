@@ -61,8 +61,8 @@ function uih_create_component(params) {
 		  * Execute the onClick element handler, if defined
 		  */
 		click: function() {
-			if (variable_struct_exists(self.state, "onClick")) {
-				self.state.onClick(self);
+			if (variable_struct_exists(self.state, "on_click")) {
+				self.state.on_click(self);
 			}
 		},
 			
@@ -98,6 +98,7 @@ function uih_create_component(params) {
 			if (surface_exists(surface)) {
 				surface_resize(surface, width + 1, height + 1);
 			}
+			self.updated = true;
 		}
 	};
 		
