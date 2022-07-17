@@ -69,3 +69,32 @@ ui_checkbox({
 //	})
 //});
 //draw_text(130, 220, slider.state.value);
+
+
+var scrollbar_horizontal = ui_scrollbar({
+	x: 10, 
+	y: 200, 
+	width: 200, 
+	height: 20, 
+	type: ui_enum_variants.primary,
+	direction: uih_enum_scrollbar_direction.horizontal,
+	thumb_size: 100,
+});
+
+var scrollbar_vertical = ui_scrollbar({
+	x: 10, 
+	y: 230, 
+	width: 20, 
+	height: 200, 
+	type: ui_enum_variants.primary,
+	direction: uih_enum_scrollbar_direction.vertical,
+	thumb_size: 50,
+	onValueChanged: method({scrollbar_horizontal: scrollbar_horizontal}, function(value) {
+		scrollbar_horizontal.set({ value: value});
+	}),
+});
+
+scrollbar_horizontal.set({ onValueChanged: method({scrollbar_vertical: scrollbar_vertical}, function(value) {
+		scrollbar_vertical.set({ value: value});
+	}),
+});

@@ -1,5 +1,6 @@
 {
   "resources": [
+    {"id":{"name":"uih_scrollbar","path":"scripts/uih_scrollbar/uih_scrollbar.yy",},"order":5,},
     {"id":{"name":"uih_checkbox","path":"scripts/uih_checkbox/uih_checkbox.yy",},"order":3,},
     {"id":{"name":"ui_draw","path":"scripts/ui_draw/ui_draw.yy",},"order":2,},
     {"id":{"name":"uih_notification","path":"scripts/uih_notification/uih_notification.yy",},"order":2,},
@@ -14,6 +15,7 @@
     {"id":{"name":"ui_variables","path":"scripts/ui_variables/ui_variables.yy",},"order":0,},
     {"id":{"name":"rCtrl","path":"rooms/rCtrl/rCtrl.yy",},"order":1,},
     {"id":{"name":"uih_layer","path":"scripts/uih_layer/uih_layer.yy",},"order":0,},
+    {"id":{"name":"ui_scrollbar","path":"scripts/ui_scrollbar/ui_scrollbar.yy",},"order":5,},
     {"id":{"name":"oCtrl","path":"objects/oCtrl/oCtrl.yy",},"order":0,},
   ],
   "Options": [
