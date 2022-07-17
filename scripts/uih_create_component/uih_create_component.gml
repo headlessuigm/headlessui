@@ -11,7 +11,7 @@ global.UIH_ROOT_COMPONENT = uih_layer(undefined, { children: [] });
  * @param {Function} [params.onLogicInit] Function called to enhance the initial state on component initialization
  * @param {Function} [params.onStep] Function called each tick to handle the component logic
  * @param {Function} [params.onRender] Function called each tick to render the component
- * @param {Bool} [params.skipLayerChecks] When to skip the parent layer children (eg. to avoid being hovered)
+ * @param {Bool} [params.skip_layer_checks] When to skip the parent layer children (eg. to avoid being hovered)
  * @params {Bool} [params.surface] If to enable the component surface (true by default)
  *
  * @return {Struct}
@@ -22,7 +22,7 @@ function uih_create_component(params) {
 	var onLogicInit = variable_struct_exists(params, "onLogicInit") && params.onLogicInit ? params.onLogicInit : undefined;
 	var onStep = variable_struct_exists(params, "onStep") && params.onStep ? params.onStep : undefined;
 	var onRender = variable_struct_exists(params, "onRender") && params.onRender ? params.onRender : undefined;
-	var skipLayerChecks = variable_struct_exists(params, "skipLayerChecks") && params.skipLayerChecks ? params.skipLayerChecks : false;
+	var skip_layer_checks = variable_struct_exists(params, "skip_layer_checks") && params.skip_layer_checks ? params.skip_layer_checks : false;
 	var surface = variable_struct_exists(params, "surface") ? params.surface : true;
 	
 	var elem = { 
@@ -30,7 +30,7 @@ function uih_create_component(params) {
 		updated: false,
 		parent: parentComp,
 		children: [],
-		skipLayerChecks: skipLayerChecks,
+		skip_layer_checks: skip_layer_checks,
 		onStep: onStep,
 		onRender: onRender,
 		surface: surface ? noone : undefined,
@@ -89,6 +89,9 @@ function uih_create_component(params) {
 		
 		/**
 		 * Resize the component surface
+		 *
+		 * @param {Real} width
+		 * @param {Real} height
 		 */
 		resize: function(width, height) {
 			self.state.width = width;
@@ -99,7 +102,25 @@ function uih_create_component(params) {
 				surface_resize(surface, width + 1, height + 1);
 			}
 			self.updated = true;
-		}
+		},
+		
+		/**
+		 * Get the X relative coordinate to the parent
+		 *
+		 * @return {Real}
+		 */
+		 x_rel: function() {
+			 return self.state.x - self.parent.state.x;
+		 },
+		 
+		 /**
+		 * Get the Y relative coordinate to the parent
+		 *
+		 * @return {Real}
+		 */
+		 y_rel: function() {
+			 return self.state.y - self.parent.state.y;
+		 }
 	};
 		
 	// Call the state initializer method (if provided)
