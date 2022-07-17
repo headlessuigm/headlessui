@@ -8,11 +8,11 @@
  * @return {Struct}
  */
 function uih_layer(state = undefined, parent = undefined, on_render = undefined) {
-	return uih_create_component({
+	return new HuiComponent({
 		state: state, 
 		parent: parent,
 		skip_layer_checks: true,
-		surface: false,
+		disable_surface: true,
 		on_render: on_render, 
 		
 		on_init: function(elem) {

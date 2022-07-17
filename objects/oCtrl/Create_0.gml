@@ -33,6 +33,7 @@ ui_button({
 	})
 });
 
+/** Checkbox */
 ui_checkbox({ 
 	x: 10, 
 	y: 120, 
@@ -72,7 +73,7 @@ ui_checkbox({
 //});
 //draw_text(130, 220, slider.state.value);
 
-
+/** Scrollbars */
 var scrollbar_horizontal = ui_scrollbar({
 	x: 10, 
 	y: 200, 
@@ -91,12 +92,13 @@ var scrollbar_vertical = ui_scrollbar({
 	type: ui_enum_variants.primary,
 	direction: uih_enum_scrollbar_direction.vertical,
 	thumb_size: 50,
-	on_change: method({scrollbar_horizontal: scrollbar_horizontal}, function(value) {
-		scrollbar_horizontal.set({ value: value});
+	on_change: method({ scrollbar_horizontal: scrollbar_horizontal }, function(value) {
+		scrollbar_horizontal.set({ value: value });
 	}),
 });
 
-scrollbar_horizontal.set({ on_change: method({scrollbar_vertical: scrollbar_vertical}, function(value) {
-		scrollbar_vertical.set({ value: value});
+scrollbar_horizontal.set({ 
+	on_change: method({ scrollbar_vertical: scrollbar_vertical }, function(value) {
+		scrollbar_vertical.set({ value: value });
 	}),
 });

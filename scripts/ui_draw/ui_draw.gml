@@ -19,11 +19,11 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 		var child = children[i];
 		
 		// Run the step component method
-		if (variable_struct_exists(child, "on_step")) {
+		if (variable_struct_exists(child, "on_step") && child.on_step) {
 			child.on_step(child);
 		}
 		
-		if (variable_struct_exists(child, "surface")) {
+		if (!variable_struct_exists(child, "disable_surface") || !child.disable_surface) {
 			var state = child.state;
 		
 			// If the surface has been deleted, force the re-rendering

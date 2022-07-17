@@ -6,7 +6,7 @@
     "path": "folders/UI/UI Headless - Logical components/Internal.yy",
   },
   "resourceVersion": "1.0",
-  "name": "uih_create_component",
+  "name": "__uih_component",
   "tags": [],
   "resourceType": "GMScript",
 }

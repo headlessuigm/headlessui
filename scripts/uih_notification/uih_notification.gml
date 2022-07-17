@@ -8,7 +8,7 @@
  * @return {Struct}
  */
 function uih_notification(state = undefined, parent = undefined, on_render = undefined) {
-	return uih_create_component({
+	return new HuiComponent({
 		state: state, 
 		parent: parent,
 		on_render: on_render, 

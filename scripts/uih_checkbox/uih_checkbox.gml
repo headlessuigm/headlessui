@@ -14,7 +14,7 @@ enum uih_enum_checkbox_status {
  * @return {Struct}
  */
 function uih_checkbox(state = undefined, parent = undefined, on_render = undefined) {
-	return uih_create_component({
+	return new HuiComponent({
 		state: state, 
 		parent: parent,
 		on_render: on_render, 
@@ -29,14 +29,14 @@ function uih_checkbox(state = undefined, parent = undefined, on_render = undefin
 		},
 		
 		on_step: function(elem) {
-			var elemState = elem.state;
-			var status = elemState.status;
+			var state = elem.state;
+			var status = state.status;
 	
 			if (status != uih_enum_checkbox_status.idle && mouse_check_button_released(mb_any)) {
 				elem.set({ status: uih_enum_checkbox_status.idle });
 			} else if (elem.parent.is_hovered(elem)) {
 				if (mouse_check_button_pressed(mb_any)) {
-					elem.set({ status: uih_enum_checkbox_status.clicked, checked: !elemState.checked });
+					elem.set({ status: uih_enum_checkbox_status.clicked, checked: !state.checked });
 					elem.click();
 				} else if (status == uih_enum_checkbox_status.idle) {
 					elem.set({ status: uih_enum_checkbox_status.hover });
