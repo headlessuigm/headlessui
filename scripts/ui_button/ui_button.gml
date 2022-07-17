@@ -31,6 +31,6 @@ function ui_button(state, parent = undefined) {
 		draw_set_halign(fa_center); 
 		draw_set_valign(fa_middle); 
 		draw_set_font(ui_variable_font);
-		draw_text(state.width/2, state.height/2, state.text);
+		draw_text_ext(state.width/2, state.height/2, state.text, state.textSep, state.textMaxWidth);
 	});
 }

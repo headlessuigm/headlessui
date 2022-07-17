@@ -28,7 +28,7 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 		
 			// If the surface has been deleted, force the re-rendering
 			if (!surface_exists(child.surface)) {
-				child.surface = surface_create(state.width, state.height);
+				child.surface = surface_create(state.width + 1, state.height + 1);
 				child.updated = true;
 			}
 		

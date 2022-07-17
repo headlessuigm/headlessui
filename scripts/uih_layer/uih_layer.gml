@@ -26,7 +26,7 @@ function uih_layer(state = undefined, parent = undefined, onRender = undefined) 
 				// Find the element to focus and move it on the top
 				for (var i=topIdx; i>=0; i--) {
 					var sortedChild = children[i];
-					if (sortedChild != child || sortedChild.skipLayerChecks) continue;
+					if (sortedChild != child || sortedChild.skip_layer_checks) continue;
 					if (i == topIdx) return;
 					array_push(children, child);
 					array_delete(children, i, 1);
@@ -40,7 +40,7 @@ function uih_layer(state = undefined, parent = undefined, onRender = undefined) 
 			elem.is_hovered = method(elem,  function(elem) {
 				for (var i=array_length(self.children)-1; i>=0; i--) {
 					var child = self.children[i];
-					if (child.skipLayerChecks) continue;
+					if (child.skip_layer_checks) continue;
 					var childX = child.state.x;
 					var childY = child.state.y;
 					if (!point_in_rectangle(mouse_x, mouse_y, childX, childY, childX + child.state.width, childY + child.state.height)) continue;
