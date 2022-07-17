@@ -11,8 +11,7 @@ The state is a struct that you can modify to your liking, e.g. if the button has
 ### EXAMPLE USAGE
 
 ```gml
-// Re-render the elements if updated, and draw their surfaces
-ui_draw();
+// Create event
 
 /** Button */
 ui_button("PrimaryButton", { 
@@ -26,6 +25,19 @@ ui_button("PrimaryButton", {
   })
 });
 ```
+
+```gml
+// Draw GUI event
+
+/** Re-render the elements if updated, and draw their surfaces */
+ui_draw();
+```
+---
+
+### CONTRIBUTING
+
+Contributions are always appreciated! In order to do so, please fork the repository and push your changes there. Then create a Pull Request from your branch to the `main` branch.
+
 ---
 
 ### LICENSE 

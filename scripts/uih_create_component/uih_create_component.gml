@@ -37,18 +37,24 @@ function uih_create_component(params) {
 			
 		/**
 		  * Update the element state, scheduling the element re-rendering. 
-	  	  * The value change is sync, while the actual rendering is batched.
+	  	  * Note: The value change is sync, while the actual rendering is batched.
+		  * Note: Re-rendering is scheduled only if the state has been actually been updated
 		  *
 		  * @param {Struct} [partialState] State keys to update
 		  */
 		set: function(partialState = {}) {
-			self.updated = true;
-				
+			var updated = false;
+			
 			var names = variable_struct_get_names(partialState);
 			for (var i=0, l=array_length(names); i<l; i++) {
 				var name = names[i];
-				self.state[$ name] = partialState[$ name];
+				if (self.state[$ name] != partialState[$ name]) {
+					self.state[$ name] = partialState[$ name];
+					updated = true;
+				}
 			}
+			
+			self.updated = updated;
 		},
 			
 		/**
@@ -90,13 +96,15 @@ function uih_create_component(params) {
 			
 			var surface = self.surface;
 			if (surface_exists(surface)) {
-				surface_resize(surface, width, height);
+				surface_resize(surface, width + 1, height + 1);
 			}
 		}
 	};
 		
 	// Call the state initializer method (if provided)
-	if (onLogicInit) onLogicInit(elem);
+	if (onLogicInit) {
+		onLogicInit(elem);
+	}
 		
 	// Store the new element into the parent children
 	array_push(parentComp.children, elem);

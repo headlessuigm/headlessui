@@ -32,7 +32,7 @@ function uih_notification(state = undefined, parent = undefined, onRender = unde
 					created: true,
 					deleted: false
 				});
-				self.elem.set();
+				self.elem.updated = true;
 			});
 		},
 		
@@ -49,7 +49,7 @@ function uih_notification(state = undefined, parent = undefined, onRender = unde
 					} else {
 						item.created = false;
 					}
-					elem.set();
+					elem.updated = true;
 					continue;	
 				}
 		
@@ -59,7 +59,7 @@ function uih_notification(state = undefined, parent = undefined, onRender = unde
 					} else {
 						array_delete(items, i, 1);
 					}
-					elem.set();
+					elem.updated = true;
 					continue;	
 				}
 		
