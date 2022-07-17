@@ -19,11 +19,13 @@ function uih_checkbox(state = undefined, parent = undefined, on_render = undefin
 		// Init
 		function(elem) {
 			var state = elem.state;
-			
-			// Set the default checkbox status			
+
+			// Set the default checkbox status
 			state.status = uih_enum_checkbox_status.idle;
-			
+
 			state.type = variable_struct_exists(state, "type") ? state.type : ui_enum_variants.primary;
+			state.scroll_x = variable_struct_exists(state, "scroll_x") ? state.scroll_x : 0;
+            state.scroll_y = variable_struct_exists(state, "scroll_y") ? state.scroll_y : 0;
 		},
 		
 		// Step

@@ -17,7 +17,8 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 	// Loop over the childents
 	for (var i = 0; i<array_length(children); i++) {
 		var child = children[i];
-		
+		var parent = child.parent;
+
 		// Run the step component method
 		if (variable_struct_exists(child, "on_step") && child.on_step) {
 			child.on_step(child);
@@ -52,7 +53,7 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 			}
 		
 			// Draw the component surface
-			draw_surface(child.surface, state.x, state.y);
+			draw_surface(child.surface, state.x - parent.state.scroll_x, state.y - parent.state.scroll_y);
 		}
 		
 		
