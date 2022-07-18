@@ -30,9 +30,6 @@ function uih_button(state = undefined, parent = undefined, on_render = undefined
 			state.text_sep = variable_struct_exists(state, "text_sep") ? state.text_sep : -1;
 			state.text_max_width = variable_struct_exists(state, "text_max_width") ? state.text_max_width : -1;
 			
-			state.scroll_x = variable_struct_exists(state, "scroll_x") ? state.scroll_x : 0;
-			state.scroll_y = variable_struct_exists(state, "scroll_y") ? state.scroll_y : 0;
-			
 			/**
 			 * Set the text of the button, auto-resizing the container, according to the button padding
 			 * 

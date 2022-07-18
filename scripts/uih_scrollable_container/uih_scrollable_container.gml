@@ -16,18 +16,15 @@ function uih_scrollable_container(state = undefined, parent = undefined, on_rend
 	return new HuiComponent({
 		state: state, 
 		parent: parent,
-		//skip_layer_checks: false,
 		surface: true,
 		on_render: on_render, 
 		on_init: function(elem) {
 			var state = elem.state;
 			
-			state.scroll_x = variable_struct_exists(state, "scroll_x") ? state.scroll_x : 0;
-			state.scroll_y = variable_struct_exists(state, "scroll_y") ? state.scroll_y : 0;
-			state.scrollable_width = variable_struct_exists(state, "scrollable_width") ? state.scrollable_width : state.width;
-			state.scrollable_height = variable_struct_exists(state, "scrollable_height") ? state.scrollable_height : state.height;
-			state.scroll_step = variable_struct_exists(state, "scroll_step") ? state.scroll_step : 24;
-			state.on_scroll = variable_struct_exists(state, "on_scroll") ? state.on_scroll : undefined;
+			state.scrollable_width = state[$ "scrollable_width"] ?? state.width;
+			state.scrollable_height = state[$ "scrollable_height"] ?? state.height;
+			state.scroll_step = state[$ "scroll_step"] ?? 24;
+			state.on_scroll = state[$ "on_scroll"];
 			
 			/**
 			 * Set the specified element as focused (if not already)
