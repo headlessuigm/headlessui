@@ -34,7 +34,7 @@ ui_button({
 });
 
 /** Checkbox */
-ui_checkbox({ 
+ui_checkbox({
 	x: 10, 
 	y: 120, 
 	width: 220, 
@@ -74,31 +74,57 @@ ui_checkbox({
 //draw_text(130, 220, slider.state.value);
 
 /** Scrollbars */
-var scrollbar_horizontal = ui_scrollbar({
+var scrollable_container = ui_scrollable_container({
 	x: 10, 
 	y: 200, 
 	width: 200, 
-	height: 20, 
-	type: ui_enum_variants.primary,
-	direction: uih_enum_scrollbar_direction.horizontal,
-	thumb_size: 100,
+	height: 200,
+	scrollable_width: 400,
+	scrollable_height: 800,
 });
 
+for (var i = 0; i < 15; i++) {
+	ui_button({
+		x: 15,
+		y: 205 + i * 50,
+		width: 190,
+		height: 40,
+		text: "Button in scrollable " + string(i),
+	}, scrollable_container);
+}
+
 var scrollbar_vertical = ui_scrollbar({
-	x: 10, 
-	y: 230, 
+	x: 210,
+	y: 200,
 	width: 20, 
 	height: 200, 
 	type: ui_enum_variants.primary,
 	direction: uih_enum_scrollbar_direction.vertical,
-	thumb_size: 50,
-	on_change: method({ scrollbar_horizontal: scrollbar_horizontal }, function(value) {
-		scrollbar_horizontal.set({ value: value });
+	thumb_size: scrollable_container.state.height / scrollable_container.state.scrollable_height * 200,
+	on_change: method({ scrollable_container: scrollable_container }, function(value) {
+		scrollable_container.set({ scroll_y: (scrollable_container.state.scrollable_height - scrollable_container.state.height) * value });
 	}),
 });
 
-scrollbar_horizontal.set({ 
-	on_change: method({ scrollbar_vertical: scrollbar_vertical }, function(value) {
-		scrollbar_vertical.set({ value: value });
+var scrollbar_horizontal = ui_scrollbar({
+	x: 10,
+	y: 400,
+	width: 200,
+	height: 20,
+	type: ui_enum_variants.primary,
+	direction: uih_enum_scrollbar_direction.horizontal,
+	thumb_size: scrollable_container.state.width / scrollable_container.state.scrollable_width * 200,
+	on_change: method({ scrollable_container: scrollable_container }, function(value) {
+		scrollable_container.set({ scroll_x: (scrollable_container.state.scrollable_width - scrollable_container.state.width) * value });
+	}),
+});
+
+scrollable_container.set({
+	on_scroll: method({ scrollbar_vertical: scrollbar_vertical, scrollbar_horizontal: scrollbar_horizontal }, function(scroll_direction, scroll_value) {
+		if (scroll_direction == uih_enum_scroll_direction.vertical) {
+			scrollbar_vertical.set({ value: scroll_value });
+		} else {
+			scrollbar_horizontal.set({ value: scroll_value });
+		}
 	}),
 });

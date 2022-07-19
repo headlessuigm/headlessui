@@ -4,6 +4,7 @@
     {"id":{"name":"uih_checkbox","path":"scripts/uih_checkbox/uih_checkbox.yy",},"order":3,},
     {"id":{"name":"ui_draw","path":"scripts/ui_draw/ui_draw.yy",},"order":2,},
     {"id":{"name":"uih_notification","path":"scripts/uih_notification/uih_notification.yy",},"order":3,},
+    {"id":{"name":"uih_scrollable_container","path":"scripts/uih_scrollable_container/uih_scrollable_container.yy",},"order":6,},
     {"id":{"name":"ui_notification","path":"scripts/ui_notification/ui_notification.yy",},"order":2,},
     {"id":{"name":"__uih_component","path":"scripts/__uih_component/__uih_component.yy",},"order":0,},
     {"id":{"name":"ui_button","path":"scripts/ui_button/ui_button.yy",},"order":1,},
@@ -14,6 +15,7 @@
     {"id":{"name":"rCtrl","path":"rooms/rCtrl/rCtrl.yy",},"order":1,},
     {"id":{"name":"uih_layer","path":"scripts/uih_layer/uih_layer.yy",},"order":0,},
     {"id":{"name":"ui_scrollbar","path":"scripts/ui_scrollbar/ui_scrollbar.yy",},"order":5,},
+    {"id":{"name":"ui_scrollable_container","path":"scripts/ui_scrollable_container/ui_scrollable_container.yy",},"order":6,},
     {"id":{"name":"oCtrl","path":"objects/oCtrl/oCtrl.yy",},"order":0,},
   ],
   "Options": [

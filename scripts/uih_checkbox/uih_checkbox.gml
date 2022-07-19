@@ -19,10 +19,10 @@ function uih_checkbox(state = undefined, parent = undefined, on_render = undefin
 		// Init
 		function(elem) {
 			var state = elem.state;
-			
-			// Set the default checkbox status			
+
+			// Set the default checkbox status
 			state.status = uih_enum_checkbox_status.idle;
-			
+
 			state.type = variable_struct_exists(state, "type") ? state.type : ui_enum_variants.primary;
 		},
 		
