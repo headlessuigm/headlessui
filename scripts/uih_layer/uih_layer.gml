@@ -8,17 +8,13 @@
  * @return {Struct}
  */
 function uih_layer(state = undefined, parent = undefined, on_render = undefined) {
-	return new HuiComponent({
-		state: state, 
-		parent: parent,
-		skip_layer_checks: true,
-		disable_surface: true,
-		on_render: on_render, 
-		
-		on_init: function(elem) {
+	return new UihComponent(state, parent, on_render, 
+	
+		// Init
+		function(elem) {
 			/**
-			 * Set the specified element as focused (if not already)
-			 */
+			  * Set the specified element as focused (if not already)
+			  */
 			elem.focus = method(elem, function(child) {
 				var children = self.children;
 				var topIdx = array_length(children) - 1;
@@ -35,8 +31,8 @@ function uih_layer(state = undefined, parent = undefined, on_render = undefined)
 			});
 		
 			/**
-			 * Check if the specified element is the most higher (on top) element, that is intersecting the mouse
-			 */
+				* Check if the specified element is the most higher (on top) element, that is intersecting the mouse
+				*/
 			elem.is_hovered = method(elem,  function(elem) {
 				for (var i=array_length(self.children)-1; i>=0; i--) {
 					var child = self.children[i];
@@ -48,6 +44,5 @@ function uih_layer(state = undefined, parent = undefined, on_render = undefined)
 				}
 				return undefined;
 			});
-		}
-	});
+		}, undefined, true, true);
 }

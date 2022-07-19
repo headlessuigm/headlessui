@@ -37,6 +37,7 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 				surface_set_target(child.surface);
 				draw_clear_alpha(c_black, 0);
 				child.on_render(child.state);
+				ui_draw(child.children);
 				surface_reset_target();
 				child.updated = false;
 				draw_set_alpha(1);
@@ -54,7 +55,7 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 			draw_surface(child.surface, state.x, state.y);
 		}
 		
-		ui_draw(child.children);
+		
 	}
 	
 	// Reset the drawing state

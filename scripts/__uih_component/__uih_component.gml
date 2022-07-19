@@ -2,28 +2,35 @@
 global.UIH_ROOT_COMPONENT = uih_layer(undefined, { children: [] });
 
 /**
- * HEADLESS UI v0.0.1a
+ * HEADLESS UI (Alpha)
  * Get the component struct. The component is initialized and cached if not already did
  *
- * @param {Struct} params Compoment params
- * @param {Struct} [params.state] Initial data to store into the component state
- * @param {Struct} [params.parent] Parent component
- * @param {Function} [params.on_init] Function called to enhance the initial state on component initialization
- * @param {Function} [params.on_step] Function called each tick to handle the component logic
- * @param {Function} [params.on_render] Function called each tick to render the component
- * @param {Bool} [params.skip_layer_checks] When this component should skip the parent layer hovering checks
- * @params {Bool} [params.disable_surface] If to disable the component surface
+ * @param {Struct} [state] Initial data to store into the component state
+ * @param {Struct} [parent] Parent component
+ * @param {Function} [on_render] Function called each tick to render the component
+ * @param {Function} [on_init] Function called to enhance the initial state on component initialization
+ * @param {Function} [on_step] Function called each tick to handle the component logic
+ * @param {Bool} [skip_layer_checks] When this component should skip the parent layer hovering checks
+ * @params {Bool} [disable_surface] If to disable the component surface
  *
  * @return {Struct}
  */
-function HuiComponent(params) constructor {
-	self.state = variable_struct_exists(params, "state") && params.state ? params.state : {};
-	self.parent = variable_struct_exists(params, "parent") && params.parent  ? params.parent : global.UIH_ROOT_COMPONENT;
-	self.on_init = variable_struct_exists(params, "on_init") && params.on_init ? params.on_init : undefined;
-	self.on_step = variable_struct_exists(params, "on_step") && params.on_step ? params.on_step : undefined;
-	self.on_render = variable_struct_exists(params, "on_render") && params.on_render ? params.on_render : undefined;
-	self.skip_layer_checks = variable_struct_exists(params, "skip_layer_checks") && params.skip_layer_checks ? params.skip_layer_checks : false;
-	self.disable_surface = variable_struct_exists(params, "disable_surface") && params.disable_surface;
+function UihComponent(
+	state = {},
+	parent = global.UIH_ROOT_COMPONENT, 
+	on_render = undefined, 
+	on_init = undefined, 
+	on_step = undefined, 
+	skip_layer_checks = false, 
+	disable_surface = false
+) constructor {
+	self.state = state;
+	self.parent = parent;
+	self.on_render = on_render;
+	self.on_init = on_init;
+	self.on_step = on_step;
+	self.skip_layer_checks = skip_layer_checks;
+	self.disable_surface = disable_surface;
 	
 	/// If the component state has been updated. This is automatically reset after the re-rendering
 	self.updated = false;
@@ -35,7 +42,6 @@ function HuiComponent(params) constructor {
 	self.surface = noone;
 	
 	// Enhance the state with default values
-	var state = self.state;
 	if (!variable_struct_exists(state, "x")) state.x = 0;
 	if (!variable_struct_exists(state, "y")) state.y = 0;
 	if (!variable_struct_exists(state, "width")) state.width = 0;
@@ -128,6 +134,16 @@ function HuiComponent(params) constructor {
 	self.y_rel = function() {
 		return self.state.y - self.parent.state.y;
 	};
+	
+	/**
+	 * Add a component in the children list of this component
+	 *
+	 * @param {Struct} child Child component to add
+	 */
+	self.add_child = function(child) {
+		child.parent = self;
+		array_push(self.children, child);
+	}
 		
 	// Store the new element into the parent children
 	array_push(self.parent.children, self);

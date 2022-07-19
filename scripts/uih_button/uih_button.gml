@@ -14,12 +14,10 @@ enum uih_enum_button_status {
  * @return {Struct}
  */
 function uih_button(state = undefined, parent = undefined, on_render = undefined) {
-	return new HuiComponent({
-		state: state, 
-		parent: parent,
-		on_render: on_render, 
-		
-		on_init: function(elem) {
+	return new UihComponent(state, parent, on_render, 
+	
+		// Init
+		function(elem) {
 			var state = elem.state;
 			
 			// Set the default button status
@@ -52,7 +50,8 @@ function uih_button(state = undefined, parent = undefined, on_render = undefined
 			});
 		},
 		
-		on_step: function(elem) {
+		// Step
+		function(elem) {
 			// Handle the button status
 			var status = elem.state.status;
 	
@@ -68,6 +67,5 @@ function uih_button(state = undefined, parent = undefined, on_render = undefined
 			} else if (status == uih_enum_button_status.hover) {
 				elem.set({ status: uih_enum_button_status.idle });
 			}
-		}
 	});
 }

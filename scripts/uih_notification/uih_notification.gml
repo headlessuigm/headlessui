@@ -8,12 +8,10 @@
  * @return {Struct}
  */
 function uih_notification(state = undefined, parent = undefined, on_render = undefined) {
-	return new HuiComponent({
-		state: state, 
-		parent: parent,
-		on_render: on_render, 
-		
-		on_init: function(elem) {
+	return new UihComponent(state, parent, on_render, 
+	
+		// Init
+		function(elem) {
 			elem.state.items = [];
 		
 			/** 
@@ -36,7 +34,8 @@ function uih_notification(state = undefined, parent = undefined, on_render = und
 			});
 		},
 		
-		on_step: function(elem) {
+		// Step
+		function(elem) {
 			// Handle the items lifespan
 			var items = elem.state.items;	
 	
@@ -69,6 +68,5 @@ function uih_notification(state = undefined, parent = undefined, on_render = und
 					item.deleted = true;			
 				}
 			}	
-		}
 	});
 }

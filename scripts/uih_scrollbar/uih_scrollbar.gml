@@ -20,12 +20,10 @@ enum uih_enum_scrollbar_direction {
  * @return {Struct}
  */
 function uih_scrollbar(state = undefined, parent = undefined, on_render = undefined) {
-	return new HuiComponent({
-		state: state, 
-		parent: parent,
-		on_render: on_render, 
-		
-		on_init: function(elem) {
+	return new UihComponent(state, parent, on_render, 
+	
+		// Init
+		function(elem) {
 			// Set the default scrollbar status
 			elem.state.type = variable_struct_exists(elem.state, "type") ? elem.state.type : ui_enum_variants.primary;
 			elem.state.status = uih_enum_button_status.idle;
@@ -34,7 +32,8 @@ function uih_scrollbar(state = undefined, parent = undefined, on_render = undefi
 			elem.state.thumb_size = variable_struct_exists(elem.state, "thumb_size") ? elem.state.thumb_size : 0;
 		},
 		
-		on_step: function(elem) {
+		// Step
+		function(elem) {
 			var status = elem.state.status;
 			var hovered = elem.parent.is_hovered(elem);
 			
@@ -65,6 +64,5 @@ function uih_scrollbar(state = undefined, parent = undefined, on_render = undefi
 			} else if (status != uih_enum_scrollbar_status.idle) {
 				elem.set({ status: uih_enum_scrollbar_status.idle });
 			}
-		}
 	});
 }

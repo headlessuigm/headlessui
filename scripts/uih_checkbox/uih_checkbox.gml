@@ -14,12 +14,10 @@ enum uih_enum_checkbox_status {
  * @return {Struct}
  */
 function uih_checkbox(state = undefined, parent = undefined, on_render = undefined) {
-	return new HuiComponent({
-		state: state, 
-		parent: parent,
-		on_render: on_render, 
-		
-		on_init: function(elem) {
+	return new UihComponent(state, parent, on_render, 
+	
+		// Init
+		function(elem) {
 			var state = elem.state;
 			
 			// Set the default checkbox status			
@@ -28,7 +26,8 @@ function uih_checkbox(state = undefined, parent = undefined, on_render = undefin
 			state.type = variable_struct_exists(state, "type") ? state.type : ui_enum_variants.primary;
 		},
 		
-		on_step: function(elem) {
+		// Step
+		function(elem) {
 			var state = elem.state;
 			var status = state.status;
 	
@@ -44,6 +43,5 @@ function uih_checkbox(state = undefined, parent = undefined, on_render = undefin
 			} else if (status == uih_enum_checkbox_status.hover) {
 				elem.set({ status: uih_enum_checkbox_status.idle });
 			}
-		}
 	});
 }
