@@ -13,12 +13,10 @@ enum uih_enum_scroll_direction {
  * @return {Struct}
  */
 function uih_scrollable_container(state = undefined, parent = undefined, on_render = undefined) {
-	return new HuiComponent({
-		state: state, 
-		parent: parent,
-		surface: true,
-		on_render: on_render, 
-		on_init: function(elem) {
+	return new UihComponent(state, parent, on_render, 
+	
+		// Init
+		function(elem) {
 			var state = elem.state;
 			
 			state.scrollable_width = state[$ "scrollable_width"] ?? state.width;
@@ -60,7 +58,8 @@ function uih_scrollable_container(state = undefined, parent = undefined, on_rend
 			});
 		},
 		
-		on_step: function(elem) {
+		// Step
+		function(elem) {
 			var scrolled = undefined;
 			
 			if (elem.parent.is_hovered(elem)) {
@@ -91,6 +90,5 @@ function uih_scrollable_container(state = undefined, parent = undefined, on_rend
 					: elem.state.scroll_x / (elem.state.scrollable_width - elem.state.width);
 				elem.state.on_scroll(scrolled, normalized_scroll_value);
 			}
-		},
 	});
 }
