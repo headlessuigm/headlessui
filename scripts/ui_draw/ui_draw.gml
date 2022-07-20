@@ -21,7 +21,7 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 
 		// Run the step component method
 		if (variable_struct_exists(child, "on_step") && child.on_step) {
-			child.on_step(child);
+			child.on_step();
 		}
 
 		if (!variable_struct_exists(child, "disable_surface") || !child.disable_surface) {
@@ -37,7 +37,7 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 			if (child.updated) {
 				surface_set_target(child.surface);
 				draw_clear_alpha(c_black, 0);
-				child.on_render(child.state);
+				child.on_render();
 				ui_draw(child.children);
 				surface_reset_target();
 				child.updated = false;

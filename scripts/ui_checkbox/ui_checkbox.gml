@@ -6,13 +6,13 @@
  *
  * @return {Struct}
  */
-function ui_checkbox(state, parent = undefined) {	
-	return uih_checkbox(state, parent, function(state) {
-		var type = variable_struct_exists(state, "type") ? state.type : ui_enum_variants.primary;
+function UiCheckbox(state, parent = undefined) : UihCheckbox(state, parent) constructor {	
+	self.on_render = function() {
+		var type = self.state[$ "type"] ?? ui_enum_variants.primary;
 		
 		// Draw the background
 		var bgcolor;
-		switch (state.status) {
+		switch (self.state.status) {
 			case uih_enum_checkbox_status.clicked:
 				bgcolor = type == ui_enum_variants.primary ? ui_variable_col_primary_dark : ui_variable_col_secondary_dark;
 				break;
@@ -23,15 +23,15 @@ function ui_checkbox(state, parent = undefined) {
 				bgcolor = type == ui_enum_variants.primary ? ui_variable_col_primary : ui_variable_col_secondary;
 		}
 		
-		var checkboxWidth = state.height;
+		var checkboxWidth = self.state.height;
 		draw_set_color(bgcolor);
-		draw_rectangle(0, 0, checkboxWidth, state.height, false);
+		draw_rectangle(0, 0, checkboxWidth, self.state.height, false);
 		
 		// If checked, draw the inner rectangle
-		if (state.checked) {
+		if (self.state.checked) {
 			draw_set_color(type == ui_enum_variants.primary ? ui_variable_col_primary_dark : ui_variable_col_secondary_dark);
 			var padding = 4;
-			draw_rectangle(padding, padding, checkboxWidth - padding, state.height - padding, false);
+			draw_rectangle(padding, padding, checkboxWidth - padding, self.state.height - padding, false);
 		}
 		
 		// Draw the text
@@ -39,6 +39,6 @@ function ui_checkbox(state, parent = undefined) {
 		draw_set_halign(fa_left); 
 		draw_set_valign(fa_middle); 
 		draw_set_font(ui_variable_font);
-		draw_text(checkboxWidth + 10, state.height/2, state.text);
-	});
+		draw_text(checkboxWidth + 10, self.state.height/2, self.state.text);
+	};
 }

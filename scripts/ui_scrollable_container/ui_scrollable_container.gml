@@ -6,10 +6,10 @@
  *
  * @return {Struct}
  */
-function ui_scrollable_container(state, parent = undefined) {	
-	return uih_scrollable_container(state, parent, function(state) {		
+function UiScrollableContainer(state, parent = undefined) : UihScrollableContainer(state, parent) constructor {	
+	self.on_render = function() {		
 		// Draw the background		
 		draw_set_color(ui_variable_col_bg);
-		draw_rectangle(0, 0, state.width, state.height, false);
-	});
+		draw_rectangle(0, 0, self.state.width, self.state.height, false);
+	};
 }

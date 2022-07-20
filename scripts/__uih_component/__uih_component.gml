@@ -1,5 +1,5 @@
 // Default root layer component
-global.UIH_ROOT_COMPONENT = uih_layer(undefined, { children: [] });
+global.UIH_ROOT_COMPONENT = new UihLayer(undefined, {children: []});
 
 /**
  * HEADLESS UI (Alpha)
@@ -7,30 +7,30 @@ global.UIH_ROOT_COMPONENT = uih_layer(undefined, { children: [] });
  *
  * @param {Struct} [state] Initial data to store into the component state
  * @param {Struct} [parent] Parent component
- * @param {Function} [on_render] Function called each tick to render the component
- * @param {Function} [on_init] Function called to enhance the initial state on component initialization
- * @param {Function} [on_step] Function called each tick to handle the component logic
- * @param {Bool} [skip_layer_checks] When this component should skip the parent layer hovering checks
- * @params {Bool} [disable_surface] If to disable the component surface
  *
  * @return {Struct}
  */
 function UihComponent(
 	state = {},
-	parent = global.UIH_ROOT_COMPONENT, 
-	on_render = undefined, 
-	on_init = undefined, 
-	on_step = undefined, 
-	skip_layer_checks = false, 
-	disable_surface = false
+	parent = global.UIH_ROOT_COMPONENT
 ) constructor {
 	self.state = state;
 	self.parent = parent;
-	self.on_render = on_render;
-	self.on_init = on_init;
-	self.on_step = on_step;
-	self.skip_layer_checks = skip_layer_checks;
-	self.disable_surface = disable_surface;
+	
+	/// Function called to enhance the initial state on component initialization
+	self.on_init = undefined;
+	
+	/// Function called each tick to handle the component logic
+	self.on_step = undefined;
+	
+	/// Function called each tick to render the component
+	self.on_render = undefined;
+
+	/// When this component should skip the parent layer hovering checks
+	self.skip_layer_checks = false;
+	
+	/// If to disable the component surface
+	self.disable_surface = false;
 	
 	/// If the component state has been updated. This is automatically reset after the re-rendering
 	self.updated = false;
@@ -42,13 +42,15 @@ function UihComponent(
 	self.surface = noone;
 	
 	// Enhance the state with default values
-	if (!variable_struct_exists(state, "x")) state.x = 0;
-	if (!variable_struct_exists(state, "y")) state.y = 0;
-	if (!variable_struct_exists(state, "width")) state.width = 0;
-	if (!variable_struct_exists(state, "height")) state.height= 0;
-	if (!variable_struct_exists(state, "scroll_x")) state.scroll_x = 0;
-	if (!variable_struct_exists(state, "scroll_y")) state.scroll_y = 0;
-	if (!variable_struct_exists(state, "on_click")) state.on_click = function() {};
+	if (!variable_struct_exists(self.state, "x")) self.state.x = 0;
+	if (!variable_struct_exists(self.state, "y")) self.state.y = 0;
+	if (!variable_struct_exists(self.state, "width")) self.state.width = 0;
+	if (!variable_struct_exists(self.state, "height")) self.state.height= 0;
+	if (!variable_struct_exists(self.state, "scroll_x")) self.state.scroll_x = 0;
+	if (!variable_struct_exists(self.state, "scroll_y")) self.state.scroll_y = 0;
+	if (!variable_struct_exists(self.state, "on_click")) self.state.on_click = function() {};
+	
+	show_debug_message(self.state);
 			
 	/**
 	 * Update the element state, scheduling the element re-rendering. 
@@ -147,9 +149,4 @@ function UihComponent(
 		
 	// Store the new element into the parent children
 	array_push(self.parent.children, self);
-	
-	// Call the state initializer method (if provided)
-	if (on_init) {
-		on_init(self);
-	}
 }

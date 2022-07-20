@@ -6,12 +6,12 @@
  *
  * @return {Struct}
  */
-function ui_notification(state, parent = undefined) {
-	return uih_notification(state, parent, function(state) {
-		var items = state.items;
+function UiNotification(state, parent = undefined) : UihNotification(state, parent) constructor {
+	self.on_render = function() {
+		var items = self.state.items;
 		
 		var x1 = 0;
-		var x2 = state.width;
+		var x2 = self.state.width;
 		var yOff = 0;
 		
 		// Draw the items
@@ -40,5 +40,5 @@ function ui_notification(state, parent = undefined) {
 			draw_set_color(item.type == ui_enum_variants.primary ? ui_variable_col_on_primary : ui_variable_col_on_secondary);
 			draw_text(mean(x1, x2), mean(y1, y2), item.text);
 		}
-	});
+	};
 }
