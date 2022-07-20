@@ -1,5 +1,5 @@
 // Default root layer component
-global.UIH_ROOT_COMPONENT = new UihLayer(undefined, {children: []});
+global.UIH_ROOT_COMPONENT = new UihLayer(undefined, { children: [] });
 
 /**
  * HEADLESS UI (Alpha)
@@ -49,8 +49,6 @@ function UihComponent(
 	if (!variable_struct_exists(self.state, "scroll_x")) self.state.scroll_x = 0;
 	if (!variable_struct_exists(self.state, "scroll_y")) self.state.scroll_y = 0;
 	if (!variable_struct_exists(self.state, "on_click")) self.state.on_click = function() {};
-	
-	show_debug_message(self.state);
 			
 	/**
 	 * Update the element state, scheduling the element re-rendering. 

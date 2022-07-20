@@ -8,8 +8,7 @@ enum uih_enum_checkbox_status {
  * Get the logical UI component 
  *
  * @param {Struct} state State to store in the component
- * @param {Struct} parent Parent layer. By default it is the root layer 
- * @param {Function} on_render Function called to render the component
+ * @param {Struct} parent Parent layer. By default it is the root layer
  *
  * @return {Struct}
  */
