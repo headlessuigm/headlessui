@@ -1,17 +1,17 @@
 /**
  * Get the render UI component 
  *
- * @param {Struct} state Component initial state to store
- * @param {Struct} parent Parent layer. By default it is the root layer 
+ * @param {Struct} _state Component initial state to store
+ * @param {Struct} _parent Parent layer. By default it is the root layer 
  *
  * @return {Struct}
  */
-function UiNotification(state, parent = undefined) : UihNotification(state, parent) constructor {
-	self.on_render = function() {
-		var items = self.state.items;
+function UiNotification(_state, _parent = undefined) : UihNotification(_state, _parent) constructor {
+	draw = function() {
+		var items = state.items;
 		
 		var x1 = 0;
-		var x2 = self.state.width;
+		var x2 = state.width;
 		var yOff = 0;
 		
 		// Draw the items

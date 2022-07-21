@@ -33,7 +33,7 @@ var secondary_button = new UiButton({
 	})
 });
 
-/** Checkbox */
+/** Checkboxes */
 var primary_checkbox = new UiCheckbox({
 	x: 10, 
 	y: 120, 
@@ -60,18 +60,6 @@ var secondary_checkbox = new UiCheckbox({
 		notification_elem.add_item("Secondary checkbox has been pressed", ui_enum_variants.secondary);
 	})
 });
-
-//var slider = ui_slider({ 
-//	x: 10, 
-//	y: 210, 
-//	width: 110, 
-//	height: 25, 
-//	value: 25,
-//	onClick: method({ notification_elem: notification_elem }, function(elem) {
-//		notification_elem.add_item(elem.id + " has been pressed");
-//	})
-//});
-//draw_text(130, 220, slider.state.value);
 
 /** Scrollbars */
 var scrollable_container = new UiScrollableContainer({

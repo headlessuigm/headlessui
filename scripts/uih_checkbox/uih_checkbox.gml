@@ -7,30 +7,30 @@ enum uih_enum_checkbox_status {
 /**
  * Get the logical UI component 
  *
- * @param {Struct} state State to store in the component
- * @param {Struct} parent Parent layer. By default it is the root layer
+ * @param {Struct} _state State to store in the component
+ * @param {Struct} _parent Parent layer. By default it is the root layer
  *
  * @return {Struct}
  */
-function UihCheckbox(state = undefined, parent = undefined) : UihComponent(state, parent) constructor {
+function UihCheckbox(_state = undefined, _parent = undefined) : UihComponent(_state, _parent) constructor {
 	// Set the default checkbox status
-	self.state.status = uih_enum_checkbox_status.idle;
-	self.state.type = self.state[$ "type"] ?? ui_enum_variants.primary;
+	state.status = uih_enum_checkbox_status.idle;
+	state.type = state[$ "type"] ?? ui_enum_variants.primary;
 		
-	self.on_step = function() {
-		var status = self.state.status;
+	step = function() {
+		var status = state.status;
 
 		if (status != uih_enum_checkbox_status.idle && mouse_check_button_released(mb_any)) {
-			self.set({ status: uih_enum_checkbox_status.idle });
-		} else if (self.parent.is_hovered(self)) {
+			set({ status: uih_enum_checkbox_status.idle });
+		} else if (parent.is_hovered(self)) {
 			if (mouse_check_button_pressed(mb_any)) {
-				self.set({ status: uih_enum_checkbox_status.clicked, checked: !self.state.checked });
-				self.click();
+				set({ status: uih_enum_checkbox_status.clicked, checked: !state.checked });
+				click();
 			} else if (status == uih_enum_checkbox_status.idle) {
-				self.set({ status: uih_enum_checkbox_status.hover });
+				set({ status: uih_enum_checkbox_status.hover });
 			}
 		} else if (status == uih_enum_checkbox_status.hover) {
-			self.set({ status: uih_enum_checkbox_status.idle });
+			set({ status: uih_enum_checkbox_status.idle });
 		}
 	};
 }

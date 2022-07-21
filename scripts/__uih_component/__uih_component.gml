@@ -17,14 +17,11 @@ function UihComponent(
 	self.state = state;
 	self.parent = parent;
 	
-	/// Function called to enhance the initial state on component initialization
-	self.on_init = undefined;
-	
 	/// Function called each tick to handle the component logic
-	self.on_step = undefined;
+	self.step = undefined;
 	
 	/// Function called each tick to render the component
-	self.on_render = undefined;
+	self.draw = undefined;
 
 	/// When this component should skip the parent layer hovering checks
 	self.skip_layer_checks = false;

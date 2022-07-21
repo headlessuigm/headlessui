@@ -14,7 +14,7 @@ The state is a struct that you can modify to your liking, e.g. if the button has
 // Create event
 
 /** Button */
-ui_button("PrimaryButton", { 
+new UiButton("PrimaryButton", { 
   x: 10, 
   y: 10, 
   width: 190, 
@@ -36,7 +36,9 @@ ui_draw();
 
 ### CONTRIBUTING
 
-Contributions are always appreciated! In order to do so, please fork the repository and push your changes there. Then create a Pull Request from your branch to the `main` branch.
+Contributions are always appreciated! In order to do so, please fork the repository and push your changes there. 
+
+Then create a Pull Request from your branch to the `main` branch.
 
 ---
 

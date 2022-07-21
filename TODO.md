@@ -1,6 +1,6 @@
 # TODO
 
-- Class inheritance
+- Relative coordinates
 
 - New events management (event bubbling)
 
@@ -12,5 +12,7 @@
   > dropdown
   
   > slider
+
+  > draggable
 
 - Documentation

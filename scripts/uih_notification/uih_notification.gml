@@ -1,13 +1,13 @@
 /**
  * Get the logical UI component 
  *
- * @param {Struct} state Initial state to store in the component
- * @param {Struct} parent Parent layer. By default it is the root layer
+ * @param {Struct} _state Initial state to store in the component
+ * @param {Struct} _parent Parent layer. By default it is the root layer
  *
  * @return {Struct}
  */
-function UihNotification(state = undefined, parent = undefined) : UihComponent(state, parent) constructor {
-	self.state.items = [];
+function UihNotification(_state = undefined, _parent = undefined) : UihComponent(_state, _parent) constructor {
+	state.items = [];
 
 	/** 
 	 * Add a notification item into the list
@@ -16,8 +16,8 @@ function UihNotification(state = undefined, parent = undefined) : UihComponent(s
 	 * @param {String} type Kind of notification (primary/secondary)
 	 * @param {String} [timer] Time in steps before removing the notification
 	 */
-	self.add_item = function(text, type = "primary", timer = 180) {
-		array_push(self.state.items, { 
+	add_item = function(text, type = "primary", timer = 180) {
+		array_push(state.items, { 
 			text: text,
 			type: type,
 			timer: timer,
@@ -25,12 +25,12 @@ function UihNotification(state = undefined, parent = undefined) : UihComponent(s
 			created: true,
 			deleted: false
 		});
-		self.updated = true;
+		updated = true;
 	};
 		
-	self.on_step = function() {
+	step = function() {
 		// Handle the items lifespan
-		var items = self.state.items;	
+		var items = state.items;	
 
 		for (var i=array_length(items)-1; i>=0; i--) {
 			var item = items[i];
@@ -41,7 +41,7 @@ function UihNotification(state = undefined, parent = undefined) : UihComponent(s
 				} else {
 					item.created = false;
 				}
-				self.updated = true;
+				updated = true;
 				continue;	
 			}
 	
@@ -51,7 +51,7 @@ function UihNotification(state = undefined, parent = undefined) : UihComponent(s
 				} else {
 					array_delete(items, i, 1);
 				}
-				self.updated = true;
+				updated = true;
 				continue;	
 			}
 	
