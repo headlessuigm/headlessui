@@ -106,7 +106,7 @@ var scrollbar_vertical = new UiScrollbar({
 	}),
 });
 
-var scrollbar_horizontal = ui_scrollbar({
+var scrollbar_horizontal = new UiScrollbar({
 	x: 10,
 	y: 400,
 	width: 200,
