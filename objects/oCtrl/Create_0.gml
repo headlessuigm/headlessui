@@ -1,5 +1,5 @@
 /** Notifications */
-var notificationElem = ui_notification({ 
+var notification_elem = new UiNotification({ 
 	x: display_get_gui_width() - 340, 
 	y: 10, 
 	width: 330, 
@@ -7,48 +7,48 @@ var notificationElem = ui_notification({
 });
 
 /** Buttons */
-ui_button({ 
+var primary_button = new UiButton({ 
 	x: 10, 
 	y: 10, 
 	width: 190, 
 	height: 40, 
 	text: "Primary Button", 
-	on_click: method({ notificationElem: notificationElem }, function(elem) {
-		notificationElem.add_item("Primary button has been pressed", ui_enum_variants.primary);
+	on_click: method({ notification_elem: notification_elem }, function(elem) {
+		notification_elem.add_item("Primary button has been pressed", ui_enum_variants.primary);
 		draw_set_font(ui_font);
 		elem.set_text("Dynamically changed text");
 	})
 });
 
-ui_button({
+var secondary_button = new UiButton({
 	x: 10, 
 	y: 65,
 	width: 190,
 	height: 40, 
 	text: "Click to delete this button",
 	type: ui_enum_variants.secondary, 
-	on_click: method({ notificationElem: notificationElem }, function(elem) {
-		notificationElem.add_item("Secondary button has been pressed", ui_enum_variants.secondary);
+	on_click: method({ notification_elem: notification_elem }, function(elem) {
+		notification_elem.add_item("Secondary button has been pressed", ui_enum_variants.secondary);
 		elem.remove();
 	})
 });
 
 /** Checkbox */
-ui_checkbox({
+var primary_checkbox = new UiCheckbox({
 	x: 10, 
 	y: 120, 
 	width: 220, 
 	height: 25, 
 	text: "Enable UI Render Debug",
 	checked: false,
-	on_click: method({ notificationElem: notificationElem }, function(elem) {
-		notificationElem.add_item("Primary checkbox has been pressed", ui_enum_variants.primary);
+	on_click: method({ notification_elem: notification_elem }, function(elem) {
+		notification_elem.add_item("Primary checkbox has been pressed", ui_enum_variants.primary);
 		global.UI_ENABLE_RENDER_DEBUG = !global.UI_ENABLE_RENDER_DEBUG;
 		elem.state.text = global.UI_ENABLE_RENDER_DEBUG ? "Disable UI Render Debug" : "Enable UI Render Debug";
 	})
 });
 
-ui_checkbox({ 
+var secondary_checkbox = new UiCheckbox({ 
 	x: 10, 
 	y: 160, 
 	width: 180, 
@@ -56,8 +56,8 @@ ui_checkbox({
 	type: ui_enum_variants.secondary,
 	text: "Checkbox Secondary",
 	checked: true,
-	on_click: method({ notificationElem: notificationElem }, function(elem) {
-		notificationElem.add_item("Secondary checkbox has been pressed", ui_enum_variants.secondary);
+	on_click: method({ notification_elem: notification_elem }, function(elem) {
+		notification_elem.add_item("Secondary checkbox has been pressed", ui_enum_variants.secondary);
 	})
 });
 
@@ -67,14 +67,14 @@ ui_checkbox({
 //	width: 110, 
 //	height: 25, 
 //	value: 25,
-//	onClick: method({ notificationElem: notificationElem }, function(elem) {
-//		notificationElem.add_item(elem.id + " has been pressed");
+//	onClick: method({ notification_elem: notification_elem }, function(elem) {
+//		notification_elem.add_item(elem.id + " has been pressed");
 //	})
 //});
 //draw_text(130, 220, slider.state.value);
 
 /** Scrollbars */
-var scrollable_container = ui_scrollable_container({
+var scrollable_container = new UiScrollableContainer({
 	x: 10, 
 	y: 200, 
 	width: 200, 
@@ -84,7 +84,7 @@ var scrollable_container = ui_scrollable_container({
 });
 
 for (var i = 0; i < 15; i++) {
-	ui_button({
+	var button = new UiButton({
 		x: 15,
 		y: 205 + i * 50,
 		width: 190,
@@ -93,7 +93,7 @@ for (var i = 0; i < 15; i++) {
 	}, scrollable_container);
 }
 
-var scrollbar_vertical = ui_scrollbar({
+var scrollbar_vertical = new UiScrollbar({
 	x: 210,
 	y: 200,
 	width: 20, 
@@ -106,7 +106,7 @@ var scrollbar_vertical = ui_scrollbar({
 	}),
 });
 
-var scrollbar_horizontal = ui_scrollbar({
+var scrollbar_horizontal = new UiScrollbar({
 	x: 10,
 	y: 400,
 	width: 200,
