@@ -1,5 +1,13 @@
 // Default root layer component
-global.UIH_ROOT_COMPONENT = new UihLayer(undefined, { children: [] });
+global.UIH_ROOT_COMPONENT = new UihLayer({ x: 0, y: 0, width: room_width, height: room_height }, { 
+	children: [],
+	x_abs: function() {
+		return 0;
+	},
+	y_abs: function() {
+		return 0;
+	},
+});
 
 /**
  * HEADLESS UI (Alpha)
@@ -11,41 +19,41 @@ global.UIH_ROOT_COMPONENT = new UihLayer(undefined, { children: [] });
  * @return {Struct}
  */
 function UihComponent(
-	state = {},
-	parent = global.UIH_ROOT_COMPONENT
+	_state = {},
+	_parent = global.UIH_ROOT_COMPONENT
 ) constructor {
-	self.state = state;
-	self.parent = parent;
+	state = _state;
+	parent = _parent;
 	
 	/// Function called each tick to handle the component logic
-	self.step = undefined;
+	step = undefined;
 	
 	/// Function called each tick to render the component
-	self.draw = undefined;
+	draw = undefined;
 
 	/// When this component should skip the parent layer hovering checks
-	self.skip_layer_checks = false;
+	skip_layer_checks = false;
 	
 	/// If to disable the component surface
-	self.disable_surface = false;
+	disable_surface = false;
 	
 	/// If the component state has been updated. This is automatically reset after the re-rendering
-	self.updated = false;
+	updated = false;
 	
 	/// List of the child components
-	self.children = [];
+	children = [];
 	
 	/// Internal surface reference
-	self.surface = noone;
+	surface = noone;
 	
 	// Enhance the state with default values
-	if (!variable_struct_exists(self.state, "x")) self.state.x = 0;
-	if (!variable_struct_exists(self.state, "y")) self.state.y = 0;
-	if (!variable_struct_exists(self.state, "width")) self.state.width = 0;
-	if (!variable_struct_exists(self.state, "height")) self.state.height= 0;
-	if (!variable_struct_exists(self.state, "scroll_x")) self.state.scroll_x = 0;
-	if (!variable_struct_exists(self.state, "scroll_y")) self.state.scroll_y = 0;
-	if (!variable_struct_exists(self.state, "on_click")) self.state.on_click = function() {};
+	if (!variable_struct_exists(state, "x")) state.x = 0;
+	if (!variable_struct_exists(state, "y")) state.y = 0;
+	if (!variable_struct_exists(state, "width")) state.width = 0;
+	if (!variable_struct_exists(state, "height")) state.height= 0;
+	if (!variable_struct_exists(state, "scroll_x")) state.scroll_x = 0;
+	if (!variable_struct_exists(state, "scroll_y")) state.scroll_y = 0;
+	if (!variable_struct_exists(state, "on_click")) state.on_click = function() {};
 			
 	/**
 	 * Update the element state, scheduling the element re-rendering. 
@@ -54,14 +62,14 @@ function UihComponent(
 	 *
 	 * @param {Struct} [partialState] State keys to update
 	 */
-	self.set = function(partialState = {}) {
+	set = function(partialState = {}) {
 		var updated = false;
 			
 		var names = variable_struct_get_names(partialState);
 		for (var i=0, l=array_length(names); i<l; i++) {
 			var name = names[i];
-			if (self.state[$ name] != partialState[$ name]) {
-				self.state[$ name] = partialState[$ name];
+			if (state[$ name] != partialState[$ name]) {
+				state[$ name] = partialState[$ name];
 				updated = true;
 			}
 		}
@@ -72,16 +80,15 @@ function UihComponent(
 	/**
 	 * Execute the onClick element handler, if defined
 	 */
-	self.click = function() {
-		self.state.on_click(self);
+	click = function() {
+		state.on_click(self);
 	};
 			
 	/**
 	 * Remove this component from the parent sorted children
 	 */
-	self.remove = function() {
-		var parentChildren = self.parent.children;
-		var surface = self.surface;
+	remove = function() {
+		var parentChildren = parent.children;
 				
 		// Find the parent sorted child to remove
 		for (var i=0, len=array_length(parentChildren); i<len; i++) {
@@ -103,15 +110,15 @@ function UihComponent(
 	 * @param {Real} width
 	 * @param {Real} height
 	 */
-	self.resize = function(width, height) {
-		self.state.width = width;
-		self.state.height = height;
+	resize = function(width, height) {
+		state.width = width;
+		state.height = height;
 			
-		var surface = self.surface;
 		if (surface_exists(surface)) {
 			surface_resize(surface, width + 1, height + 1);
 		}
-		self.updated = true;
+
+		updated = true;
 	};
 		
 	/**
@@ -119,8 +126,8 @@ function UihComponent(
 	 *
 	 * @return {Real}
 	 */
-	self.x_rel = function() {
-		return self.state.x - self.parent.state.x;
+	x_abs = function() {
+		return parent.x_abs() + state.x;
 	};
 		 
 	/**
@@ -128,8 +135,8 @@ function UihComponent(
  	 * 
 	 * @return {Real}
 	 */
-	self.y_rel = function() {
-		return self.state.y - self.parent.state.y;
+	y_abs = function() {
+		return parent.y_abs() + state.y;
 	};
 	
 	/**
@@ -137,9 +144,9 @@ function UihComponent(
 	 *
 	 * @param {Struct} child Child component to add
 	 */
-	self.add_child = function(child) {
+	add_child = function(child) {
 		child.parent = self;
-		array_push(self.children, child);
+		array_push(children, child);
 	}
 		
 	// Store the new element into the parent children

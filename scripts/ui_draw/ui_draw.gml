@@ -58,10 +58,10 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 			// Then draw the surface on its own parent's surface 
 			if (!parent.disable_surface) {
 				surface_set_target(parent.surface);
-				draw_surface(child.surface, child.x_rel() - parent.state.scroll_x, child.y_rel() - parent.state.scroll_y);
+				draw_surface(child.surface, child.state.x - parent.state.scroll_x, child.state.y - parent.state.scroll_y);
 				surface_reset_target();
 			} else {
-				draw_surface(child.surface, child.state.x - parent.state.scroll_x, child.state.y - parent.state.scroll_y);
+				draw_surface(child.surface, parent.x_abs() + child.state.x - parent.state.scroll_x, parent.y_abs() + child.state.y - parent.state.scroll_y); // TODO: improve this, parents without surface can cause issues
 			}
 		} else {
 			ui_draw(child.children);

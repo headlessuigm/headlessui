@@ -73,8 +73,8 @@ var scrollable_container = new UiScrollableContainer({
 
 for (var i = 0; i < 15; i++) {
 	var button = new UiButton({
-		x: 15,
-		y: 205 + i * 50,
+		x: 5,
+		y: i * 50,
 		width: 190,
 		height: 40,
 		text: "Button in scrollable " + string(i),
