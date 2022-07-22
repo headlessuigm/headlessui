@@ -1,3 +1,5 @@
+draw_debug = false;
+
 /** Notifications */
 var notification_elem = new UiNotification({ 
 	x: display_get_gui_width() - 340, 
@@ -41,10 +43,10 @@ var primary_checkbox = new UiCheckbox({
 	height: 25, 
 	text: "Enable UI Render Debug",
 	checked: false,
-	on_click: method({ notification_elem: notification_elem }, function(elem) {
+	on_click: method({ ctrl: id, notification_elem: notification_elem }, function(elem) {
 		notification_elem.add_item("Primary checkbox has been pressed", ui_enum_variants.primary);
-		global.UI_ENABLE_RENDER_DEBUG = !global.UI_ENABLE_RENDER_DEBUG;
-		elem.state.text = global.UI_ENABLE_RENDER_DEBUG ? "Disable UI Render Debug" : "Enable UI Render Debug";
+		ctrl.draw_debug = !ctrl.draw_debug;
+		elem.state.text = ctrl.draw_debug ? "Disable UI Render Debug" : "Enable UI Render Debug";
 	})
 });
 
@@ -77,7 +79,7 @@ for (var i = 0; i < 15; i++) {
 		y: i * 50,
 		width: 190,
 		height: 40,
-		text: "Button in scrollable " + string(i),
+		text: "Button " + string(i),
 	}, scrollable_container);
 }
 

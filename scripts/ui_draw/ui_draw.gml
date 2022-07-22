@@ -1,6 +1,3 @@
-// Variable to enable the components render debug
-global.UI_ENABLE_RENDER_DEBUG = false;
-
 /**
  * Re-render the childents if updated and draw their surfaces
  * 
@@ -13,6 +10,8 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 	var halign = draw_get_halign();
 	var valign = draw_get_valign();
 	var alpha = draw_get_alpha();
+	
+	var updated_components = [];
 
 	// Loop over the childents
 	for (var i = 0; i < array_length(children); i++) {
@@ -37,23 +36,21 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 			if (child.updated) {
 				surface_set_target(child.surface);
 				draw_clear_alpha(c_black, 0);
+
 				child.draw();
-				ui_draw(child.children);
-				surface_reset_target();
 				child.updated = false;
+
+				surface_reset_target();
 				draw_set_alpha(1);
 
-				// For debug purposes, draw an outline around the rendered component
-				if (global.UI_ENABLE_RENDER_DEBUG) {
-					draw_set_color(c_red);
-					for (var o = 0; o < 3; o++) {
-						draw_rectangle(state.x - o, state.y - o, state.x + state.width + o, state.y + state.height + o, true);
-					}
-				}
+				array_push(updated_components, child);
 			}
 
 			// First draw the children as they can draw on parent's surface
-			ui_draw(child.children);
+			var updated_children = ui_draw(child.children);
+			for (var j = 0, jlen = array_length(updated_children); j < jlen; j++) {
+				array_push(updated_components, updated_children[j]);
+			}
 
 			// Then draw the surface on its own parent's surface 
 			if (!parent.disable_surface) {
@@ -61,7 +58,8 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 				draw_surface(child.surface, child.state.x - parent.state.scroll_x, child.state.y - parent.state.scroll_y);
 				surface_reset_target();
 			} else {
-				draw_surface(child.surface, parent.x_abs() + child.state.x - parent.state.scroll_x, parent.y_abs() + child.state.y - parent.state.scroll_y); // TODO: improve this, parents without surface can cause issues
+				// TODO: improve this, parents without surface can cause issues and require custom drawing with absolute coordinates
+				draw_surface(child.surface, parent.x_abs() + child.state.x - parent.state.scroll_x, parent.y_abs() + child.state.y - parent.state.scroll_y);
 			}
 		} else {
 			ui_draw(child.children);
@@ -74,4 +72,6 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 	draw_set_halign(halign);
 	draw_set_valign(valign);
 	draw_set_alpha(alpha);
+	
+	return updated_components;
 }

@@ -1,6 +1,10 @@
 // Default root layer component
 global.UIH_ROOT_COMPONENT = new UihLayer({ x: 0, y: 0, width: room_width, height: room_height }, { 
 	children: [],
+	state: {
+		scroll_x: 0,
+		scroll_y: 0,
+	},
 	x_abs: function() {
 		return 0;
 	},
@@ -127,7 +131,7 @@ function UihComponent(
 	 * @return {Real}
 	 */
 	x_abs = function() {
-		return parent.x_abs() + state.x;
+		return parent.x_abs() + state.x - parent.state.scroll_x;
 	};
 		 
 	/**
@@ -136,7 +140,7 @@ function UihComponent(
 	 * @return {Real}
 	 */
 	y_abs = function() {
-		return parent.y_abs() + state.y;
+		return parent.y_abs() + state.y - parent.state.scroll_y;
 	};
 	
 	/**
