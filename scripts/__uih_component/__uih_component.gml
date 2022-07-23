@@ -67,8 +67,6 @@ function UihComponent(
 	 * @param {Struct} [partialState] State keys to update
 	 */
 	set = function(partialState = {}) {
-		var updated = false;
-			
 		var names = variable_struct_get_names(partialState);
 		for (var i=0, l=array_length(names); i<l; i++) {
 			var name = names[i];
@@ -77,8 +75,6 @@ function UihComponent(
 				updated = true;
 			}
 		}
-			
-		self.updated = updated;
 	};
 			
 	/**
@@ -154,5 +150,5 @@ function UihComponent(
 	}
 		
 	// Store the new element into the parent children
-	array_push(self.parent.children, self);
+	array_push(parent.children, self);
 }

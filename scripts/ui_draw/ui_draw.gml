@@ -1,9 +1,10 @@
 /**
  * Re-render the childents if updated and draw their surfaces
  * 
- * @param {Array} children
+ * @param {Array} updated_components
+ * @param {Array} children [Internal usage]
  */
-function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
+function ui_draw(updated_components = [], children = global.UIH_ROOT_COMPONENT.children) {
 	// Store the drawing state (for later reset)
 	var color = draw_get_color();
 	var font = draw_get_font();
@@ -11,13 +12,11 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 	var valign = draw_get_valign();
 	var alpha = draw_get_alpha();
 	
-	var updated_components = [];
-
-	// Loop over the childents
+	// Loop over the children
 	for (var i = 0; i < array_length(children); i++) {
 		var child = children[i];
 		var parent = child.parent;
-
+		
 		// Run the step component method
 		if (variable_struct_exists(child, "step") && child.step) {
 			child.step();
@@ -47,10 +46,7 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 			}
 
 			// First draw the children as they can draw on parent's surface
-			var updated_children = ui_draw(child.children);
-			for (var j = 0, jlen = array_length(updated_children); j < jlen; j++) {
-				array_push(updated_components, updated_children[j]);
-			}
+			ui_draw(updated_components, child.children);
 
 			// Then draw the surface on its own parent's surface 
 			if (!parent.disable_surface) {
@@ -62,7 +58,7 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 				draw_surface(child.surface, parent.x_abs() + child.state.x - parent.state.scroll_x, parent.y_abs() + child.state.y - parent.state.scroll_y);
 			}
 		} else {
-			ui_draw(child.children);
+			ui_draw(updated_components, child.children);
 		}
 	}
 
@@ -72,6 +68,4 @@ function ui_draw(children = global.UIH_ROOT_COMPONENT.children) {
 	draw_set_halign(halign);
 	draw_set_valign(valign);
 	draw_set_alpha(alpha);
-	
-	return updated_components;
 }
