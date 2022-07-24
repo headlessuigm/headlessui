@@ -35,14 +35,9 @@ function ui_draw(updated_components = [], children = global.UIH_ROOT_COMPONENT.c
 			if (child.updated) {
 				surface_set_target(child.surface);
 				draw_clear_alpha(c_black, 0);
-
 				child.draw();
-				child.updated = false;
-
 				surface_reset_target();
 				draw_set_alpha(1);
-
-				array_push(updated_components, child);
 			}
 
 			// First draw the children as they can draw on parent's surface
@@ -59,6 +54,12 @@ function ui_draw(updated_components = [], children = global.UIH_ROOT_COMPONENT.c
 			}
 		} else {
 			ui_draw(updated_components, child.children);
+		}
+		
+		// Reset the updated status of the component
+		if (child.updated) {
+			child.updated = false;
+			array_push(updated_components, child);
 		}
 	}
 
