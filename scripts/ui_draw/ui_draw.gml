@@ -7,13 +7,6 @@
  * @param {Real} offset_y Y offset to apply when drawing the component
  */
 function ui_draw(updated_components = [], component = global.UIH_ROOT_COMPONENT, offset_x = 0, offset_y = 0) {
-	// Store the drawing state (for later reset)
-	var color = draw_get_color();
-	var font = draw_get_font();
-	var halign = draw_get_halign();
-	var valign = draw_get_valign();
-	var alpha = draw_get_alpha();
-	
 	if (!variable_struct_exists(component, "disable_surface") || !component.disable_surface) {
 		var state = component.state;
 
@@ -38,7 +31,6 @@ function ui_draw(updated_components = [], component = global.UIH_ROOT_COMPONENT,
 			}
 
 			surface_reset_target();
-			draw_set_alpha(1);
 		}
 
 		// Draw the component's surface on the current target surface
@@ -55,11 +47,4 @@ function ui_draw(updated_components = [], component = global.UIH_ROOT_COMPONENT,
         component.updated = false;
         array_push(updated_components, component);
     }
-
-	// Reset the drawing state
-	draw_set_color(color);
-	draw_set_font(font);
-	draw_set_halign(halign);
-	draw_set_valign(valign);
-	draw_set_alpha(alpha);
 }
