@@ -53,11 +53,11 @@ function UihDraggable(_state = undefined, _parent = undefined) : UihLayer(_state
                 // Get desired relative position based on mouse position applying drag constraints
                 var desired_x = state.axis == uih_enum_draggable_axis.y 
                     ? state.x
-                    : mouse_x - parent.x_abs() - state.drag_origin_x;
+                    : mouse_x - parent.x_abs() + parent.state.scroll_x - state.drag_origin_x;
                     
                 var desired_y = state.axis == uih_enum_draggable_axis.x
                     ? state.y
-                    : mouse_y - parent.y_abs() - state.drag_origin_y;
+                    : mouse_y - parent.y_abs() + parent.state.scroll_y - state.drag_origin_y;
                     
                 var min_x = state.bounds == "parent" ? 0 : (state.start_x - state.bounds.left);
                 var min_y = state.bounds == "parent" ? 0 : (state.start_y - state.bounds.up);
