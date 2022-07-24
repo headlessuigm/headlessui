@@ -11,6 +11,7 @@ global.UIH_ROOT_COMPONENT = new UihLayer({ x: 0, y: 0, width: room_width, height
 	y_abs: function() {
 		return 0;
 	},
+	trigger_update: function() {},
 });
 
 /**
@@ -72,10 +73,15 @@ function UihComponent(
 			var name = names[i];
 			if (state[$ name] != partialState[$ name]) {
 				state[$ name] = partialState[$ name];
-				updated = true;
+				trigger_update();
 			}
 		}
 	};
+	
+	trigger_update = function() {
+		updated = true;
+		parent.trigger_update();
+	}
 			
 	/**
 	 * Execute the onClick element handler, if defined
@@ -147,7 +153,7 @@ function UihComponent(
 	add_child = function(child) {
 		child.parent = self;
 		array_push(children, child);
-	}
+	};
 		
 	// Store the new element into the parent children
 	array_push(parent.children, self);
