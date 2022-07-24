@@ -121,29 +121,24 @@ scrollable_container.set({
 
 var layer_with_draggable = new UihLayer({x: 300, y: 10, width: 200, height: 200});
 
-var draggable_button_both = new UihDraggable({ x: 10, y: 25, width: 75, height: 25 });
-draggable_button_both.add_child(new UiButton({
+var draggable_both = new UihDraggable({ x: 10, y: 25, width: 75, height: 25 }, layer_with_draggable);
+var draggable_button_both = new UiButton({
 	width: 75,
 	height: 25,
 	text: "Drag me!",
-}));
+}, draggable_both);
 
-var draggable_button_x = new UihDraggable({ x: 10, y: 100, width: 75, height: 25, axis: uih_enum_draggable_axis.x });
-draggable_button_x.add_child(new UiButton({
+var draggable_x = new UihDraggable({ x: 10, y: 100, width: 75, height: 25, axis: uih_enum_draggable_axis.x }, layer_with_draggable);
+var draggable_button_x = new UiButton({
 	width: 75,
 	height: 25,
 	text: "X Axis",
-}));
+}, draggable_x);
 
 
-var draggable_button_y = new UihDraggable({ x: 10, y: 175, width: 75, height: 25, axis: uih_enum_draggable_axis.y });
-draggable_button_y.add_child(new UiButton({
+var draggable_y = new UihDraggable({ x: 10, y: 175, width: 75, height: 25, axis: uih_enum_draggable_axis.y }, layer_with_draggable);
+var draggable_button_y = new UiButton({
 	width: 75,
 	height: 25,
 	text: "Y Axis",
-}));
-
-
-layer_with_draggable.add_child(draggable_button_both);
-layer_with_draggable.add_child(draggable_button_x);
-layer_with_draggable.add_child(draggable_button_y);
+}, draggable_y);

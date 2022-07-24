@@ -32,12 +32,15 @@ function UihLayer(_state = undefined, _parent = undefined) :  UihComponent(_stat
 	 * Check if the specified element is the most higher (on top) element, that is intersecting the mouse
 	 */
 	is_hovered = function(elem) {
+		var x_absolute = x_abs();
+		var y_absolute = y_abs();
+		
 		for (var i = array_length(children) - 1; i >= 0; i--) {
 			var child = children[i];
 			if (child.skip_layer_checks) continue;
-			var childX = x_abs() + child.state.x - state.scroll_x;
-			var childY = y_abs() + child.state.y - state.scroll_y;
-			if (!point_in_rectangle(mouse_x, mouse_y, childX, childY, childX + child.state.width, childY + child.state.height)) continue;
+			var child_x = x_absolute + child.state.x - state.scroll_x;
+			var child_y = y_absolute + child.state.y - state.scroll_y;
+			if (!point_in_rectangle(mouse_x, mouse_y, child_x, child_y, child_x + child.state.width, child_y + child.state.height)) continue;
 			return child == elem;
 		}
 		return undefined;
