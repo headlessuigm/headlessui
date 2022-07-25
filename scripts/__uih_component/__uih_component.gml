@@ -16,7 +16,7 @@ global.UIH_ROOT_COMPONENT = new UihLayer({ x: 0, y: 0, width: room_width, height
 
 /**
  * HEADLESS UI (Alpha)
- * Get the component struct. The component is initialized and cached if not already did
+ * Get the component struct
  *
  * @param {Struct} [state] Initial data to store into the component state
  * @param {Struct} [parent] Parent component

@@ -4,6 +4,7 @@
     {"id":{"name":"uih_checkbox","path":"scripts/uih_checkbox/uih_checkbox.yy",},"order":3,},
     {"id":{"name":"ui_draw","path":"scripts/ui_draw/ui_draw.yy",},"order":3,},
     {"id":{"name":"uih_notification","path":"scripts/uih_notification/uih_notification.yy",},"order":3,},
+    {"id":{"name":"__ui_draw_state","path":"scripts/__ui_draw_state/__ui_draw_state.yy",},"order":0,},
     {"id":{"name":"uih_scrollable_container","path":"scripts/uih_scrollable_container/uih_scrollable_container.yy",},"order":6,},
     {"id":{"name":"ui_notification","path":"scripts/ui_notification/ui_notification.yy",},"order":2,},
     {"id":{"name":"__uih_component","path":"scripts/__uih_component/__uih_component.yy",},"order":0,},
@@ -51,6 +52,7 @@
     {"folderPath":"folders/UI/UI Headless - Logical components/Components.yy","order":0,"resourceVersion":"1.0","name":"Components","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/UI/UI Styled - Rendering components/Core.yy","order":0,"resourceVersion":"1.0","name":"Core","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/UI/UI Headless - Logical components/Internal.yy","order":1,"resourceVersion":"1.0","name":"Internal","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/UI/UI Styled - Rendering components/Internal.yy","order":2,"resourceVersion":"1.0","name":"Internal","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},

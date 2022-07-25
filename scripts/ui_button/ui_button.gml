@@ -27,7 +27,8 @@ function UiButton(_state, _parent = undefined) : UihButton(_state, _parent) cons
 		draw_rectangle(0, 0, state.width, state.height, false);
 		
 		// Draw the text
-		draw_set_color(type == ui_enum_variants.primary ? ui_variable_col_on_primary : ui_variable_col_on_secondary);
+		draw_set_color(type == ui_enum_variants.primary ? ui_variable_col_on_primary : ui_variable_col_on_secondary); 
+		draw_set_alpha(1);
 		draw_set_halign(fa_center); 
 		draw_set_valign(fa_middle); 
 		draw_set_font(ui_variable_font);

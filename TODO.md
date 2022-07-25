@@ -1,18 +1,15 @@
 # TODO
 
-- Relative coordinates
+- Documentation
 
-- New events management (event bubbling)
+- New events management (event capturing/bubbling)
 
 - Props passing or external state manager
 
 - New components:
+
   > radio
 
   > dropdown
   
   > slider
-
-  > draggable
-
-- Documentation

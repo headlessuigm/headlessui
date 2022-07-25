@@ -15,10 +15,10 @@ function ui_draw_text(x, y, string, w = undefined, sep = -1) {
     
     // Draw the given text at the given coordinates, rounding them to avoid blur 
     // issues if the coordinates are not integers
-    if (!w) {
-        draw_text(floor(x), floor(y), string);
+    if (is_undefined(w)) {
+        draw_text(round(x), round(y), string);
     } else {
-        draw_text_ext(floor(x), floor(y), string, sep, w);
+        draw_text_ext(round(x), round(y), string, sep, w);
     }
     
     // Reset blend mode
