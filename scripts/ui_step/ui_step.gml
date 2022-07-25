@@ -4,7 +4,7 @@ function ui_step(component = global.UIH_ROOT_COMPONENT) {
 		component.step();
 	}
 	
-	for (var i = 0, ilen = array_length(component.children); i < ilen; i++) {
+	for (var i = 0; i < array_length(component.children); i++) {
 	    ui_step(component.children[i]);
 	}
 }

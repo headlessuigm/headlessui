@@ -2,7 +2,7 @@
   "resources": [
     {"id":{"name":"uih_scrollbar","path":"scripts/uih_scrollbar/uih_scrollbar.yy",},"order":5,},
     {"id":{"name":"uih_checkbox","path":"scripts/uih_checkbox/uih_checkbox.yy",},"order":3,},
-    {"id":{"name":"ui_draw","path":"scripts/ui_draw/ui_draw.yy",},"order":2,},
+    {"id":{"name":"ui_draw","path":"scripts/ui_draw/ui_draw.yy",},"order":3,},
     {"id":{"name":"uih_notification","path":"scripts/uih_notification/uih_notification.yy",},"order":3,},
     {"id":{"name":"uih_scrollable_container","path":"scripts/uih_scrollable_container/uih_scrollable_container.yy",},"order":6,},
     {"id":{"name":"ui_notification","path":"scripts/ui_notification/ui_notification.yy",},"order":2,},
@@ -17,9 +17,9 @@
     {"id":{"name":"ui_scrollbar","path":"scripts/ui_scrollbar/ui_scrollbar.yy",},"order":5,},
     {"id":{"name":"ui_scrollable_container","path":"scripts/ui_scrollable_container/ui_scrollable_container.yy",},"order":6,},
     {"id":{"name":"oCtrl","path":"objects/oCtrl/oCtrl.yy",},"order":0,},
-    {"id":{"name":"ui_draw_debug","path":"scripts/ui_draw_debug/ui_draw_debug.yy",},"order":3,},
+    {"id":{"name":"ui_draw_debug","path":"scripts/ui_draw_debug/ui_draw_debug.yy",},"order":4,},
     {"id":{"name":"uih_draggable","path":"scripts/uih_draggable/uih_draggable.yy",},"order":6,},
-    {"id":{"name":"ui_step","path":"scripts/ui_step/ui_step.yy",},"order":4,},
+    {"id":{"name":"ui_step","path":"scripts/ui_step/ui_step.yy",},"order":2,},
     {"id":{"name":"ui_draw_text","path":"scripts/ui_draw_text/ui_draw_text.yy",},"order":5,},
   ],
   "Options": [
