@@ -20,6 +20,7 @@
     {"id":{"name":"ui_draw_debug","path":"scripts/ui_draw_debug/ui_draw_debug.yy",},"order":3,},
     {"id":{"name":"uih_draggable","path":"scripts/uih_draggable/uih_draggable.yy",},"order":6,},
     {"id":{"name":"ui_step","path":"scripts/ui_step/ui_step.yy",},"order":4,},
+    {"id":{"name":"ui_draw_text","path":"scripts/ui_draw_text/ui_draw_text.yy",},"order":5,},
   ],
   "Options": [
     {"name":"Android","path":"options/android/options_android.yy",},
