@@ -21,7 +21,7 @@ enum uih_enum_scrollbar_direction {
 function UihScrollbar(_state = undefined, _parent = undefined) : UihComponent(_state, _parent) constructor {
 	// Set the default scrollbar status
 	state.type = state[$ "type"] ?? ui_enum_variants.primary;
-	state.status = uih_enum_button_status.idle;
+	state.status = uih_enum_scrollbar_status.idle;
 	state.direction = state[$ "direction"] ?? uih_enum_scrollbar_direction.vertical;
 	state.value = state[$ "value"] ?? 0;
 	state.thumb_size = state[$ "thumb_size"] ?? 0;

@@ -18,6 +18,10 @@ function ui_draw(updated_components = [], component = global.UIH_ROOT_COMPONENT,
 
 		// Re-render the component on its surface if it has been updated
 		if (component.updated) {
+			// Set the blend mode for the separated alpha channel
+			var current_blend_mode = gpu_get_blendmode_ext_sepalpha();
+			gpu_set_blendmode_ext_sepalpha(bm_src_alpha, bm_inv_src_alpha, bm_inv_dest_alpha, bm_one);
+			
 			// Set component surface as target
 			surface_set_target(component.surface);
 			draw_clear_alpha(c_black, 0);
@@ -33,6 +37,9 @@ function ui_draw(updated_components = [], component = global.UIH_ROOT_COMPONENT,
 			}
 
 			surface_reset_target();
+			
+			// Reset the blend mode
+			gpu_set_blendmode_ext_sepalpha(current_blend_mode);
 		}
 
 		// Draw the component's surface on the current target surface

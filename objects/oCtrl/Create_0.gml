@@ -142,3 +142,29 @@ var draggable_button_y = new UiButton({
 	height: 25,
 	text: "Y Axis",
 }, draggable_y);
+
+var slider = new UiSlider({
+	x: 300,
+	y: 230,
+	width: 200,
+	height: 20,
+	direction: uih_enum_slider_direction.horizontal,
+});
+
+var slider = new UiSlider({
+	x: 300,
+	y: 250,
+	width: 200,
+	height: 20,
+	direction: uih_enum_slider_direction.horizontal,
+	step: 5,
+});
+
+var slider = new UiSlider({
+	x: 300,
+	y: 270,
+	width: 200,
+	height: 20,
+	direction: uih_enum_slider_direction.horizontal,
+	step: 25,
+});

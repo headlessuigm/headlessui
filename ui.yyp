@@ -22,6 +22,8 @@
     {"id":{"name":"uih_draggable","path":"scripts/uih_draggable/uih_draggable.yy",},"order":6,},
     {"id":{"name":"ui_step","path":"scripts/ui_step/ui_step.yy",},"order":2,},
     {"id":{"name":"ui_draw_text","path":"scripts/ui_draw_text/ui_draw_text.yy",},"order":5,},
+    {"id":{"name":"uih_slider","path":"scripts/uih_slider/uih_slider.yy",},"order":7,},
+    {"id":{"name":"ui_slider","path":"scripts/ui_slider/ui_slider.yy",},"order":5,},
   ],
   "Options": [
     {"name":"Android","path":"options/android/options_android.yy",},
@@ -62,7 +64,7 @@
   ],
   "IncludedFiles": [],
   "MetaData": {
-    "IDEVersion": "2022.6.0.23",
+    "IDEVersion": "2022.6.1.26",
   },
   "resourceVersion": "1.5",
   "name": "ui",
