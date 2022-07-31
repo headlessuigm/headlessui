@@ -17,7 +17,6 @@ function UihLayer(_x, _y, _width, _height, _parent = undefined) :  UihComponent(
 	  * Set the specified element as focused (if not already)
 	  */
 	focus = function(child) {
-		var children = children;
 		var topIdx = array_length(children) - 1;
 	
 		// Find the element to focus and move it on the top

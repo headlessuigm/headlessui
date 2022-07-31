@@ -26,13 +26,51 @@ function UihDraggable(_x, _y, _width, _height, _parent = undefined) : UihLayer(_
 
     // Default state
    with (state) {
+   		/**
+   		 * Current component's status
+   		 * @see uih_enum_draggable_status
+   		 */
 		status = uih_enum_draggable_status.idle;
-		start_x = x;
-		start_y = y;
-		drag_origin_x = 0;
-		drag_origin_y = 0;
+		
+		/**
+		 * Axis the draggable can move along
+		 * @see uih_enum_draggable_axis
+		 */
 		axis = uih_enum_draggable_axis.both;
+		
+		/**
+		 * Dragging boundaries
+		 * Accepted values:
+		 * - "parent": the component will be draggable within the parent
+		 * - {Struct} containing "left", "right", "up" and "down" variables; 
+		 * these indicate how far in each direction the component can be dragged 
+		 * away from the starting position
+		 */
 		bounds = "parent";
+		
+		/**
+		 * Initial X position
+		 * @internal
+		 */
+		__start_x = x;
+		
+		/**
+		 * Initial Y position
+		 * @internal
+		 */
+		__start_y = y;
+		
+		/**
+		 * Mouse X offset relative to draggable position
+		 * @internal
+		 */
+		__drag_origin_x = 0;
+		
+		/**
+		 * Mouse Y offset relative to draggable position
+		 * @internal
+		 */
+		__drag_origin_y = 0;
    }
     
     step = function() {
@@ -50,10 +88,16 @@ function UihDraggable(_x, _y, _width, _height, _parent = undefined) : UihLayer(_
             case uih_enum_draggable_status.hover:
                 if (is_hovered(children[0])) {
                     if (mouse_check_button_pressed(mb_any)) {
+                    	// Bring draggable on top
+                    	if (variable_struct_exists(parent, "focus")) {
+                    		parent.focus(self);
+                    	}
+                    	
+                    	// Update state to drag status
                         set({ 
                             status: uih_enum_draggable_status.drag,
-                            drag_origin_x: global.ui_mouse_x - x_abs(),
-                            drag_origin_y: global.ui_mouse_y - y_abs(),
+                            __drag_origin_x: global.ui_mouse_x - x_abs(),
+                            __drag_origin_y: global.ui_mouse_y - y_abs(),
                         });
                     }
                 } else {
@@ -65,16 +109,16 @@ function UihDraggable(_x, _y, _width, _height, _parent = undefined) : UihLayer(_
                 // Get desired relative position based on mouse position applying drag constraints
                 var desired_x = state.axis == uih_enum_draggable_axis.y 
                     ? state.x
-                    : global.ui_mouse_x - parent.x_abs() + parent.state.scroll_x - state.drag_origin_x;
+                    : global.ui_mouse_x - parent.x_abs() + parent.state.scroll_x - state.__drag_origin_x;
                     
                 var desired_y = state.axis == uih_enum_draggable_axis.x
                     ? state.y
-                    : global.ui_mouse_y - parent.y_abs() + parent.state.scroll_y - state.drag_origin_y;
+                    : global.ui_mouse_y - parent.y_abs() + parent.state.scroll_y - state.__drag_origin_y;
                     
-                var min_x = state.bounds == "parent" ? 0 : (state.start_x - state.bounds.left);
-                var min_y = state.bounds == "parent" ? 0 : (state.start_y - state.bounds.up);
-                var max_x = state.bounds == "parent" ? parent.state.width : (state.start_x + state.bounds.right);
-                var max_y = state.bounds == "parent" ? parent.state.height : (state.start_y + state.bounds.down);
+                var min_x = state.bounds == "parent" ? 0 : (state.__start_x - state.bounds.left);
+                var min_y = state.bounds == "parent" ? 0 : (state.__start_y - state.bounds.up);
+                var max_x = state.bounds == "parent" ? parent.state.width : (state.__start_x + state.bounds.right);
+                var max_y = state.bounds == "parent" ? parent.state.height : (state.__start_y + state.bounds.down);
                 
                 var actual_x = clamp(desired_x, min_x, max_x - state.width);
                 var actual_y = clamp(desired_y, min_y, max_y - state.height);
