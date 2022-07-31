@@ -12,11 +12,9 @@ The state is a struct that you can modify to your liking, e.g. if the button has
 
 ```js
 // Create event
-
-/** Button */
 var btn = new UiButton(10, 10, 190, 40);
 with (btn.state) {
-  text = "Primary Button";
+  text = "My Button";
   on_click = function(elem) {
     // do something
   });

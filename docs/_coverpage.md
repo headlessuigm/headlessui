@@ -9,4 +9,4 @@
 - Full featured with children, layers, events and much more
 
 [GitHub](https://github.com/manuel-di-iorio/gmheadlessui/)
-[Get Started](Home)
+[Get Started](/get-started)
