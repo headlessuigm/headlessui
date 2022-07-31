@@ -12,8 +12,6 @@ The state is a struct that you can modify to your liking, e.g. if the button has
 
 ```gml
 // Create event
-
-/** Button */
 var btn = new UiButton(10, 10, 190, 40);
 with (btn.state) {
   text = "Primary Button";
@@ -33,6 +31,10 @@ ui_step();
 ui_draw();
 ```
 ---
+
+### DOCUMENTATION
+
+https://manuel-di-iorio.github.io/gmheadlessui
 
 ### CONTRIBUTING
 

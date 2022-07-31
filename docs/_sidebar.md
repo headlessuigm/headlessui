@@ -1,24 +1,28 @@
 <!-- docs/_sidebar.md -->
 
-* <strong>Getting started</strong>
-  * [Quick start](pages/quick-start.md)
+- Getting started
 
-* <strong>Guide</strong>
-  * [Components](pages/components.md)
-  * [Children & parents](pages/children-and-parents.md)
-  * [Customize a component](pages/customize-a-component.md)
-  * [Layers](pages/layers.md)
+  - [Quick start](_pages/quick-start.md)
 
-* <strong>Components</strong>
-  * [Button](pages/components/button.md)
-  * [Checkbox](pages/components/checkbox.md)
-  * [Notification](pages/components/notification.md)
-  * [Slider](pages/components/slider.md)
-  * [Scrollbar](pages/components/scrollbar.md)
-  * [Scrollable container](pages/components/scrollable-container.md)
-  * [Draggable](pages/components/draggable.md)
-  * [Layer](pages/components/layer.md)
+- Guide
 
-* <strong>Advanced topics</strong>
-  * [Create your own components](pages/create-your-own-components.md)
-  * [Batched rendering](pages/batched-rendering.md)
+  - [Components](_pages/components.md)
+  - [Children & parents](_pages/children-and-parents.md)
+  - [Customize a component](_pages/customize-a-component.md)
+  - [Layers](_pages/layers.md)
+
+- Components
+
+  - [Button](_pages/components/button.md)
+  - [Checkbox](_pages/components/checkbox.md)
+  - [Notification](_pages/components/notification.md)
+  - [Slider](_pages/components/slider.md)
+  - [Scrollbar](_pages/components/scrollbar.md)
+  - [Scrollable container](_pages/components/scrollable-container.md)
+  - [Draggable](_pages/components/draggable.md)
+  - [Layer](_pages/components/layer.md)
+
+- Advanced topics
+
+  - [Create your own components](_pages/create-your-own-components.md)
+  - [Batched rendering](_pages/batched-rendering.md)
