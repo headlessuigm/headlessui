@@ -151,6 +151,16 @@ function UihComponent(
 	 * @param {Struct} child Child component to add
 	 */
 	add_child = function(child) {
+		// Remove the component from the old parent children list
+		var old_parent_children = child.parent.children;
+		for (var i=0, len=array_length(old_parent_children); i<len; i++) {
+			if (child == old_parent_children[i]) {
+				array_delete(old_parent_children, i, 1);
+				break;
+			}
+		}
+				
+		// Push the component in the new parent children list
 		child.parent = self;
 		array_push(children, child);
 	};
