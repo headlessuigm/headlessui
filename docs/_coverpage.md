@@ -2,13 +2,11 @@
 
 ![logo](_media/logo.png)
 
-# docsify <small>3.5</small>
+> UI Components <small>for GameMaker Studio</small>
 
-> A magical documentation site generator.
+- Simple to use and lightweight
+- Clear separation between components rendering and logic
+- Full featured with children, layers, events and much more
 
-- Simple and lightweight
-- No statically built html files
-- Multiple themes
-
-[GitHub](https://github.com/docsifyjs/docsify/)
-[Get Started](#docsify)
+[GitHub](https://github.com/manuel-di-iorio/gmheadlessui/)
+[Get Started](Home)
