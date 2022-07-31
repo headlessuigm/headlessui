@@ -10,18 +10,30 @@ enum uih_enum_draggable_axis {
     y
 }
 
-
-function UihDraggable(_state = undefined, _parent = undefined) : UihLayer(_state, _parent) constructor {
+/**
+ * Get the logical UI component 
+ *
+ * @param {Real} _x Component X coordinate
+ * @param {Real} _y Component Y coordinate
+ * @param {Real} _width Component width
+ * @param {Real} _height Component height
+ * @param {Struct} [_parent] Parent component
+ *
+ * @return {Struct}
+ */
+function UihDraggable(_x, _y, _width, _height, _parent = undefined) : UihLayer(_x, _y, _width, _height, _parent) constructor {
     skip_layer_checks = false;
 
     // Default state
-    state.status = uih_enum_draggable_status.idle;
-    state.start_x = state.x;
-    state.start_y = state.y;
-    state.drag_origin_x = 0;
-    state.drag_origin_y = 0;
-    state.axis = state[$ "axis"] ?? uih_enum_draggable_axis.both;
-    state.bounds = state[$ "bounds"] ?? "parent";
+   with (state) {
+		status = uih_enum_draggable_status.idle;
+		start_x = x;
+		start_y = y;
+		drag_origin_x = 0;
+		drag_origin_y = 0;
+		axis = uih_enum_draggable_axis.both;
+		bounds = "parent";
+   }
     
     step = function() {
         switch (state.status) {

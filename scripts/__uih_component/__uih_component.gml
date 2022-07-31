@@ -1,5 +1,5 @@
 // Default root layer component
-global.UIH_ROOT_COMPONENT = new UihLayer({ x: 0, y: 0, width: room_width, height: room_height }, { 
+uih_root_component = new UihLayer(0, 0, room_width, room_height, { 
 	children: [],
 	state: {
 		scroll_x: 0,
@@ -11,23 +11,22 @@ global.UIH_ROOT_COMPONENT = new UihLayer({ x: 0, y: 0, width: room_width, height
 	y_abs: function() {
 		return 0;
 	},
-	trigger_update: function() {},
+	update: function() {},
 });
 
 /**
  * HEADLESS UI (Alpha)
  * Get the component struct
  *
- * @param {Struct} [state] Initial data to store into the component state
- * @param {Struct} [parent] Parent component
+ * @param {Real} _x Component X coordinate
+ * @param {Real} _y Component Y coordinate
+ * @param {Real} _width Component width
+ * @param {Real} _height Component height
+ * @param {Struct} [_parent] Parent component
  *
  * @return {Struct}
  */
-function UihComponent(
-	_state = {},
-	_parent = global.UIH_ROOT_COMPONENT
-) constructor {
-	state = _state;
+function UihComponent(_x, _y, _width, _height, _parent = global.uih_root_component) constructor {
 	parent = _parent;
 	
 	/// Function called each tick to handle the component logic
@@ -51,14 +50,16 @@ function UihComponent(
 	/// Internal surface reference
 	surface = noone;
 	
-	// Enhance the state with default values
-	if (!variable_struct_exists(state, "x")) state.x = 0;
-	if (!variable_struct_exists(state, "y")) state.y = 0;
-	if (!variable_struct_exists(state, "width")) state.width = 0;
-	if (!variable_struct_exists(state, "height")) state.height= 0;
-	if (!variable_struct_exists(state, "scroll_x")) state.scroll_x = 0;
-	if (!variable_struct_exists(state, "scroll_y")) state.scroll_y = 0;
-	if (!variable_struct_exists(state, "on_click")) state.on_click = function() {};
+	// Default state
+	state = {
+		x: _x,
+		y: _y,
+		width: _width,
+		height: _height,
+		scroll_x: 0,
+		scroll_y: 0,
+		on_click: function() {}
+	};
 			
 	/**
 	 * Update the element state, scheduling the element re-rendering. 
@@ -73,14 +74,14 @@ function UihComponent(
 			var name = names[i];
 			if (state[$ name] != partialState[$ name]) {
 				state[$ name] = partialState[$ name];
-				trigger_update();
+				update();
 			}
 		}
 	};
 	
-	trigger_update = function() {
+	update = function() {
 		updated = true;
-		parent.trigger_update();
+		parent.update();
 	}
 			
 	/**

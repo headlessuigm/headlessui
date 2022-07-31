@@ -7,21 +7,26 @@ enum uih_enum_button_status {
 /**
  * Get the logical UI component 
  *
- * @param {Struct} _state Initial state to store in the component
- * @param {Struct} _parent Parent layer. By default it is the root layer
+ * @param {Real} _x Component X coordinate
+ * @param {Real} _y Component Y coordinate
+ * @param {Real} _width Component width
+ * @param {Real} _height Component height
+ * @param {Struct} [_parent] Parent component
  *
  * @return {Struct}
  */
-function UihButton(_state = undefined, _parent = undefined) : UihComponent(_state, _parent) constructor {
+function UihButton(_x, _y, _width, _height, _parent = undefined) : UihComponent(_x, _y, _width, _height, _parent) constructor {
 	// Set the default button status
-	state.status = uih_enum_button_status.idle;
+	with (state) {
+		status = uih_enum_button_status.idle;
 	
-	// Button style props
-	state.type = state[$ "type"] ?? ui_enum_variants.primary;
-	state.padding_horizontal = state[$ "padding_horizontal"] ?? 40;
-	state.padding_vertical = state[$ "padding_vertical"] ?? 20;
-	state.text_sep = state[$ "text_sep"] ?? -1;
-	state.text_max_width = state[$ "text_max_width"] ?? -1;
+		// Button style props
+		type = ui_enum_variants.primary;
+		padding_horizontal = 40;
+		padding_vertical = 20;
+		text_sep = -1;
+		text_max_width = -1;
+	}
 	
 	/**
 	 * Set the text of the button, auto-resizing the container, according to the button padding

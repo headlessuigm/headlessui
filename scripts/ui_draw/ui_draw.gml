@@ -6,7 +6,7 @@
  * @param {Real} offset_x X offset to apply when drawing the component
  * @param {Real} offset_y Y offset to apply when drawing the component
  */
-function ui_draw(updated_components = [], component = global.UIH_ROOT_COMPONENT, offset_x = 0, offset_y = 0) {
+function ui_draw(updated_components = [], component = global.uih_root_component, offset_x = 0, offset_y = 0) {
 	if (!variable_struct_exists(component, "disable_surface") || !component.disable_surface) {
 		var state = component.state;
 

@@ -7,15 +7,20 @@ enum uih_enum_checkbox_status {
 /**
  * Get the logical UI component 
  *
- * @param {Struct} _state State to store in the component
- * @param {Struct} _parent Parent layer. By default it is the root layer
+ * @param {Real} _x Component X coordinate
+ * @param {Real} _y Component Y coordinate
+ * @param {Real} _width Component width
+ * @param {Real} _height Component height
+ * @param {Struct} [_parent] Parent component
  *
  * @return {Struct}
  */
-function UihCheckbox(_state = undefined, _parent = undefined) : UihComponent(_state, _parent) constructor {
+function UihCheckbox(_x, _y, _width, _height, _parent = undefined) : UihComponent(_x, _y, _width, _height, _parent) constructor {
 	// Set the default checkbox status
-	state.status = uih_enum_checkbox_status.idle;
-	state.type = state[$ "type"] ?? ui_enum_variants.primary;
+	with (state) {
+		status = uih_enum_checkbox_status.idle;
+		type = ui_enum_variants.primary;
+	}
 		
 	step = function() {
 		var status = state.status;

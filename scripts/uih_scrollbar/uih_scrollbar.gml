@@ -13,18 +13,23 @@ enum uih_enum_scrollbar_direction {
 /**
  * Get the logical UI component 
  *
- * @param {Struct} _state Initial state to store in the component
- * @param {Struct} _parent Parent layer. By default it is the root layer
+ * @param {Real} _x Component X coordinate
+ * @param {Real} _y Component Y coordinate
+ * @param {Real} _width Component width
+ * @param {Real} _height Component height
+ * @param {Struct} [_parent] Parent component
  *
  * @return {Struct}
  */
-function UihScrollbar(_state = undefined, _parent = undefined) : UihComponent(_state, _parent) constructor {
+function UihScrollbar(_x, _y, _width, _height, _parent = undefined) : UihComponent(_x, _y, _width, _height, _parent) constructor {
 	// Set the default scrollbar status
-	state.type = state[$ "type"] ?? ui_enum_variants.primary;
-	state.status = uih_enum_scrollbar_status.idle;
-	state.direction = state[$ "direction"] ?? uih_enum_scrollbar_direction.vertical;
-	state.value = state[$ "value"] ?? 0;
-	state.thumb_size = state[$ "thumb_size"] ?? 0;
+	with (state) {
+		type = ui_enum_variants.primary;
+		status = uih_enum_scrollbar_status.idle;
+		direction = uih_enum_scrollbar_direction.vertical;
+		value = 0;
+		thumb_size = 0;
+	}
 
 	step = function() {
 		var status = state.status;

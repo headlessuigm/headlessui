@@ -12,42 +12,47 @@ enum uih_enum_slider_direction {
 /**
  * Get the logical UI slider component 
  *
- * @param {Struct} _state Initial state to store in the component
- * @param {Struct} _parent Parent layer. By default it is the root layer
+ * @param {Real} _x Component X coordinate
+ * @param {Real} _y Component Y coordinate
+ * @param {Real} _width Component width
+ * @param {Real} _height Component height
+ * @param {Struct} [_parent] Parent component
  *
  * @return {Struct}
  */
-function UihSlider(_state = undefined, _parent = undefined) : UihComponent(_state, _parent) constructor {
-	state.type = state[$ "type"] ?? ui_enum_variants.primary;
+function UihSlider(_x, _y, _width, _height, _parent = undefined) : UihComponent(_x, _y, _width, _height, _parent) constructor {
+	with (state) {
+		type = ui_enum_variants.primary;
 	
-	/// Current status (see uih_enum_slider_status fort supported values)
-    state.status = uih_enum_slider_status.idle;
+		/// Current status (see uih_enum_slider_status fort supported values)
+		status = uih_enum_slider_status.idle;
     
-    /// Slider direction, either vertical or horizontal (see uih_enum_slider_direction)
-    state.direction = state[$ "direction"] ?? uih_enum_slider_direction.vertical;
+		/// Slider direction, either vertical or horizontal (see uih_enum_slider_direction)
+		direction = uih_enum_slider_direction.horizontal;
     
-    /// Minimum selectable value
-    state.min = state[$ "min"] ?? 0;
+		/// Minimum selectable value
+		min_value = 0;
     
-    /// Maximum selectable value
-    state.max = state[$ "max"] ?? 100;
+		/// Maximum selectable value
+		max_value = 100;
     
-    /** The granularity of the slider; the step increment should be a divisor of 
-     * the track's length
-     */
-    state.step = state[$ "step"] ?? 1;
+	    /** The granularity of the slider; the step increment should be a divisor of 
+	     * the track's length
+	     */
+		step = 1;
     
-    /** Current selected value; it should be between state.min and state.max and 
-     * be a multiple of state.step
-     */
-    state.value = state[$ "value"] ?? 0;
+	    /** Current selected value; it should be between state.min_value and state.max_value and 
+	     * be a multiple of state.step
+	     */
+		value = 0;
     
-    /** The margin to apply to the start and the end of the slider track; 
-     * useful when the thumb can overflow outside the track;
-     * the actual track's length will be the component's size (width or height
-     * bases on state.direction) minus this track margin
-     */
-    state.track_margin = state[$ "track_padding"] ?? 0;
+	    /** The margin to apply to the start and the end of the slider track; 
+	     * useful when the thumb can overflow outside the track;
+	     * the actual track's length will be the component's size (width or height
+	     * bases on state.direction) minus this track margin
+	     */
+		track_margin = 0;
+	}
     
     step = function() {
         var status = state.status;
@@ -64,7 +69,7 @@ function UihSlider(_state = undefined, _parent = undefined) : UihComponent(_stat
 				? state.height - state.track_margin * 2
 				: state.width - state.track_margin * 2;
 			var value = clamp(mouse_delta / track_length, 0, 1);
-			var stepped_value = round((state.max - state.min) * value / state.step) * state.step;
+			var stepped_value = round((state.max_value - state.min_value) * value / state.step) * state.step;
 			
 			set({ 
 				status: uih_enum_slider_status.dragging, 

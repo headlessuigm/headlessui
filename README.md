@@ -14,22 +14,22 @@ The state is a struct that you can modify to your liking, e.g. if the button has
 // Create event
 
 /** Button */
-new UiButton("PrimaryButton", { 
-  x: 10, 
-  y: 10, 
-  width: 190, 
-  height: 40, 
-  text: "Primary Button", 
-  onClick: function(elem) {
+var btn = new UiButton(10, 10, 190, 40);
+with (btn.state) {
+  text = "Primary Button";
+  on_click = function(elem) {
     // do something
-  })
-});
+  });
+}
+```
+
+```gml
+// Step event
+ui_step();
 ```
 
 ```gml
 // Draw GUI event
-
-/** Re-render the elements if updated, and draw their surfaces */
 ui_draw();
 ```
 ---

@@ -1,12 +1,15 @@
 /**
  * Get the render UI component 
  *
- * @param {Struct} _state Component initial state to store
- * @param {Struct} _parent Parent layer. By default it is the root layer 
+ * @param {Real} _x Component X coordinate
+ * @param {Real} _y Component Y coordinate
+ * @param {Real} _width Component width
+ * @param {Real} _height Component height
+ * @param {Struct} [_parent] Parent component
  *
  * @return {Struct}
  */
-function UiNotification(_state, _parent = undefined) : UihNotification(_state, _parent) constructor {
+function UiNotification(_x, _y, _width, _height, _parent = undefined) : UihNotification(_x, _y, _width, _height, _parent) constructor {
 	draw = function() {
 		var items = state.items;
 		

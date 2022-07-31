@@ -6,19 +6,24 @@ enum uih_enum_scroll_direction {
 /**
  * Get the logical UI component 
  *
- * @param {Struct} _state Initial state to store in the component
- * @param {Struct} _parent Parent layer. By default it is the root layer
+ * @param {Real} _x Component X coordinate
+ * @param {Real} _y Component Y coordinate
+ * @param {Real} _width Component width
+ * @param {Real} _height Component height
+ * @param {Struct} [_parent] Parent component
  *
  * @return {Struct}
  */
-function UihScrollableContainer(_state = undefined, _parent = undefined) : UihLayer(_state, _parent) constructor {
+function UihScrollableContainer(_x, _y, _width, _height, _parent = undefined) : UihLayer(_x, _y, _width, _height, _parent) constructor {
 	skip_layer_checks = false;
 	disable_surface = false;
 	
-	state.scrollable_width = state[$ "scrollable_width"] ?? state.width;
-	state.scrollable_height = state[$ "scrollable_height"] ?? state.height;
-	state.scroll_step = state[$ "scroll_step"] ?? 24;
-	state.on_scroll = state[$ "on_scroll"];
+	with (state) {
+		scrollable_width = width;
+		scrollable_height = height;
+		scroll_step = 24;
+		on_scroll = function() {};
+	}
 		
 	step = function() {
 		var scrolled = undefined;

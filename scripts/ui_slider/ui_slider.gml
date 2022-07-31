@@ -1,15 +1,44 @@
 /**
  * Get the render UI slider component 
  *
- * @param {Struct} _state Component initial state to store
- * @param {Struct} _parent Parent layer. By default it is the root layer 
+ * @param {Real} _x Component X coordinate
+ * @param {Real} _y Component Y coordinate
+ * @param {Real} _width Component width
+ * @param {Real} _height Component height
+ * @param {Struct} [_parent] Parent component
  *
  * @return {Struct}
  */
-function UiSlider(_state, _parent = undefined) : UihSlider(_state, _parent) constructor {
-    state.track_thickness = state[$ "track_thickness"] ?? 5;
-    state.thumb_radius = state[$ "thumb_radius"] ?? 8;
-    state.track_margin = state.thumb_radius;
+function UiSlider(_x, _y, _width, _height, _parent = undefined) : UihSlider(_x, _y, _width, _height, _parent) constructor {
+	with (state) {
+		/**
+		 * Thumb's circle radius
+		 * @internal
+		 * @see set_thumb_radius
+		 */
+		__thumb_radius = 8;
+		
+		/**
+		 * Track's thickness
+		 * This value will be assigned to the track's width or height based on
+		 * the slider's direction
+		 */
+		track_thickness = 5;
+	}
+
+	/**
+	 * Set the thumb's radius
+	 * @param {Real} value the radius of the slider's thumb
+	 */
+	set_thumb_radius = function(value) {
+		with (state) {
+			__thumb_radius = value;
+			track_margin = value;
+		}
+	};
+	
+	// Initialize thumb radius
+	set_thumb_radius(state.__thumb_radius);
     
 	draw = function() {
 	    var half_width = round(state.width / 2);
@@ -30,9 +59,9 @@ function UiSlider(_state, _parent = undefined) : UihSlider(_state, _parent) cons
 		var thumb_x, thumb_y;
 		if (state.direction == uih_enum_slider_direction.vertical) {
 			thumb_x = half_width - 1;
-			thumb_y = (state.height - state.track_margin * 2) * ((state.value - state.min) / state.max) + state.track_margin;
+			thumb_y = (state.height - state.track_margin * 2) * ((state.value - state.min_value) / state.max_value) + state.track_margin;
 		} else {
-			thumb_x = (state.width - state.track_margin * 2) * ((state.value - state.min) / state.max) + state.track_margin;
+			thumb_x = (state.width - state.track_margin * 2) * ((state.value - state.min_value) / state.max_value) + state.track_margin;
 			thumb_y = half_height - 1;
 		}
 			
@@ -47,8 +76,8 @@ function UiSlider(_state, _parent = undefined) : UihSlider(_state, _parent) cons
 		
 		draw_set_color(thumb_color);
 		draw_set_alpha(.5);
-		draw_circle(thumb_x, thumb_y, state.thumb_radius, true);
+		draw_circle(thumb_x, thumb_y, state.__thumb_radius, true);
 		draw_set_alpha(1);
-		draw_circle(thumb_x, thumb_y, state.thumb_radius, false);
+		draw_circle(thumb_x, thumb_y, state.__thumb_radius, false);
 	};
 }

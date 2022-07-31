@@ -1,12 +1,15 @@
 /**
  * Get the logical UI component 
  *
- * @param {Struct} _state Initial state to store in the component
- * @param {Struct} _parent Parent layer. By default it is the root layer
+ * @param {Real} _x Component X coordinate
+ * @param {Real} _y Component Y coordinate
+ * @param {Real} _width Component width
+ * @param {Real} _height Component height
+ * @param {Struct} [_parent] Parent component
  *
  * @return {Struct}
  */
-function UihLayer(_state = undefined, _parent = undefined) :  UihComponent(_state, _parent) constructor {
+function UihLayer(_x, _y, _width, _height, _parent = undefined) :  UihComponent(_x, _y, _width, _height, _parent) constructor {
 	skip_layer_checks = true;
 	disable_surface = true;
 
