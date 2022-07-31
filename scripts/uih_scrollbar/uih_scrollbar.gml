@@ -35,8 +35,8 @@ function UihScrollbar(_state = undefined, _parent = undefined) : UihComponent(_s
 		} else if ((hovered && mouse_check_button_pressed(mb_any)) || state.status == uih_enum_scrollbar_status.dragging) {
 			// Update value if mouse pressed on scrollbar or if it is already being dragged
 			var mouse_delta = state.direction == uih_enum_scrollbar_direction.vertical
-				? mouse_y - state.thumb_size / 2 - state.y
-				: mouse_x - state.thumb_size / 2 - state.x;
+				? global.ui_mouse_y - state.thumb_size / 2 - state.y
+				: global.ui_mouse_x - state.thumb_size / 2 - state.x;
 			var track_length = state.direction == uih_enum_scrollbar_direction.vertical
 				? state.height - state.thumb_size
 				: state.width - state.thumb_size;

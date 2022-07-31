@@ -58,8 +58,8 @@ function UihSlider(_state = undefined, _parent = undefined) : UihComponent(_stat
 		} else if ((hovered && mouse_check_button_pressed(mb_any)) || state.status == uih_enum_slider_status.dragging) {
 			// Update value if mouse pressed on slider or if it is already being dragged
 			var mouse_delta = state.direction == uih_enum_slider_direction.vertical
-				? mouse_y - state.y - state.track_margin
-				: mouse_x - state.x - state.track_margin;
+				? global.ui_mouse_y - state.y - state.track_margin
+				: global.ui_mouse_x - state.x - state.track_margin;
 			var track_length = state.direction == uih_enum_slider_direction.vertical
 				? state.height - state.track_margin * 2
 				: state.width - state.track_margin * 2;

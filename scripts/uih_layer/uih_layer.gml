@@ -40,7 +40,7 @@ function UihLayer(_state = undefined, _parent = undefined) :  UihComponent(_stat
 			if (child.skip_layer_checks) continue;
 			var child_x = x_absolute + child.state.x - state.scroll_x;
 			var child_y = y_absolute + child.state.y - state.scroll_y;
-			if (!point_in_rectangle(mouse_x, mouse_y, child_x, child_y, child_x + child.state.width, child_y + child.state.height)) continue;
+			if (!point_in_rectangle(global.ui_mouse_x, global.ui_mouse_y, child_x, child_y, child_x + child.state.width, child_y + child.state.height)) continue;
 			return child == elem;
 		}
 		return undefined;
