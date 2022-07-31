@@ -32,6 +32,6 @@ function UiButton(_state, _parent = undefined) : UihButton(_state, _parent) cons
 		draw_set_halign(fa_center); 
 		draw_set_valign(fa_middle); 
 		draw_set_font(ui_variable_font);
-		ui_draw_text(state.width/2, state.height/2, state.text, state.text_sep, state.text_max_width);
+		draw_text_ext(round(state.width/2), round(state.height/2), state.text, state.text_sep, state.text_max_width);
 	};
 }

@@ -38,7 +38,7 @@ function UiNotification(_state, _parent = undefined) : UihNotification(_state, _
 			
 			// Draw the text
 			draw_set_color(item.type == ui_enum_variants.primary ? ui_variable_col_on_primary : ui_variable_col_on_secondary);
-			ui_draw_text(mean(x1, x2), mean(y1, y2), item.text);
+			draw_text(round(mean(x1, x2)), round(mean(y1, y2)), item.text);
 		}
 	};
 }

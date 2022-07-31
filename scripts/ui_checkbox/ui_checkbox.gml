@@ -39,6 +39,6 @@ function UiCheckbox(_state, _parent = undefined) : UihCheckbox(_state, _parent) 
 		draw_set_halign(fa_left); 
 		draw_set_valign(fa_middle); 
 		draw_set_font(ui_variable_font);
-		ui_draw_text(checkboxWidth + 10, state.height/2, state.text);
+		draw_text(round(checkboxWidth + 10), round(state.height/2), state.text);
 	};
 }
