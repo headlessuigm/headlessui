@@ -1,4 +1,0 @@
-# Slider
-
-TODO
-

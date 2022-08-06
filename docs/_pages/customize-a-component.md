@@ -1,3 +1,0 @@
-# Customize a component
-
-TODO

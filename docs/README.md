@@ -1,45 +1,41 @@
-# HEADLESS UI FOR GAME MAKER STUDIO 2
+# Website
 
-This project aims to create a library of UI components with a clear separation between logic (eg. management of clicks on a button) and design of the component itself, in order to integrate the UI with your own style in a game.
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-Each component has its own small surface, which is re-rendered only if the component undergoes a change in its state.
+### Installation
 
-The state is a struct that you can modify to your liking, e.g. if the button has been pressed, you will want to draw an effect on the button to make it clear that it is in fact pressed at that moment `if (state.clicked) { draw_sprite(etc..`
-
----
-
-### EXAMPLE USAGE
-
-```js
-// Create event
-var btn = new UiButton(10, 10, 190, 40);
-with (btn.state) {
-  text = "My Button";
-  on_click = function(elem) {
-    // do something
-  });
-}
+```
+$ yarn
 ```
 
-```js
-// Step event
-ui_step();
+### Local Development
+
+```
+$ yarn start
 ```
 
-```js
-// Draw GUI event
-ui_draw();
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+
+### Build
+
 ```
----
+$ yarn build
+```
 
-### CONTRIBUTING
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-Contributions are always appreciated! In order to do so, please fork the repository and push your changes there. 
+### Deployment
 
-Then create a Pull Request from your branch to the `main` branch.
+Using SSH:
 
----
+```
+$ USE_SSH=true yarn deploy
+```
 
-### LICENSE 
+Not using SSH:
 
-MIT
+```
+$ GIT_USER=<Your GitHub username> yarn deploy
+```
+
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
