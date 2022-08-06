@@ -1,0 +1,15 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featureImageContainer {
+  min-height: 140px;
+}
+
+.featureImage {
+  height: auto;
+  width: 200px;
+}
