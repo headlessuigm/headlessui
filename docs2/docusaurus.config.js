@@ -9,7 +9,7 @@ const config = {
   title: 'Headless UI',
   tagline: 'UI for GameMaker Studio',
   url: 'https://manuel-di-iorio.github.io',
-  baseUrl: '/',
+  baseUrl: '/gmheadlessui/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   deploymentBranch: 'gh-pages',
