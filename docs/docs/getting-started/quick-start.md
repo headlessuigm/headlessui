@@ -38,7 +38,7 @@ In the _Step_ event, add:
 ui_step();
 ```
 
-And finally in the _Draw_ event, add:
+And finally in the _Draw GUI_ event, add:
 
 ```js
 ui_draw();
