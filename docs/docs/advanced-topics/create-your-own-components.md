@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Create your own components
 
-Since components are splitted into a logic function and a render function, so you just need to create two functions with the name you like.
+Since components are splitted into a logic function and a render function, you just need to create two functions with the name you like.
 
 This is the basic logic code. This function extends the core Headless component
 
@@ -22,7 +22,7 @@ function YourLogicComponent(_x, _y, _width, _height, _parent = undefined) : UihC
 
 This is the basic render code:
 ```js
-function YourRenderComponent(_x, _y, _width, _height, _parent = undefined) : UihButton(_x, _y, _width, _height, _parent) constructor {	
+function YourRenderComponent(_x, _y, _width, _height, _parent = undefined) : YourLogicComponent(_x, _y, _width, _height, _parent) constructor {	
     draw = function() {
         // Your draw code here
     }
@@ -33,7 +33,7 @@ Finally you will be able to create an instance with: `new YourRenderComponent(x,
 
 ---
 
-## Info
+### Info
 
 Inside a function you have full access to the component's scope and you can also add variables and methods.
 
