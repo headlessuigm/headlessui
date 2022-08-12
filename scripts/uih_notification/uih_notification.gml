@@ -19,7 +19,7 @@ function UihNotification(_x, _y, _width, _height, _parent = undefined) : UihComp
 	 * @param {String} type Kind of notification (primary/secondary)
 	 * @param {String} [timer] Time in steps before removing the notification
 	 */
-	add_item = function(text, type = "primary", timer = 180) {
+	add_item = function(text, type = ui_enum_variants.primary, timer = 180) {
 		array_push(state.items, { 
 			text: text,
 			type: type,

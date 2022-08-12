@@ -7,8 +7,8 @@ sidebar_position: 2
 ### Example
 
 ```js
-var button = new UiCheckbox(0, 0, 100, 20);
-with (button.state) {
+var checkbox = new UiCheckbox(0, 0, 100, 20);
+with (checkbox.state) {
     text = "My Checkbox";
     checked = true
     on_click = function() {
@@ -21,9 +21,9 @@ with (button.state) {
 
 | Variable | Description                    | Type   | Default                         |
 |----------|--------------------------------|--------|---------------------------------|
+| text     | Checkbox displayed text        | String |                                 |
 | status   | Current status of the checkbox | Real   | `uih_enum_checkbox_status.idle` |
 | type     | Checkbox type                  | Real   | `ui_enum_variants.primary`      |
-| text     | Checkbox displayed text        | String | `undefined`                     |
 
 
 ### Enums

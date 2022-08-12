@@ -20,9 +20,9 @@ with (button.state) {
 
 | Variable           | Description                             | Type   | Default                       |
 |--------------------|-----------------------------------------|--------|-------------------------------|
+| text               | Button displayed text                   | String |                               |
 | status             | Current status of the button            | Real   | `uih_enum_button_status.idle` |
 | type               | Button type                             | Real   | `ui_enum_variants.primary`    |
-| text               | Button displayed text                   | String | `undefined`                   |
 | text_sep           | Distance in px between each character   | Real   | `-1` (default spacing)        |
 | text_max_width     | Row max width before going on a newline | Real   | `-1` (no newlines by default) |
 | padding_horizontal | Horizontal button padding (in px)       | Real   | `40`                          |
@@ -37,7 +37,7 @@ Set the text of the button, auto-resizing the container, according to the button
 
 | Param     | Description                             | Type   | Default     |
 |-----------|-----------------------------------------|--------|-------------|
-| text      | Button text                             | String | `undefined` |
+| text      | Button text                             | String |             |
 | sep       | Distance between each character (in px) | Real   | `-1`        |
 | max_width | Max row width                           | Real   | `-1`        |
 
