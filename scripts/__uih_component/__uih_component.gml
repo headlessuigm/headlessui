@@ -15,7 +15,7 @@ uih_root_component = new UihLayer(0, 0, room_width, room_height, {
 });
 
 /**
- * HEADLESS UI (Alpha)
+ * HEADLESS UI v1.0.0
  * Get the component struct
  *
  * @param {Real} _x Component X coordinate
