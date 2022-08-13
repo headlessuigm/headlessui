@@ -14,7 +14,7 @@ function UihLayer(_x, _y, _width, _height, _parent = undefined) :  UihComponent(
 	disable_surface = true;
 
 	/**
-	  * Set the specified element as focused (if not already)
+	  * Set the specified child component as focused (if not already)
 	  */
 	focus = function(child) {
 		var topIdx = array_length(children) - 1;
@@ -31,7 +31,7 @@ function UihLayer(_x, _y, _width, _height, _parent = undefined) :  UihComponent(
 	};
 
 	/**
-	 * Check if the specified element is the most higher (on top) element, that is intersecting the mouse
+	 * Check if the specified child component is the highest (on top) component, that is intersecting the mouse
 	 */
 	is_hovered = function(elem) {
 		var x_absolute = x_abs();

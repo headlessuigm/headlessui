@@ -25,6 +25,11 @@ with (checkbox.state) {
 | status   | Current status of the checkbox | Real   | `uih_enum_checkbox_status.idle` |
 | type     | Checkbox type                  | Real   | `ui_enum_variants.primary`      |
 
+```js
+on_click(component)
+```
+
+Called when clicking on the checkbox. The passed argument is the component itself
 
 ### Enums
 

@@ -41,6 +41,13 @@ Set the text of the button, auto-resizing the container, according to the button
 | sep       | Distance between each character (in px) | Real   | `-1`        |
 | max_width | Max row width                           | Real   | `-1`        |
 
+### Events
+
+```js
+on_click(component)
+```
+
+Called when clicking on the button. The passed argument is the component itself
 
 ### Enums
 

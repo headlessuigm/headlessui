@@ -4,6 +4,8 @@ sidebar_position: 3
 
 # Notification
 
+This component displays a list of notifications that are automatically removed in a short time, useful e.g. to notify the player of a in-game event. 
+
 ### Example
 
 ```js
