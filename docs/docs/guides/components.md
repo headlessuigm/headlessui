@@ -85,3 +85,18 @@ function UihNotification() : UihComponent() constructor {
     }
 }
 ```
+
+### Events
+
+Some components may trigger events as a result of a user action. 
+
+Events can be defined in the state and consequently called from the component step:
+
+```js
+var button = new UiButton(0, 0, 100, 30);
+with (button.state) {
+    on_click = function() {
+        show_message("Button clicked!");
+    }
+}
+```
