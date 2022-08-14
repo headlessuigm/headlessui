@@ -36,12 +36,9 @@ Called when the component is being scrolled. `scroll_value` indicates the curren
 
 ### Enums
 
-| Enum                      | Values                    |
-|---------------------------|---------------------------|
-| uih_enum_scrollbar_status | `idle`/`hover`/`dragging` |
-
-| Enum                         | Values                  |
-|------------------------------|-------------------------|
-| uih_enum_scrollbar_direction | `vertical`/`horizontal` |
+| Enum                         | Values                    |
+|------------------------------|---------------------------|
+| uih_enum_scrollbar_status    | `idle`/`hover`/`dragging` |
+| uih_enum_scrollbar_direction | `vertical`/`horizontal`   |
 
 
