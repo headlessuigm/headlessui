@@ -53,7 +53,7 @@ function UihScrollbar(_x, _y, _width, _height, _parent = undefined) : UihCompone
 			});
 			
 			if (variable_struct_exists(state, "on_change")) {
-				state.on_change(value);
+				state.on_change(self, value);
 			}
 		} else if (hovered) {
 			if (status != uih_enum_scrollbar_status.hover) {

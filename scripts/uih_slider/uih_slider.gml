@@ -77,7 +77,7 @@ function UihSlider(_x, _y, _width, _height, _parent = undefined) : UihComponent(
 			});
 			
 			if (variable_struct_exists(state, "on_change")) {
-				state.on_change(stepped_value);
+				state.on_change(self, stepped_value);
 			}
 		} else if (hovered) {
 			if (status != uih_enum_slider_status.hover) {

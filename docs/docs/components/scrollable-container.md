@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # Scrollable Container
 
-This is a basic component to handle a container with a scrollable area and the related scrollbar.
+This is a basic component to handle a container with a scrollable area and the related [scrollbar](/docs/components/scrollbar).
 Children components will be able to be scrolled trough the area.
 
 ### Example
@@ -14,6 +14,9 @@ var scrollable_container = new UiScrollableContainer(0, 0, 200, 200);
 with (scrollable_container.state) {
 	scrollable_width = 400;
 	scrollable_height = 800;
+	on_change = function() {
+		show_debug_message("Changed scroll position!");
+	};
 }
 ```
 
@@ -21,17 +24,17 @@ with (scrollable_container.state) {
 
 | Variable          | Description                          | Type   | Default                        |
 |-------------------|--------------------------------------|--------|--------------------------------|
-| scrollable_width  | Scrollable area width                | String | Equals to the component width  |
+| scrollable_width  | Scrollable area width                | Real   | Equals to the component width  |
 | scrollable_height | Scrollable area height               | Real   | Equals to the component height |
-| scroll_step       | Scroll speed with arrows/mouse wheel | Real   | 24                             |
+| scroll_step       | Scroll speed                         | Real   | 24                             |
 
 ### Events
 
 ```js
-on_scroll(component, scrolled, scroll_value)
+on_change(component, scroll_direction, scroll_value)
 ```
 
-Called when the container is being scrolled. `scrolled` param indicates the scroll direction and `scroll_value` the scroll difference.
+Called when the container is being scrolled. `scrolled` param indicates the scroll direction and `scroll_value` the scrolling difference.
 
 ### Enums
 
