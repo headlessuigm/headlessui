@@ -19,11 +19,12 @@ with (checkbox.state) {
 
 ### State reference
 
-| Variable | Description                    | Type   | Default                         |
-|----------|--------------------------------|--------|---------------------------------|
-| text     | Checkbox displayed text        | String |                                 |
-| status   | Current status of the checkbox | Real   | `uih_enum_checkbox_status.idle` |
-| type     | Checkbox type                  | Real   | `ui_enum_variants.primary`      |
+| Variable | Description                       | Type   | Default                         |
+|----------|-----------------------------------|--------|---------------------------------|
+| text     | Checkbox displayed text           | String |                                 |
+| status   | Current status of the checkbox    | Real   | `uih_enum_checkbox_status.idle` |
+| type     | Checkbox type                     | Real   | `ui_enum_variants.primary`      |
+| checked  | If the input is currently checked | Bool   | `false`                         |
 
 ```js
 on_click(component)

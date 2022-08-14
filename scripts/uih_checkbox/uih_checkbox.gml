@@ -20,6 +20,7 @@ function UihCheckbox(_x, _y, _width, _height, _parent = undefined) : UihComponen
 	with (state) {
 		status = uih_enum_checkbox_status.idle;
 		type = ui_enum_variants.primary;
+		checked = false;
 	}
 		
 	step = function() {

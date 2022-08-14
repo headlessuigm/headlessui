@@ -8,9 +8,9 @@ Every piece of the UI is a component, with its own surface and its own data cont
 
 ### What's headless?
 
-Headless means that the components step and draw are isolated and are fully customizable from the developer.
+Headless means that the components step and draw are isolated and are fully customizable by the developer.
 
-Components are splitted in two lightweight functions: logic and render. For example, a button behavior like if the mouse is hovering it, is controlled in the logic function, while its drawing in the render function.
+Components are splitted in two lightweight functions: logic and render. For example, a button behaviour like if the mouse is hovering it, is controlled in the logic function, while its drawing in the render function.
 
 Example of a logic function:
 
@@ -41,7 +41,7 @@ var myButton = new UiButton();
 
 ### State
 
-A component may need to store some data to control its behavior or draw, e.g. if the button is currently pressed. When the state changes, the component and its parents are also scheduled for the re-render.
+A component may need to store some data to control its behaviour or draw, e.g. if the button is currently pressed. When the state changes, the component and its parents are also scheduled for the re-render.
 
 The state can be easily manipulated in the function constructor by using the `with` statement.
 
@@ -53,7 +53,7 @@ function UihButton() : UihComponent() constructor {
 }
 ```
 
-but if you need to change the state in the step function, then you can the `set()` function, which is available to all components and it will correctly trigger the re-rendering.
+but if you need to change the state in the step function, then you can use the `set()` function, which is available to all components and it will correctly trigger the re-rendering.
 
 ```js
 function UihButton() : UihComponent() constructor {

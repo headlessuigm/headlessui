@@ -80,7 +80,7 @@ with (scrollbar_horizontal.state) {
 }
 
 scrollable_container.set({
-	on_scroll: method({ scrollbar_vertical: scrollbar_vertical, scrollbar_horizontal: scrollbar_horizontal }, function(scroll_direction, scroll_value) {
+	on_scroll: method({ scrollbar_vertical: scrollbar_vertical, scrollbar_horizontal: scrollbar_horizontal }, function(el, scroll_direction, scroll_value) {
 		if (scroll_direction == uih_enum_scroll_direction.vertical) {
 			scrollbar_vertical.set({ value: scroll_value });
 		} else {

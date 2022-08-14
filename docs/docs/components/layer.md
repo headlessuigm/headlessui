@@ -8,7 +8,7 @@ A layer is a renderless component that handles the z-order of its children compo
 
 It is used to understand which component is on top of another, by simply checking which one is the latest in the list.
 
-By default every component is a child of the root layer component, but you can also create other layers in order to have a better control of the depth ordering.
+By default every component is a child of the root layer component, but you can also create other layers in order to have a better control of the inner ordering.
 
 ### Example
 

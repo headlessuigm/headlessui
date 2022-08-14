@@ -54,7 +54,7 @@ function UihScrollableContainer(_x, _y, _width, _height, _parent = undefined) : 
 			var normalized_scroll_value = scrolled == uih_enum_scroll_direction.vertical
 				? state.scroll_y / (state.scrollable_height - state.height)
 				: state.scroll_x / (state.scrollable_width - state.width);
-			state.on_scroll(scrolled, normalized_scroll_value);
+			state.on_scroll(self, scrolled, normalized_scroll_value);
 		}
 	};
 }
