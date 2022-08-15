@@ -64,7 +64,7 @@ Returns the X absolute coordinate of the component, according to the X scroll po
 
 Returns the X absolute coordinate of the component, according to the Y scroll position
 
-#### resize(partial_state)
+#### resize(width, height)
 
 Resizes the component surface
 
