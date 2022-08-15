@@ -16,7 +16,7 @@ The state is a struct that you can modify to your liking, e.g. if the button has
 
 ---
 
-### EXAMPLE USAGE
+### Example usage
 
 ```js
 // Create event

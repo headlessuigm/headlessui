@@ -1,5 +1,5 @@
 // Default root layer component
-uih_root_component = new UihLayer(0, 0, room_width, room_height, { 
+global.uih_root_component = new UihLayer(0, 0, room_width, room_height, { 
 	children: [],
 	state: {
 		scroll_x: 0,
@@ -13,6 +13,9 @@ uih_root_component = new UihLayer(0, 0, room_width, room_height, {
 	},
 	update: function() {},
 });
+
+global.ui_mouse_x = device_mouse_x_to_gui(0);
+global.ui_mouse_y = device_mouse_y_to_gui(0);
 
 /**
  * HEADLESS UI v1.0.0

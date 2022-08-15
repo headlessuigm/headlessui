@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 # Scrollable Container
@@ -34,7 +34,7 @@ with (scrollable_container.state) {
 on_change(component, scroll_direction, scroll_value)
 ```
 
-Called when the container is being scrolled. `scrolled` param indicates the scroll direction and `scroll_value` the scrolling difference.
+Called when the container is being scrolled. `scroll_direction` param indicates the scroll direction and `scroll_value` the scrolling difference.
 
 ### Enums
 
