@@ -40,10 +40,10 @@ with (slider.state) {
 ### Events
 
 ```js
-on_change(component, scroll_value)
+on_change(component, value)
 ```
 
-Called when the slider position changes. `scroll_value` indicates the current normalized (0-1) slider position.
+Called when the slider position changes. `value` indicates the current normalized (0-1) slider position.
 
 ### Enums
 

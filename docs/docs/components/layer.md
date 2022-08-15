@@ -25,14 +25,14 @@ new UiButton(0, 0, 100, 40, myLayer);
 
 Check if the specified component is the most higher (on top) element, that is also intersecting the mouse
 
-| Param           | Description        | Type              | Default |
-|-----------------|--------------------|-------------------|---------|
-| child_component | Component to check | Function instance |         |
+| Param           | Description        | Type   | Default |
+|-----------------|--------------------|--------|---------|
+| child_component | Component to check | Struct |         |
 
 #### focus(child_component)
 
 Set the specified component as focused (if not already). Will bring the component on top
 
-| Param           | Description        | Type              | Default |
-|-----------------|--------------------|-------------------|---------|
-| child_component | Component to focus | Function instance |         |
+| Param           | Description        | Type   | Default |
+|-----------------|--------------------|--------|---------|
+| child_component | Component to focus | Struct |         |
