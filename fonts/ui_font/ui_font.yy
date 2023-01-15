@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMFont",
+  "resourceVersion": "1.0",
+  "name": "ui_font",
   "hinting": 0,
   "glyphOperations": 0,
   "interpreter": 0,
@@ -749,10 +752,6 @@
   "maintainGms1Font": false,
   "parent": {
     "name": "Core",
-    "path": "folders/UI/UI Styled - Rendering components/Core.yy",
+    "path": "folders/HeadlessUI/UI Styled - Rendering components/Core.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "ui_font",
-  "tags": [],
-  "resourceType": "GMFont",
 }

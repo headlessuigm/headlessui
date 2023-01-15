@@ -8,14 +8,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Headless UI',
   tagline: 'UI for GameMaker Studio',
-  url: 'https://manuel-di-iorio.github.io',
-  baseUrl: '/gmheadlessui/',
+  url: 'https://headlessuigm.github.io',
+  baseUrl: '/headlessui/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   deploymentBranch: 'gh-pages',
   favicon: 'img/favicon.png',
-  organizationName: 'manuel-di-iorio',
-  projectName: 'gmheadlessui',
+  organizationName: 'headlessuigm',
+  projectName: 'headlessui',
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -29,7 +29,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/manuel-di-iorio/gmheadlessui/blob/main/docs/',
+            'https://github.com/headlessuigm/headlessui/blob/main/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -55,7 +55,7 @@ const config = {
             label: 'Docs',
           },
           {
-            href: 'https://github.com/manuel-di-iorio/gmheadlessui',
+            href: 'https://github.com/headlessuigm/headlessui',
             label: 'GitHub',
             position: 'right',
           },
@@ -95,7 +95,7 @@ const config = {
         //       items: [
         //         {
         //           label: 'GitHub',
-        //           href: 'https://github.com/manuel-di-iorio/gmheadlessui',
+        //           href: 'https://github.com/headlessuigm/headlessui',
         //         },
         //       ],
         //     },

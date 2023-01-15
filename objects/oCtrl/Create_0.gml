@@ -4,7 +4,7 @@ draw_debug = false;
 var notification_elem = new UiNotification(display_get_gui_width() - 340, 10, 330, 300);
 
 /** Buttons */
-var primary_button = new UiButton(10, 10, 190, 40); 
+var primary_button = new UiButton(10, 10, 190, 40);
 with (primary_button.state) {
 	text = "Primary Button";
 	on_click = method({ notification_elem: notification_elem }, function(elem) {
@@ -91,7 +91,8 @@ scrollable_container.set({
 
 var layer_with_draggable = new UihLayer(300, 10, 200, 200);
 
-var draggable_both = new UihDraggable(10, 25, 75, 25, layer_with_draggable);
+var draggable_both = new UihDraggable(10, 25, 75, 25);
+draggable_both.set_parent(layer_with_draggable);
 
 var draggable_button_both = new UiButton(0, 0, 75, 25, draggable_both);
 with (draggable_button_both.state) {

@@ -168,6 +168,32 @@ function UihComponent(_x, _y, _width, _height, _parent = global.uih_root_compone
 		child.parent = self;
 		array_push(children, child);
 	};
+	
+	/**
+	 * Set a new parent component
+	 *
+	 * @param {Struct} newParent New parent component to set
+	 */
+	set_parent = function(newParent) {
+		var parentChildren = parent.children;
+		
+		// Exit when setting again the same parent
+		if (newParent == parent) {
+			return;
+		}
+
+		// Find the parent sorted child to remove
+		for (var i=0, len=array_length(parentChildren); i<len; i++) {
+			if (parentChildren[i] == self) {
+				array_delete(parentChildren, i, 1);
+				break;
+			}
+		}
+
+		// Push this component into the new parent children list
+		parent = newParent;
+		array_push(newParent.children, self);
+	}
 		
 	// Store the new element into the parent children
 	array_push(parent.children, self);

@@ -1,12 +1,11 @@
 {
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "uih_button",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
     "name": "Components",
-    "path": "folders/UI/UI Headless - Logical components/Components.yy",
+    "path": "folders/HeadlessUI/UI Headless - Logical components/Components.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "uih_button",
-  "tags": [],
-  "resourceType": "GMScript",
 }
