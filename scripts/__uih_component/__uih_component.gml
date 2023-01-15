@@ -175,14 +175,14 @@ function UihComponent(_x, _y, _width, _height, _parent = global.uih_root_compone
 	 * @param {Struct} newParent New parent component to set
 	 */
 	set_parent = function(newParent) {
-		var parentChildren = parent.children;
-		
 		// Exit when setting again the same parent
 		if (newParent == parent) {
 			return;
 		}
-
+		
 		// Find the parent sorted child to remove
+		var parentChildren = parent.children;
+		
 		for (var i=0, len=array_length(parentChildren); i<len; i++) {
 			if (parentChildren[i] == self) {
 				array_delete(parentChildren, i, 1);
