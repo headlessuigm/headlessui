@@ -1,12 +1,11 @@
 {
+  "resourceType": "GMScript",
+  "resourceVersion": "1.0",
+  "name": "uih_slider",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
     "name": "Components",
-    "path": "folders/UI/UI Headless - Logical components/Components.yy",
+    "path": "folders/HeadlessUI/UI Headless - Logical components/Components.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "uih_slider",
-  "tags": [],
-  "resourceType": "GMScript",
 }
