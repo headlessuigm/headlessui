@@ -133,3 +133,9 @@ slider2.set_thumb_radius(5);
 with (slider2.state) {
 	step = 25;
 }
+
+// Label
+var label = new UiLabel(300, 330, 130, 30);
+with (label.state) {
+	text = "My Custom Label";
+}
