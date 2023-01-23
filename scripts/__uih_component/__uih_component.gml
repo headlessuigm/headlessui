@@ -81,7 +81,7 @@ function UihComponent(_x, _y, _width, _height, _parent = global.uih_root_compone
 			var name = names[i];
 			if (state[$ name] != partialState[$ name]) {
 				var updatedValue = partialState[$ name];
-				state[$ name] = partialState[$ name];
+				state[$ name] = updatedValue;
 				update();
 				
 				// Execute the watchers related to this updated prop

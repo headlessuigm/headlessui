@@ -95,7 +95,7 @@ Note: watchers are currently only executed when using the set() method.
 
 #### unwatch([prop_name], [watcherid])
 
-Remove a watcher for the specified prop name. You can also pass undefined to remove all the watchers. Also the prop name can undefined if you want to remove the watchers of any prop of this component.
+Remove a watcher for the specified prop name. You can also pass undefined to remove all the watchers related to that prop. Also the prop name can be undefined if you want to remove the watchers of any prop of this component.
 
 | Param         | Description               | Type   | Default     |
 |---------------|---------------------------|--------|-------------|
