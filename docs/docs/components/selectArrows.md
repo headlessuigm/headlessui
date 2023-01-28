@@ -65,7 +65,7 @@ with (selectArrowsBtnNext.state) {
 | Variable           | Description                                | Type   | Default                       |
 |--------------------|--------------------------------------------|--------|-------------------------------|
 | type               | Button type                                | Real   | `ui_enum_variants.primary`    |
-| index              | Index of the currently displayed item      | Real   | `0`                           |
+| index              | Index of the currently selected item       | Real   | `0`                           |
 | selected           | Selected item                              | { key: String, label: String } |       |
 | wrap_selection     | If to wrap the items when reaching the end of the selection | Bool   | `false`                       |
 | items              | Array of items to display                  | Array<{ key: String, label: String }> | `[]` |
@@ -80,6 +80,14 @@ Set the items in the state, by also pre-selecting the first item in the list
 | Param     | Description               | Type                                  | Default |
 |-----------|---------------------------|---------------------------------------|---------|
 | items     | Array of items to display | Array<{ key: String, label: String }> | `[]`    |
+
+### next()
+
+Select the next item in the list. If the index has reached the end of the array, it will be wrapped with the initial one.
+
+### previous()
+
+Select the previous item in the list. If the index has reached the start of the array, it will be wrapped with the final one.
 
 ### Events
 
