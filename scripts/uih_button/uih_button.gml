@@ -19,6 +19,7 @@ function UihButton(_x, _y, _width, _height, _parent = undefined) : UihComponent(
 	// Set the default button status
 	with (state) {
 		status = uih_enum_button_status.idle;
+		enabled = true;
 	
 		// Button style props
 		type = ui_enum_variants.primary;
@@ -36,7 +37,9 @@ function UihButton(_x, _y, _width, _height, _parent = undefined) : UihComponent(
 	 * @param {Integer} max_width Max text width
 	 */
 	set_text = function(text, sep = -1, max_width = -1) {
-		if (text == state.text) return;
+		if (text == state.text) {
+			return;
+		}
 		state.text = text;
 		state.text_sep = sep;
 		state.text_max_width = max_width;
@@ -47,6 +50,10 @@ function UihButton(_x, _y, _width, _height, _parent = undefined) : UihComponent(
 	};
 		
 	step = function() {
+		if (!state.enabled) {
+			return;
+		}
+		
 		// Handle the button status
 		var status = state.status;
 
