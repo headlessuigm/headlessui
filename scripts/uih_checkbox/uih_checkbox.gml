@@ -21,17 +21,28 @@ function UihCheckbox(_x, _y, _width, _height, _parent = undefined) : UihComponen
 		status = uih_enum_checkbox_status.idle;
 		type = ui_enum_variants.primary;
 		checked = false;
+		click_type = ui_enum_click_type.released;
+		click_button = mb_left;
 	}
 		
 	step = function() {
 		var status = state.status;
+		var click_type = state.click_type;
+		var click_button = state.click_button;
 
-		if (status != uih_enum_checkbox_status.idle && mouse_check_button_released(mb_any)) {
+		if (status != uih_enum_checkbox_status.idle && mouse_check_button_released(click_button)) {
 			set({ status: uih_enum_checkbox_status.idle });
-		} else if (parent.is_hovered(self)) {
-			if (mouse_check_button_pressed(mb_any)) {
-				set({ status: uih_enum_checkbox_status.clicked, checked: !state.checked });
+			
+			if (click_type == ui_enum_click_type.released && parent.is_hovered(self)) {
 				click();
+			}
+		} else if (parent.is_hovered(self)) {
+			if (mouse_check_button_pressed(click_button)) {
+				set({ status: uih_enum_checkbox_status.clicked, checked: !state.checked });
+				
+				if (click_type == ui_enum_click_type.pressed) {
+					click();	
+				}
 			} else if (status == uih_enum_checkbox_status.idle) {
 				set({ status: uih_enum_checkbox_status.hover });
 			}
