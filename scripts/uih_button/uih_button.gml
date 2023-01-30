@@ -27,7 +27,7 @@ function UihButton(_x, _y, _width, _height, _parent = undefined) : UihComponent(
 		padding_horizontal = 40;
 		padding_vertical = 20;
 		text_sep = -1;
-		text_max_width = -1;		
+		text_max_width = -1;
 	}
 	
 	/**
