@@ -251,12 +251,12 @@ with (selectArrowsBtnNextWrap.state) {
 }
 
 /** Tooltip */
-var tooltipBtn = new UiButton(530, 50, 120, 30);
+var tooltipBtn = new UiButton(550, 70, 120, 30);
 with (tooltipBtn.state) {
 	text = "Hover over me";
 }
 
-var tooltip = new UiTooltip(0, 0, 0, 0);
+var tooltip = new UiTooltip();
 with (tooltip.state) {
 	linked_component = tooltipBtn;
 	text_max_width = 250;

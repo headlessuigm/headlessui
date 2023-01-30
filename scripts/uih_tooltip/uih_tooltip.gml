@@ -18,10 +18,10 @@ function UihTooltip(_x, _y, _width, _height, _parent = undefined) : UihComponent
 		text = undefined;
 		text_sep = -1;
 		text_max_width = -1;
-		padding_horizontal = 5;
+		padding_horizontal = 10;
 		padding_vertical = 5;
-		offset_horizontal = 20;
-		offset_vertical = 3;
+		offset_horizontal = 0;
+		offset_vertical = 10;
 		show = false;
 		show_delay = 500;
 		stay_within_gui = true;
@@ -41,8 +41,8 @@ function UihTooltip(_x, _y, _width, _height, _parent = undefined) : UihComponent
 		var text_max_width = state.text_max_width;
 		draw_set_font(ui_variable_font);
 		resize(
-			string_width_ext(text, text_sep, text_max_width) + state.padding_horizontal, 
-			string_height_ext(text, text_sep, text_max_width) + state.padding_vertical
+			string_width_ext(text, text_sep, text_max_width) + state.padding_horizontal * 2,
+			string_height_ext(text, text_sep, text_max_width) + state.padding_vertical * 2
 		);
 		state.text = text;
 	}
@@ -59,12 +59,12 @@ function UihTooltip(_x, _y, _width, _height, _parent = undefined) : UihComponent
 			return;
 		}
 		
-		var xx = linked_component.state.x + state.offset_horizontal;
+		var xx = linked_component.state.x - linked_component.state.width/2 + state.offset_horizontal;
 		var yy = linked_component.state.y - state.offset_vertical - state.height;
 		
 		if (state.stay_within_gui) {
-			xx = min(xx, display_get_gui_width() - state.width - 10);
-			yy = max(yy, 10);
+			xx = clamp(xx, 10, display_get_gui_width() - state.width - 10);
+			yy = clamp(yy, 10, display_get_gui_height() - state.height - 10);
 		}
 		
 		set({ x: xx, y: yy });
