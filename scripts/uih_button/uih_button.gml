@@ -19,6 +19,8 @@ function UihButton(_x, _y, _width, _height, _parent = undefined) : UihComponent(
 	// Set the default button status
 	with (state) {
 		status = uih_enum_button_status.idle;
+		click_type = ui_enum_click_type.released;
+		click_button = mb_left;
 	
 		// Button style props
 		type = ui_enum_variants.primary;
@@ -49,13 +51,22 @@ function UihButton(_x, _y, _width, _height, _parent = undefined) : UihComponent(
 	step = function() {
 		// Handle the button status
 		var status = state.status;
+		var click_type = state.click_type;
+		var click_button = state.click_button;
 
-		if (status != uih_enum_button_status.idle && mouse_check_button_released(mb_any)) {
+		if (status != uih_enum_button_status.idle && mouse_check_button_released(click_button)) {
 			set({ status: uih_enum_button_status.idle });
-		} else if (parent.is_hovered(self)) {
-			if (mouse_check_button_pressed(mb_any)) {	
-				set({ status: uih_enum_button_status.clicked });
+			
+			if (click_type == ui_enum_click_type.released && parent.is_hovered(self)) {
 				click();
+			}
+		} else if (parent.is_hovered(self)) {
+			if (mouse_check_button_pressed(click_button)) {
+				set({ status: uih_enum_button_status.clicked });
+				
+				if (click_type == ui_enum_click_type.pressed) {
+					click();	
+				}
 			} else if (status == uih_enum_button_status.idle) {
 				set({ status: uih_enum_button_status.hover });
 			}

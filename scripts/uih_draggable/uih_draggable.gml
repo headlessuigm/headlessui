@@ -26,6 +26,8 @@ function UihDraggable(_x, _y, _width, _height, _parent = undefined) : UihLayer(_
 
     // Default state
    with (state) {
+		click_button = mb_left;
+		
    		/**
    		 * Current component's status
    		 * @see uih_enum_draggable_status
@@ -74,11 +76,13 @@ function UihDraggable(_x, _y, _width, _height, _parent = undefined) : UihLayer(_
    }
     
     step = function() {
+		var click_button = state.click_button;
+		
         switch (state.status) {
             case uih_enum_draggable_status.idle:
                 if (is_hovered(children[0])) {
                     set({ 
-                        status: mouse_check_button_pressed(mb_any)
+                        status: mouse_check_button_pressed(click_button)
                             ? uih_enum_draggable_status.drag
                             : uih_enum_draggable_status.hover,
                     });
@@ -87,7 +91,7 @@ function UihDraggable(_x, _y, _width, _height, _parent = undefined) : UihLayer(_
                 
             case uih_enum_draggable_status.hover:
                 if (is_hovered(children[0])) {
-                    if (mouse_check_button_pressed(mb_any)) {
+                    if (mouse_check_button_pressed(click_button)) {
                     	// Bring draggable on top
                     	if (variable_struct_exists(parent, "focus")) {
                     		parent.focus(self);
@@ -129,7 +133,7 @@ function UihDraggable(_x, _y, _width, _height, _parent = undefined) : UihLayer(_
                     y: actual_y,
                 });
                 
-                if (mouse_check_button_released(mb_any)) {
+                if (mouse_check_button_released(click_button)) {
                     set({ 
                         status: is_hovered(children[0])
                             ? uih_enum_draggable_status.hover

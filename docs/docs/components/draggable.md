@@ -19,11 +19,12 @@ with (dragged_button.state) {
 
 ### State reference
 
-| Variable | Description                                                                                                                                                                                      | Type   | Default                        |
-|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------|--------------------------------|
-| status   | Current status of the draggable                                                                                                                                                                  | Real   | uih_enum_draggable_status.idle |
-| axis     | Axis the draggable can move along                                                                                                                                                                | Real   | uih_enum_draggable_axis.both   |
-| bounds   | By default, the component will be draggable within the parent, otherwise you can specify a Struct containing the "left", "right", "up" and "down" variables, that indicates the drag area limits | Struct |                                |                         |                          |
+| Variable | Description                          | Type   | Default                        |
+|----------|--------------------------------------|--------|--------------------------------|
+| status   | Current status of the draggable      | Real   | uih_enum_draggable_status.idle |
+| axis     | Axis the draggable can move along    | Real   | uih_enum_draggable_axis.both   |
+| bounds   | By default, the component will be draggable within the parent, otherwise you can specify a Struct containing the "left", "right", "up" and "down" variables, that indicates the drag area limits | Struct |        |    |    |
+| click_button       | Which button to check for the click              | Real   | `mb_left`                     |
 
 ### Enums
 
