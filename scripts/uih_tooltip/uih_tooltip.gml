@@ -23,12 +23,12 @@ function UihTooltip(_x, _y, _width, _height, _parent = undefined) : UihComponent
 		offset_horizontal = 20;
 		offset_vertical = 3;
 		show = false;
-		show_speed = .05;
+		show_delay = 500;
 		stay_within_gui = true;
 		
 		// Internal state variables
-		__show_timer = 0;
 		__show_play = false;
+		__show_timer = undefined;
 	}
 	
 	/**
@@ -44,7 +44,7 @@ function UihTooltip(_x, _y, _width, _height, _parent = undefined) : UihComponent
 			string_width_ext(text, text_sep, text_max_width) + state.padding_horizontal, 
 			string_height_ext(text, text_sep, text_max_width) + state.padding_vertical
 		);
-		set({ text: text });
+		state.text = text;
 	}
 	
 	/** 
@@ -79,12 +79,14 @@ function UihTooltip(_x, _y, _width, _height, _parent = undefined) : UihComponent
 		// Start the show/hide animation when hovering over the linked component
 		if (!state.show && !state.__show_play) {
 			if (linked_component.parent.is_hovered(linked_component)) {
-				set({ __show_play: true });
+				set({ 
+					__show_play: true,
+					__show_timer: current_time
+				});
 			}
 		} else {
 			if (!linked_component.parent.is_hovered(linked_component)) {
 				set({
-					__show_timer: 0,
 					__show_play: false,
 					show: false
 				});
@@ -92,15 +94,11 @@ function UihTooltip(_x, _y, _width, _height, _parent = undefined) : UihComponent
 		}
 		
 		// Handle the show timer
-		if (state.__show_play) {
-			if (state.__show_timer < 1) {
-				state.__show_timer += state.show_speed;
-			} else {
-				set({
-					__show_play: false,
-					show: true
-				});
-			}
+		if (state.__show_play && current_time - state.__show_timer > state.show_delay) {
+			set({
+				__show_play: false,
+				show: true
+			});
 		}
 	};
 }
