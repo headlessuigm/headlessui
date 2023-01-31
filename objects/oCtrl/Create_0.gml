@@ -16,6 +16,7 @@ with (primary_button.state) {
 
 var secondary_button = new UiButton(10, 65, 190, 40);
 with (secondary_button.state) {
+	type = ui_enum_variants.secondary;
 	text = "Click to delete this button";
 	on_click = method({ notification_elem: notification_elem }, function(elem) {
 		notification_elem.add_item("Secondary button has been pressed", ui_enum_variants.secondary);
@@ -136,4 +137,109 @@ var slider2 = new UiSlider(300, 290, 200, 30);
 slider2.set_thumb_radius(5);
 with (slider2.state) {
 	step = 25;
+}
+
+/* Select with arrows (no wrap) */
+var selectArrows = new UiSelectArrows(300, 360, 200, 30);
+selectArrows.set_items([{ key: "item0", label: "Item 0" }, { key: "item1", label: "Item 1" }, { key: "item2", label: "Item 2"} ]);
+
+var selectArrowsBtnPrev = new UiButton(0, 0, 30, 30, selectArrows);
+var selectArrowsBtnNext = new UiButton(170, 0, 30, 30, selectArrows);
+
+with (selectArrowsBtnPrev.state) {
+	text = "<";
+	if (!selectArrows.state.wrap_selection) {
+		enabled = false;	
+	}
+	
+	on_click = method({ select: selectArrows, prevBtn: selectArrowsBtnPrev, nextBtn: selectArrowsBtnNext }, function() {
+		var select = self.select;
+		select.previous();
+		
+		if (!select.state.wrap_selection && !self.nextBtn.state.enabled) {
+			with (self.nextBtn) {
+				set({ enabled: true });
+			}
+		}
+		
+		if (!select.state.index && !select.state.wrap_selection) {
+			with (self.prevBtn) {
+				set({ enabled: false });
+			}
+		}
+	});
+}
+
+with (selectArrowsBtnNext.state) {
+	text = ">";
+	on_click = method({ select: selectArrows, prevBtn: selectArrowsBtnPrev, nextBtn: selectArrowsBtnNext }, function() {
+		var select = self.select;
+		select.next();
+		
+		if (!select.state.wrap_selection && !self.prevBtn.state.enabled) {
+			with (self.prevBtn) {
+				set({ enabled: true });
+			}
+		}
+		
+		if (select.state.index == array_length(select.state.items)-1 && !select.state.wrap_selection) {
+			with (self.nextBtn) {
+				set({ enabled: false });
+			}
+		}
+	});
+}
+
+/* Select with arrows (wrap) */
+var selectArrowsWrap = new UiSelectArrows(300, 400, 200, 30);
+with (selectArrowsWrap.state) {
+	wrap_selection = true;
+}
+selectArrowsWrap.set_items([{ key: "item0", label: "Item 0" }, { key: "item1", label: "Item 1" }, { key: "item2", label: "Item 2"} ]);
+
+var selectArrowsBtnPrevWrap = new UiButton(0, 0, 30, 30, selectArrowsWrap);
+var selectArrowsBtnNextWrap = new UiButton(170, 0, 30, 30, selectArrowsWrap);
+
+with (selectArrowsBtnPrevWrap.state) {
+	text = "<";
+	if (!selectArrowsWrap.state.wrap_selection) {
+		enabled = false;	
+	}
+	
+	on_click = method({ select: selectArrowsWrap, prevBtn: selectArrowsBtnPrevWrap, nextBtn: selectArrowsBtnNextWrap }, function() {
+		var select = self.select;
+		select.previous();
+		
+		if (!select.state.wrap_selection && !self.nextBtn.state.enabled) {
+			with (self.nextBtn) {
+				set({ enabled: true });
+			}
+		}
+		
+		if (!select.state.index && !select.state.wrap_selection) {
+			with (self.prevBtn) {
+				set({ enabled: false });
+			}
+		}
+	});
+}
+
+with (selectArrowsBtnNextWrap.state) {
+	text = ">";
+	on_click = method({ select: selectArrowsWrap, prevBtn: selectArrowsBtnPrevWrap, nextBtn: selectArrowsBtnNextWrap }, function() {
+		var select = self.select;
+		select.next();
+		
+		if (!select.state.wrap_selection && !self.prevBtn.state.enabled) {
+			with (self.prevBtn) {
+				set({ enabled: true });
+			}
+		}
+		
+		if (select.state.index == array_length(select.state.items)-1 && !select.state.wrap_selection) {
+			with (self.nextBtn) {
+				set({ enabled: false });
+			}
+		}
+	});
 }

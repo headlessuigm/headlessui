@@ -3,7 +3,9 @@
   "resourceVersion": "1.6",
   "name": "ui",
   "resources": [
+    {"id":{"name":"uih_select_arrows","path":"scripts/uih_select_arrows/uih_select_arrows.yy",},"order":8,},
     {"id":{"name":"uih_scrollbar","path":"scripts/uih_scrollbar/uih_scrollbar.yy",},"order":5,},
+    {"id":{"name":"ui_select_arrows","path":"scripts/ui_select_arrows/ui_select_arrows.yy",},"order":7,},
     {"id":{"name":"uih_checkbox","path":"scripts/uih_checkbox/uih_checkbox.yy",},"order":3,},
     {"id":{"name":"ui_draw","path":"scripts/ui_draw/ui_draw.yy",},"order":3,},
     {"id":{"name":"uih_notification","path":"scripts/uih_notification/uih_notification.yy",},"order":3,},
