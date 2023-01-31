@@ -81,6 +81,27 @@ Manually adds a component to the children list
 |---------------|---------------------------|--------|-------------|
 | component     | Child component to add    | Struct |             |
 
+#### watch(propName, callback)
+
+Execute the specified callback when a state value has been changed. 
+Returns the watcher ID that can be used with the `unwatch` method.
+
+Note: watchers are currently only executed when using the set() method.
+
+| Param         | Description               | Type     | Default     |
+|---------------|---------------------------|----------|-------------|
+| propName      | Property to watch         | String   |             |
+| callback      | Callback to execute       | Function |             |
+
+#### unwatch([prop_name], [watcherid])
+
+Remove a watcher for the specified prop name. You can also pass undefined to remove all the watchers related to that prop. Also the prop name can be undefined if you want to remove the watchers of any prop of this component.
+
+| Param         | Description               | Type   | Default     |
+|---------------|---------------------------|--------|-------------|
+| propName      | Specified property        | String |             |
+| watcherId     | Watcher callback to unset | Real   |             |
+
 ---
 
 ### Globals
