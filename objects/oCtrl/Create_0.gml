@@ -32,9 +32,13 @@ with (primary_checkbox.state) {
 	on_click = method({ ctrl: other.id, notification_elem: notification_elem }, function(elem) {
 		notification_elem.add_item("Primary checkbox has been pressed", ui_enum_variants.primary);
 		ctrl.draw_debug = !ctrl.draw_debug;
-		elem.state.text = ctrl.draw_debug ? "Disable UI Render Debug" : "Enable UI Render Debug";
+		elem.set({ text: ctrl.draw_debug ? "Disable UI Render Debug" : "Enable UI Render Debug" });
 	});
 }
+
+primary_checkbox.watch("text", function(element, newValue) {
+	show_debug_message("PrimaryCheckbox - New text: " + newValue)
+});
 
 var secondary_checkbox = new UiCheckbox(10, 160, 180, 25); 
 with (secondary_checkbox.state) {

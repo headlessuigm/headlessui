@@ -63,6 +63,10 @@ function UihComponent(_x, _y, _width, _height, _parent = global.uih_root_compone
 		scroll_y: 0,
 		on_click: function() {}
 	};
+	
+	// Reactive watchers
+	watcherId = 0;
+	watchers = {};
 			
 	/**
 	 * Update the element state, scheduling the element re-rendering. 
@@ -73,11 +77,23 @@ function UihComponent(_x, _y, _width, _height, _parent = global.uih_root_compone
 	 */
 	set = function(partialState = {}) {
 		var names = variable_struct_get_names(partialState);
-		for (var i=0, l=array_length(names); i<l; i++) {
+		for (var i=0, ilen=array_length(names); i<ilen; i++) {
 			var name = names[i];
 			if (state[$ name] != partialState[$ name]) {
-				state[$ name] = partialState[$ name];
+				var updatedValue = partialState[$ name];
+				state[$ name] = updatedValue;
 				update();
+				
+				// Execute the watchers related to this updated prop
+				if (variable_struct_exists(watchers, name)) {
+					var watcherCallbacks = watchers[$ name];
+					var watcherCallbackNames = variable_struct_get_names(watcherCallbacks);
+					
+					for (var w=0, wlen=array_length(watcherCallbackNames); w<wlen; w++) {
+						var watcherCallback = watcherCallbacks[$ watcherCallbackNames[w]];
+						watcherCallback(self, updatedValue);
+					}
+				}
 			}
 		}
 	};
@@ -193,6 +209,49 @@ function UihComponent(_x, _y, _width, _height, _parent = global.uih_root_compone
 		// Push this component into the new parent children list
 		parent = newParent;
 		array_push(newParent.children, self);
+	}
+	
+	/* Watcher API */
+	
+	/**
+	 * Set a watcher on a state prop in order to execute a callback when the value has been changed
+	 *
+	 * @param {String} prop Prop name
+	 * @param {Function} callback Function to execute when the prop value has been changed
+	 *
+	 * @return {Integer} Watcher ID. Pass this id to the unwatch method to remove a specific callback
+	 */
+	function watch(prop, callback) {
+		if (!variable_struct_exists(watchers, prop)) {
+			watchers[$ prop] = {};
+		}
+		var watcherCallbacks = watchers[$ prop];
+		var wid = watcherId++;
+		watcherCallbacks[$ wid] = callback;
+		return wid;
+	}
+	
+	/**
+	 * Remove a watcher from this component
+	 *
+	 * @param {String|undefined} prop State prop name to watch for changes. If you don't pass this param, all watchers on this component will be removed
+	 * @param {Real|undefined} wid. Watcher to remove. If you don't pass this param, all callbacks of this prop will be removed
+	 */
+	 function unwatch(prop = undefined, wid = undefined) {
+		if (!prop) {
+			watchers = {};
+		}
+		
+		if (!variable_struct_exists(watchers, prop)) {
+			return;
+		}
+		
+		if (!wid) {
+			watchers[$ prop] = {};
+			return;
+		}
+		
+		delete watchers[$ prop][$ wid];
 	}
 		
 	// Store the new element into the parent children
