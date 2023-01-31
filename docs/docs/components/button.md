@@ -18,17 +18,18 @@ with (button.state) {
 
 ### State reference
 
-| Variable           | Description                                      | Type   | Default                       |
-|--------------------|--------------------------------------------------|--------|-------------------------------|
-| text               | Button displayed text                            | String |                               |
-| status             | Current status of the button                     | Real   | `uih_enum_button_status.idle` |
-| type               | Button type                                      | Real   | `ui_enum_variants.primary`    |
-| text_sep           | Distance in px between each character            | Real   | `-1` (default spacing)        |
-| text_max_width     | Row max width before going on a newline          | Real   | `-1` (no newlines by default) |
-| padding_horizontal | Horizontal button padding (in px)                | Real   | `40`                          |
-| padding_vertical   | Vertical button padding (in px)                  | Real   | `20`                          |
-| click_button       | Which button to check for the click              | Real   | `mb_left`                     |
-| click_type         | Which mouse event to check for the click         | Real   | `ui_enum_click_type.released` |
+| Variable           | Description                                         | Type   | Default                       |
+|--------------------|-----------------------------------------------------|--------|-------------------------------|
+| text               | Button displayed text                               | String |                               |
+| status             | Current status of the button                        | Real   | `uih_enum_button_status.idle` |
+| type               | Button type                                         | Real   | `ui_enum_variants.primary`    |
+| text_sep           | Distance in px between each line                    | Real   | `-1` (default spacing)        |
+| text_max_width     | Row max width before going on a newline             | Real   | `-1` (no newlines by default) |
+| padding_horizontal | Horizontal button padding (in px)                   | Real   | `40`                          |
+| padding_vertical   | Vertical button padding (in px)                     | Real   | `20`                          |
+| enabled            | When disabled, the button is hidden and unclickable | Bool   | `true`                        |
+| click_button       | Which button to check for the click                 | Real   | `mb_left`                     |
+| click_type         | Which mouse event to check for the click            | Real   | `ui_enum_click_type.released` |
 
 ### Methods
 
