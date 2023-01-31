@@ -139,6 +139,12 @@ with (slider2.state) {
 	step = 25;
 }
 
+// Label
+var label = new UiLabel(300, 330, 130, 30);
+with (label.state) {
+	text = "My Custom Label";
+}
+
 /* Select with arrows (no wrap) */
 var selectArrows = new UiSelectArrows(300, 360, 200, 30);
 selectArrows.set_items([{ key: "item0", label: "Item 0" }, { key: "item1", label: "Item 1" }, { key: "item2", label: "Item 2"} ]);
