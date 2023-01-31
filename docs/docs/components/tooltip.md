@@ -24,8 +24,7 @@ tooltip.move();
 |--------------------|-------------------------------------------------------|--------|---------------------------------|
 | linked_component   | Tooltip will be shown when hovering on the linked component | String |                           |
 | text               | Tooltip displayed text                                | String |                                 |
-| status             | Current status of the button                          | Real   | `uih_enum_button_status.idle`   |
-| type               | Button type                                           | Real   | `ui_enum_variants.secondary`    |
+| type               | Tooltip type                                          | Real   | `ui_enum_variants.secondary`    |
 | text_sep           | Distance in px between each line                      | Real   | `-1` (default spacing)          |
 | text_max_width     | Row max width before going on a newline               | Real   | `-1` (no newlines by default)   |
 | padding_horizontal | Horizontal tooltip padding (in px)                    | Real   | `10`                            |
