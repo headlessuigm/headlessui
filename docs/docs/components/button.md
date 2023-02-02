@@ -21,7 +21,7 @@ with (button.state) {
 | Variable           | Description                                         | Type   | Default                       |
 |--------------------|-----------------------------------------------------|--------|-------------------------------|
 | text               | Button displayed text                               | String |                               |
-| status             | Current status of the button                        | Real   | `uih_enum_button_status.idle` |
+| status             | Current status of the button                        | Real   | `ui_enum_button_status.idle` |
 | type               | Button type                                         | Real   | `ui_enum_variants.primary`    |
 | text_sep           | Distance in px between each line                    | Real   | `-1` (default spacing)        |
 | text_max_width     | Row max width before going on a newline             | Real   | `-1` (no newlines by default) |
@@ -56,4 +56,4 @@ Called when clicking on the button. The passed argument is the component itself
 
 | Enum                   | Values                   |
 |------------------------|--------------------------|
-| uih_enum_button_status | `idle`/`clicked`/`hover` |
+| ui_enum_button_status | `idle`/`clicked`/`hover` |

@@ -16,7 +16,7 @@ function __ui_step(component) {
 /**
  * Run the UI step event
  */
-function ui_step(component = global.uih_root_component) {
+function ui_step(component = global.ui_root_component) {
 	global.ui_mouse_x = device_mouse_x_to_gui(0);
 	global.ui_mouse_y = device_mouse_y_to_gui(0);
 	__ui_step(component);

@@ -21,8 +21,8 @@ with (scrollbar.state) {
 | Variable   | Description                              | Type | Default                               |
 |------------|------------------------------------------|------|---------------------------------------|
 | type       | Scrollbar variant                        | Real | ui_enum_variants.primary              |
-| status     | Current status of the scrollbar          | Real | uih_enum_scrollbar_status.idle        |
-| direction  | Scrollbar direction                      | Real | uih_enum_scrollbar_direction.vertical |
+| status     | Current status of the scrollbar          | Real | ui_enum_scrollbar_status.idle        |
+| direction  | Scrollbar direction                      | Real | ui_enum_scrollbar_direction.vertical |
 | value      | Current normalized (0-1) scroll position | Real | 0                                     |
 | thumb_size | Scroll speed                             | Real | 0                                     |
 
@@ -38,7 +38,7 @@ Called when the component is being scrolled. `scroll_value` indicates the curren
 
 | Enum                         | Values                    |
 |------------------------------|---------------------------|
-| uih_enum_scrollbar_status    | `idle`/`hover`/`dragging` |
-| uih_enum_scrollbar_direction | `vertical`/`horizontal`   |
+| ui_enum_scrollbar_status    | `idle`/`hover`/`dragging` |
+| ui_enum_scrollbar_direction | `vertical`/`horizontal`   |
 
 

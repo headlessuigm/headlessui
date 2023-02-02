@@ -2,10 +2,10 @@
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
   "name": "ui_variables",
-  "isDnD": false,
   "isCompatibility": false,
+  "isDnD": false,
   "parent": {
-    "name": "Core",
-    "path": "folders/HeadlessUI/UI Styled - Rendering components/Core.yy",
+    "name": "Lib",
+    "path": "folders/HeadlessUI/Lib.yy",
   },
 }

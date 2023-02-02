@@ -22,7 +22,7 @@ with (checkbox.state) {
 | Variable      | Description                               | Type   | Default                         |
 |---------------|-------------------------------------------|--------|---------------------------------|
 | text          | Checkbox displayed text                   | String |                                 |
-| status        | Current status of the checkbox            | Real   | `uih_enum_checkbox_status.idle` |
+| status        | Current status of the checkbox            | Real   | `ui_enum_checkbox_status.idle` |
 | type          | Checkbox type                             | Real   | `ui_enum_variants.primary`      |
 | checked       | If the input is currently checked         | Bool   | `false`                         |
 | click_button  | Which button to check for the click       | Real   | `mb_left`                       |
@@ -38,4 +38,4 @@ Called when clicking on the checkbox. The passed argument is the component itsel
 
 | Enum                     | Values                   |
 |--------------------------|--------------------------|
-| uih_enum_checkbox_status | `idle`/`clicked`/`hover` |
+| ui_enum_checkbox_status | `idle`/`clicked`/`hover` |

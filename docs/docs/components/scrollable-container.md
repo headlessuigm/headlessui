@@ -40,4 +40,4 @@ Called when the container is being scrolled. `scroll_direction` param indicates 
 
 | Enum                      | Values                  |
 |---------------------------|-------------------------|
-| uih_enum_scroll_direction | `vertical`/`horizontal` |
+| ui_enum_scroll_direction | `vertical`/`horizontal` |

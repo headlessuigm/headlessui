@@ -12,7 +12,7 @@ Components are splitted in two lightweight functions: logic and render. For exam
 Example of a logic function:
 
 ```js
-function UihButton() : UihComponent() constructor {
+function Button() : UiBaseComponent() constructor {
     step = function() {
         // Check something every step
     }
@@ -22,14 +22,14 @@ function UihButton() : UihComponent() constructor {
 and its related render function:
 
 ```js
-function UiButton() : UihButton() constructor {
+function UiButton() : Button() constructor {
     draw = function() {
         // Re-draw the button when its state changes
     }
 }
 ```
 
-The logic function extends the core UihComponent and the render extends the logic one, so to instantiate this button, you only need to get an instance of UiButton().
+The logic function extends the core UiBaseComponent and the render extends the logic one, so to instantiate this button, you only need to get an instance of UiButton().
 
 
 ```js

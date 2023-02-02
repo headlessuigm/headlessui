@@ -9,7 +9,7 @@ A draggable is a renderless component that can be dragged around, moving its chi
 ### Example
 
 ```js
-var draggable = new UihDraggable(0, 0, 100, 100);
+var draggable = new Draggable(0, 0, 100, 100);
 
 var dragged_button = new UiButton(0, 0, 100, 100, draggable);
 with (dragged_button.state) {
@@ -21,8 +21,8 @@ with (dragged_button.state) {
 
 | Variable | Description                          | Type   | Default                        |
 |----------|--------------------------------------|--------|--------------------------------|
-| status   | Current status of the draggable      | Real   | uih_enum_draggable_status.idle |
-| axis     | Axis the draggable can move along    | Real   | uih_enum_draggable_axis.both   |
+| status   | Current status of the draggable      | Real   | ui_enum_draggable_status.idle |
+| axis     | Axis the draggable can move along    | Real   | ui_enum_draggable_axis.both   |
 | bounds   | By default, the component will be draggable within the parent, otherwise you can specify a Struct containing the "left", "right", "up" and "down" variables, that indicates the drag area limits | Struct |        |    |    |
 | click_button       | Which button to check for the click              | Real   | `mb_left`                     |
 
@@ -30,5 +30,5 @@ with (dragged_button.state) {
 
 | Enum                         | Values                    |
 |------------------------------|---------------------------|
-| uih_enum_draggable_status    | `idle`/`hover`/`dragging` |
-| uih_enum_draggable_axis      | `both`/`x`/`y`            |
+| ui_enum_draggable_status    | `idle`/`hover`/`dragging` |
+| ui_enum_draggable_axis      | `both`/`x`/`y`            |
