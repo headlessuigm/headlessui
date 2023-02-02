@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Quick start
 
-To add Headless UI to your game, let's download the latest stable package from the [Github releases page](https://github.com/manuel-di-iorio/gmheadlessui/releases).
+To add Headless UI to your game, let's download the latest stable package from the [Github releases page](https://github.com/headlessuigm/headlessui/releases).
 
 Open your project in GameMaker Studio, then extract the downloaded zip and drag the file `headlessui.yymps` onto your GameMaker Studio window.
 

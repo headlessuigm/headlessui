@@ -249,3 +249,17 @@ with (selectArrowsBtnNextWrap.state) {
 		}
 	});
 }
+
+/** Tooltip */
+var tooltipBtn = new UiButton(550, 70, 120, 30);
+with (tooltipBtn.state) {
+	text = "Hover over me";
+}
+
+var tooltip = new UiTooltip();
+with (tooltip.state) {
+	linked_component = tooltipBtn;
+	text_max_width = 250;
+}
+tooltip.set_text("Tooltip shown on button hover, with the text going on a newline");
+tooltip.move();
