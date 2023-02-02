@@ -12,7 +12,7 @@ Components are splitted in two lightweight functions: logic and render. For exam
 Example of a logic function:
 
 ```js
-function Button() : UiBaseComponent() constructor {
+function UiButtonStep() : UiBaseComponent() constructor {
     step = function() {
         // Check something every step
     }
@@ -22,7 +22,7 @@ function Button() : UiBaseComponent() constructor {
 and its related render function:
 
 ```js
-function UiButton() : Button() constructor {
+function UiButtonStep() : UiButton() constructor {
     draw = function() {
         // Re-draw the button when its state changes
     }
