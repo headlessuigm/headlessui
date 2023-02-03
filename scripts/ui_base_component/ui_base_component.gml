@@ -253,6 +253,26 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 		
 		delete watchers[$ prop][$ wid];
 	}
+	
+	/**
+	 * Bring the component above all other components in the parent's children list.
+	 *
+	 * @param {Boolean} recursive When to recursively bring on top also the parent above theirs parents
+	 */
+	function bring_on_top(recursive = true, elem = self) {
+		var parentChildren = elem.parent.children;
+			
+		for (var i=0, len=array_length(parentChildren); i<len; i++) {
+			if (parentChildren[i] != elem) continue;
+			array_delete(parentChildren, i, 1);
+			array_push(parentChildren, self);
+				
+			if (recursive && elem.parent != global.ui_root_component) {
+				bring_on_top(recursive, elem.parent);
+			}
+			break;
+		}
+	}
 		
 	// Store the new element into the parent children
 	array_push(parent.children, self);

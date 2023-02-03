@@ -263,3 +263,5 @@ with (tooltip.state) {
 }
 tooltip.set_text("Tooltip shown on button hover, with the text going on a newline");
 tooltip.move();
+
+notification_elem.bring_on_top();

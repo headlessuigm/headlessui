@@ -102,6 +102,14 @@ Remove a watcher for the specified prop name. You can also pass undefined to rem
 | propName      | Specified property        | String |             |
 | watcherId     | Watcher callback to unset | Real   |             |
 
+#### bring_on_top([recursive])
+
+Bring the component above all other components in the parent's children list.
+
+| Param         | Description               | Type   | Default     |
+|---------------|---------------------------|--------|-------------|
+| recursive     | If to recursively bring on top also the parent (and its ancestors) above their parent | Bool | `true` |
+
 ---
 
 ### Globals
