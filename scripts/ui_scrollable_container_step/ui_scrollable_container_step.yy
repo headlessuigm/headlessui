@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Scrollbar Container",
-    "path": "folders/HeadlessUI/Components/Scrollbar Container.yy",
+    "name": "Scrollable Container",
+    "path": "folders/HeadlessUI/Components/Scrollable Container.yy",
   },
 }

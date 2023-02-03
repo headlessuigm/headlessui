@@ -12,7 +12,7 @@
     {"name":"Slider","order":4,"path":"folders/HeadlessUI/Components/Slider.yy",},
     {"name":"Notification","order":3,"path":"folders/HeadlessUI/Components/Notification.yy",},
     {"name":"Scrollbar","order":5,"path":"folders/HeadlessUI/Components/Scrollbar.yy",},
-    {"name":"Scrollbar Container","order":6,"path":"folders/HeadlessUI/Components/Scrollbar Container.yy",},
+    {"name":"Scrollable Container","order":6,"path":"folders/HeadlessUI/Components/Scrollable Container.yy",},
     {"name":"Showcase","order":1,"path":"folders/Showcase.yy",},
     {"name":"Stories","order":2,"path":"folders/Showcase/Stories.yy",},
   ],

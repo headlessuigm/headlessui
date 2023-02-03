@@ -5,9 +5,9 @@ showcase = new Showcase();
 
 // Create the list scrollable area
 // @todo Enable again the scrollbar when there will be at least 2 other components
-var scrollbar_width = 20;
-var list_height = gui_height - 20;
+var scrollbar_width = 15;
 var list_actual_width = showcase.list_width - scrollbar_width;
+var list_height = gui_height - 20;
 
 var scrollable_container = new UiScrollableContainer(0, 10, list_actual_width, list_height);
 //var scrollbar_vertical = new UiScrollbar(list_actual_width, 10, scrollbar_width, list_height);

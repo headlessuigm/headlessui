@@ -25,7 +25,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Slider","folderPath":"folders/HeadlessUI/Components/Slider.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Notification","folderPath":"folders/HeadlessUI/Components/Notification.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Scrollbar","folderPath":"folders/HeadlessUI/Components/Scrollbar.yy","order":0,},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Scrollbar Container","folderPath":"folders/HeadlessUI/Components/Scrollbar Container.yy","order":0,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Scrollable Container","folderPath":"folders/HeadlessUI/Components/Scrollable Container.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Showcase","folderPath":"folders/Showcase.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Stories","folderPath":"folders/Showcase/Stories.yy","order":0,},
   ],
