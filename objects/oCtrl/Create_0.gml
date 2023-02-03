@@ -1,267 +1,66 @@
 draw_debug = false;
+gui_width = display_get_gui_width();
+gui_height = display_get_gui_height();
+showcase = new Showcase();
 
-/** Notifications */
-var notification_elem = new UiNotification(display_get_gui_width() - 340, 10, 330, 300);
+// Create the list scrollable area
+// @todo Enable again the scrollbar when there will be at least 2 other components
+var scrollbar_width = 15;
+var list_actual_width = showcase.list_width - scrollbar_width;
+var list_height = gui_height - 20;
 
-/** Buttons */
-var primary_button = new UiButton(10, 10, 190, 40);
-with (primary_button.state) {
-	text = "Primary Button";
-	on_click = method({ notification_elem: notification_elem }, function(elem) {
-		notification_elem.add_item("Primary button has been pressed", ui_enum_variants.primary);
-		draw_set_font(ui_font);
-		elem.set_text("Dynamically changed text");
-	});
-}
+var scrollable_container = new UiScrollableContainer(0, 10, list_actual_width, list_height);
+//var scrollbar_vertical = new UiScrollbar(list_actual_width, 10, scrollbar_width, list_height);
 
-var secondary_button = new UiButton(10, 65, 190, 40);
-with (secondary_button.state) {
-	type = ui_enum_variants.secondary;
-	text = "Click to delete this button";
-	on_click = method({ notification_elem: notification_elem }, function(elem) {
-		notification_elem.add_item("Secondary button has been pressed", ui_enum_variants.secondary);
-		elem.remove();
-	});
-}
+//with (scrollable_container.state) {
+//	scrollable_height = 800;
+//	on_change = method({ scrollbar_vertical: scrollbar_vertical }, function(el, scroll_direction, scroll_value) {
+//		scrollbar_vertical.set({ value: scroll_value });
+//	})
+//}
 
-/** Checkboxes */
-var primary_checkbox = new UiCheckbox(10, 120, 220, 25);
-with (primary_checkbox.state) {
-	text = "Enable UI Render Debug";
-	checked = false;
-	on_click = method({ ctrl: other.id, notification_elem: notification_elem }, function(elem) {
-		notification_elem.add_item("Primary checkbox has been pressed", ui_enum_variants.primary);
-		ctrl.draw_debug = !ctrl.draw_debug;
-		elem.set({ text: ctrl.draw_debug ? "Disable UI Render Debug" : "Enable UI Render Debug" });
-	});
-}
+//with (scrollbar_vertical.state) {
+//	thumb_size = scrollable_container.state.height / scrollable_container.state.scrollable_height * list_height;
+//	on_change = method({ scrollable_container: scrollable_container }, function(component, value) {
+//		scrollable_container.set({ scroll_y: (scrollable_container.state.scrollable_height - scrollable_container.state.height) * value });
+//	});
+//}
 
-primary_checkbox.watch("text", function(element, newValue) {
-	show_debug_message("PrimaryCheckbox - New text: " + newValue)
-});
-
-var secondary_checkbox = new UiCheckbox(10, 160, 180, 25); 
-with (secondary_checkbox.state) {
-	type = ui_enum_variants.secondary;
-	text =  "Checkbox Secondary";
-	checked = true;
-	on_click = method({ notification_elem: notification_elem }, function(elem) {
-		notification_elem.add_item("Secondary checkbox has been pressed", ui_enum_variants.secondary);
-	});
-}
-
-/** Scrollbars */
-var scrollable_container = new UiScrollableContainer(10, 200, 200, 200);
-with (scrollable_container.state) {
-	scrollable_width = 350;
-	scrollable_height = 800;
-}
-
-for (var i = 0; i < 15; i++) {
-	var button = new UiButton(5, i * 50, 190, 40, scrollable_container);
+// Create the selector buttons
+var components_names = [
+	"Label",
+	"Button",
+	"Checkbox",
+	"Notification",
+	"Slider",
+	"Scrollbar",
+	"Draggable",
+	"Select with arrows",
+	"Tooltip"
+];
+var components = [
+	scr_story_label,
+	scr_story_button,
+	scr_story_checkbox,
+	scr_story_notification,
+	scr_story_slider,
+	scr_story_scrollbar,
+	scr_story_draggable,
+	scr_story_select_arrows,
+	scr_story_tooltip
+];
+var btn_width = list_actual_width - 20;
+var components_count = array_length(components);
+for (var i=0; i<components_count; i++) {
+	var name = components_names[i];
+	
+	var button = new UiButton(10, 10 + /* @todo remove this 10px when the scrollbar will be renabled */ i * 40, btn_width, 30, /*scrollable_container*/);
 	with (button.state) {
-		text = "Button " + string(i);
+		text = components_names[i];
+		on_click = method({ component: components[i] }, function() {
+			oCtrl.showcase.select(component, oCtrl.showcase);
+		});
 	}
 }
 
-var scrollbar_vertical = new UiScrollbar(210, 200, 20, 200);
-with (scrollbar_vertical.state) {
-	type = ui_enum_variants.primary;
-	direction = ui_enum_scrollbar_direction.vertical;
-	thumb_size = scrollable_container.state.height / scrollable_container.state.scrollable_height * 200;
-	on_change = method({ scrollable_container: scrollable_container }, function(component, value) {
-		scrollable_container.set({ scroll_y: (scrollable_container.state.scrollable_height - scrollable_container.state.height) * value });
-	});
-}
-
-var scrollbar_horizontal = new UiScrollbar(10, 400, 200, 20);
-with (scrollbar_horizontal.state) {
-	type = ui_enum_variants.primary;
-	direction = ui_enum_scrollbar_direction.horizontal;
-	thumb_size = scrollable_container.state.width / scrollable_container.state.scrollable_width * 200;
-	on_change = method({ scrollable_container: scrollable_container }, function(component, value) {
-		scrollable_container.set({ scroll_x: (scrollable_container.state.scrollable_width - scrollable_container.state.width) * value });
-	});
-}
-
-scrollable_container.set({
-	on_change: method({ scrollbar_vertical: scrollbar_vertical, scrollbar_horizontal: scrollbar_horizontal }, function(el, scroll_direction, scroll_value) {
-		if (scroll_direction == ui_enum_scroll_direction.vertical) {
-			scrollbar_vertical.set({ value: scroll_value });
-		} else {
-			scrollbar_horizontal.set({ value: scroll_value });
-		}
-	}),
-});
-
-var layer_with_draggable = new UiLayerStep(300, 10, 200, 200);
-
-var draggable_both = new UiDraggableStep(10, 25, 75, 25);
-draggable_both.set_parent(layer_with_draggable);
-
-var draggable_button_both = new UiButton(0, 0, 75, 25, draggable_both);
-with (draggable_button_both.state) {
-	text = "Drag me!";
-}
-
-var draggable_x = new UiDraggableStep(10, 100, 75, 25, layer_with_draggable);
-with (draggable_x.state) {
-	axis = ui_enum_draggable_axis.x
-}
-
-var draggable_button_x = new UiButton(0, 0, 75, 25, draggable_x);
-with (draggable_button_x.state) {
-	axis = ui_enum_draggable_axis.x;
-	text = "X Axis";
-}
-
-var draggable_y = new UiDraggableStep(10, 175, 75, 25, layer_with_draggable);
-with (draggable_y.state) {
-	axis = ui_enum_draggable_axis.y;
-}
-
-var draggable_button_y = new UiButton(0, 0, 75, 25, draggable_y);
-with (draggable_button_y.state) {
-	text = "Y Axis";
-}
-
-var slider0 = new UiSlider(300, 230, 200, 30);
-slider0.set_thumb_radius(10);
-
-var slider1 = new UiSlider(300, 260, 200, 30);
-with (slider1.state) {
-	step = 5;
-}
-
-var slider2 = new UiSlider(300, 290, 200, 30);
-slider2.set_thumb_radius(5);
-with (slider2.state) {
-	step = 25;
-}
-
-// Label
-var label = new UiLabel(300, 330, 130, 30);
-with (label.state) {
-	text = "My Custom Label";
-}
-
-/* Select with arrows (no wrap) */
-var selectArrows = new UiSelectArrows(300, 360, 200, 30);
-selectArrows.set_items([{ key: "item0", label: "Item 0" }, { key: "item1", label: "Item 1" }, { key: "item2", label: "Item 2"} ]);
-
-var selectArrowsBtnPrev = new UiButton(0, 0, 30, 30, selectArrows);
-var selectArrowsBtnNext = new UiButton(170, 0, 30, 30, selectArrows);
-
-with (selectArrowsBtnPrev.state) {
-	text = "<";
-	if (!selectArrows.state.wrap_selection) {
-		enabled = false;	
-	}
-	
-	on_click = method({ select: selectArrows, prevBtn: selectArrowsBtnPrev, nextBtn: selectArrowsBtnNext }, function() {
-		var select = self.select;
-		select.previous();
-		
-		if (!select.state.wrap_selection && !self.nextBtn.state.enabled) {
-			with (self.nextBtn) {
-				set({ enabled: true });
-			}
-		}
-		
-		if (!select.state.index && !select.state.wrap_selection) {
-			with (self.prevBtn) {
-				set({ enabled: false });
-			}
-		}
-	});
-}
-
-with (selectArrowsBtnNext.state) {
-	text = ">";
-	on_click = method({ select: selectArrows, prevBtn: selectArrowsBtnPrev, nextBtn: selectArrowsBtnNext }, function() {
-		var select = self.select;
-		select.next();
-		
-		if (!select.state.wrap_selection && !self.prevBtn.state.enabled) {
-			with (self.prevBtn) {
-				set({ enabled: true });
-			}
-		}
-		
-		if (select.state.index == array_length(select.state.items)-1 && !select.state.wrap_selection) {
-			with (self.nextBtn) {
-				set({ enabled: false });
-			}
-		}
-	});
-}
-
-/* Select with arrows (wrap) */
-var selectArrowsWrap = new UiSelectArrows(300, 400, 200, 30);
-with (selectArrowsWrap.state) {
-	wrap_selection = true;
-}
-selectArrowsWrap.set_items([{ key: "item0", label: "Item 0" }, { key: "item1", label: "Item 1" }, { key: "item2", label: "Item 2"} ]);
-
-var selectArrowsBtnPrevWrap = new UiButton(0, 0, 30, 30, selectArrowsWrap);
-var selectArrowsBtnNextWrap = new UiButton(170, 0, 30, 30, selectArrowsWrap);
-
-with (selectArrowsBtnPrevWrap.state) {
-	text = "<";
-	if (!selectArrowsWrap.state.wrap_selection) {
-		enabled = false;	
-	}
-	
-	on_click = method({ select: selectArrowsWrap, prevBtn: selectArrowsBtnPrevWrap, nextBtn: selectArrowsBtnNextWrap }, function() {
-		var select = self.select;
-		select.previous();
-		
-		if (!select.state.wrap_selection && !self.nextBtn.state.enabled) {
-			with (self.nextBtn) {
-				set({ enabled: true });
-			}
-		}
-		
-		if (!select.state.index && !select.state.wrap_selection) {
-			with (self.prevBtn) {
-				set({ enabled: false });
-			}
-		}
-	});
-}
-
-with (selectArrowsBtnNextWrap.state) {
-	text = ">";
-	on_click = method({ select: selectArrowsWrap, prevBtn: selectArrowsBtnPrevWrap, nextBtn: selectArrowsBtnNextWrap }, function() {
-		var select = self.select;
-		select.next();
-		
-		if (!select.state.wrap_selection && !self.prevBtn.state.enabled) {
-			with (self.prevBtn) {
-				set({ enabled: true });
-			}
-		}
-		
-		if (select.state.index == array_length(select.state.items)-1 && !select.state.wrap_selection) {
-			with (self.nextBtn) {
-				set({ enabled: false });
-			}
-		}
-	});
-}
-
-/** Tooltip */
-var tooltipBtn = new UiButton(550, 70, 120, 30);
-with (tooltipBtn.state) {
-	text = "Hover over me";
-}
-
-var tooltip = new UiTooltip();
-with (tooltip.state) {
-	linked_component = tooltipBtn;
-	text_max_width = 250;
-}
-tooltip.set_text("Tooltip shown on button hover, with the text going on a newline");
-tooltip.move();
-
-notification_elem.bring_on_top();
+scrollable_container.set({ scrollable_height: components_count * 40 });
