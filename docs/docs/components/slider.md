@@ -19,8 +19,8 @@ with (slider.state) {
 | Variable     | Description                                                                             | Type | Default                              |
 |--------------|-----------------------------------------------------------------------------------------|------|--------------------------------------|
 | type         | Slider variant                                                                          | Real | ui_enum_variants.primary             |
-| status       | Current status of the slider                                                            | Real | uih_enum_slider_status.idle          |
-| direction    | Slider direction                                                                        | Real | uih_enum_slider_direction.horizontal |
+| status       | Current status of the slider                                                            | Real | ui_enum_slider_status.idle          |
+| direction    | Slider direction                                                                        | Real | ui_enum_slider_direction.horizontal |
 | min_value    | Minimum selectable value                                                                | Real | 0                                    |
 | max_value    | Maximum selectable value                                                                | Real | 100                                  |
 | step         | Granularity of the slider. The step increment should be a divisor of the track's length | Real | 1                                    |
@@ -49,5 +49,5 @@ Called when the slider position changes. `value` indicates the current normalize
 
 | Enum                         | Values                    |
 |------------------------------|---------------------------|
-| uih_enum_slider_status       | `idle`/`hover`/`dragging` |
-| uih_enum_slider_direction    | `vertical`/`horizontal`   |
+| ui_enum_slider_status       | `idle`/`hover`/`dragging` |
+| ui_enum_slider_direction    | `vertical`/`horizontal`   |

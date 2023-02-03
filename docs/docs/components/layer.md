@@ -13,7 +13,7 @@ By default every component is a child of the root layer component, but you can a
 ### Example
 
 ```js
-var myLayer = new UihLayer(0, 0, 500, 500);
+var myLayer = new UiLayerStep(0, 0, 500, 500);
 
 // Then use this new layer as parent of another component:
 new UiButton(0, 0, 100, 40, myLayer);

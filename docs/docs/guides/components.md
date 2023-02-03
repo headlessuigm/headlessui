@@ -13,7 +13,7 @@ A component may need to store some data to control its behaviour or draw, e.g. i
 The state can be easily manipulated in the function constructor by using the `with` statement.
 
 ```js
-function UihButton() : UihComponent() constructor {
+function UiButton() : UiBaseComponent() constructor {
     with (state) {
       status = "clicked";
     }
@@ -23,7 +23,7 @@ function UihButton() : UihComponent() constructor {
 but if you need to change the state in the step function, then you can use the `set()` function, which is available to all components and it will correctly trigger the re-rendering.
 
 ```js
-function UihButton() : UihComponent() constructor {
+function UiButton() : UiBaseComponent() constructor {
     step = function() {
         if (mouse_check_button_pressed(mb_left)) {	
             set({ status: "clicked" });
@@ -46,7 +46,7 @@ notification_elem.add_item("My notification");
 Methods are defined directly inside the functions constructor:
 
 ```js
-function UihNotification() : UihComponent() constructor {
+function UiNotification() : UiBaseComponent() constructor {
     add_item = function(text) {
         // Code here
     }

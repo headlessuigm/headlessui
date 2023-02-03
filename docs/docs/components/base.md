@@ -3,7 +3,7 @@ sidebar_position: 1
 sidebar_label: 'Base'
 ---
 
-# Base component (UihComponent)
+# Base component (UiBaseComponent)
 
 This is the base internal component that all other components extend. It defines variables and methods that are widely used. 
 
@@ -13,7 +13,7 @@ It is not meant for direct usage but this page acts as reference.
 
 | Variable          | Description                                                      | Type           | Default                       |
 |-------------------|------------------------------------------------------------------|----------------| ------------------------------|
-| parent            | Parent component                                                 | Real           | `global.uih_root_component`   |
+| parent            | Parent component                                                 | Real           | `global.ui_root_component`   |
 | step              | Function called each tick to handle the component logic          | Function       |                               |
 | draw              | Function called each tick to render the component                | Function       |                               |
 | skip_layer_checks | When this component should skip the parent layer hovering checks | Bool           | `false`                       |

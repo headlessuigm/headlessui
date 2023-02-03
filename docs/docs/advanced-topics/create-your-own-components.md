@@ -9,7 +9,7 @@ Since components are splitted into a logic function and a render function, you j
 This is the basic logic code. This function extends the core Headless component
 
 ```js
-function YourLogicComponent(_x, _y, _width, _height, _parent = undefined) : UihComponent(_x, _y, _width, _height, _parent) constructor {
+function YourLogicComponent(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
     with (state) {
         // Your initial component's state here
     }

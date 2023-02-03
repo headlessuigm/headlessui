@@ -6,7 +6,7 @@
  * @param {Real} offset_x X offset to apply when drawing the component
  * @param {Real} offset_y Y offset to apply when drawing the component
  */
-function ui_draw(updated_components = [], component = global.uih_root_component, offset_x = 0, offset_y = 0) {
+function ui_draw(updated_components = [], component = global.ui_root_component, offset_x = 0, offset_y = 0) {
 	if (!variable_struct_exists(component, "disable_surface") || !component.disable_surface) {
 		var state = component.state;
 
@@ -27,9 +27,9 @@ function ui_draw(updated_components = [], component = global.uih_root_component,
 			draw_clear_alpha(c_black, 0);
 
 			// Draw the component itself
-			var draw_state = __uih_draw_get_state();
+			var draw_state = __ui_draw_get_state();
 			component.draw();
-			__uih_draw_reset_state(draw_state);
+			__ui_draw_reset_state(draw_state);
 
 			// Draw each children on the component surface
 			for (var i = 0, ilen = array_length(component.children); i < ilen; i++) {
