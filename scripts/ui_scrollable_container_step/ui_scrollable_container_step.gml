@@ -16,7 +16,6 @@ enum ui_enum_scroll_direction {
  */
 function UiScrollableContainerStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
 	skip_layer_checks = false;
-	disable_surface = false;
 	
 	with (state) {
 		scrollable_width = width;

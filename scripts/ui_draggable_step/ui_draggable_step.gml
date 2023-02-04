@@ -23,7 +23,6 @@ enum ui_enum_draggable_axis {
  */
 function UiDraggableStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
     skip_layer_checks = false;
-	disable_surface = true;
 
     // Default state
    with (state) {

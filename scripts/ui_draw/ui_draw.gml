@@ -7,7 +7,7 @@
  * @param {Real} offset_y Y offset to apply when drawing the component
  */
 function ui_draw(updated_components = [], component = global.ui_root_component, offset_x = 0, offset_y = 0) {
-	if (!variable_struct_exists(component, "disable_surface") || !component.disable_surface) {
+	if (component.draw && (!variable_struct_exists(component, "disable_surface") || !component.disable_surface)) {
 		var state = component.state;
 
 		// If the surface has been deleted, force the re-rendering
