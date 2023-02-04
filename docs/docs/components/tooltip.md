@@ -31,7 +31,6 @@ tooltip.move();
 | padding_vertical   | Vertical tooltip padding (in px)                      | Real   | `5`                             |
 | offset_horizontal  | Horizontal tooltip offset (in px)                     | Real   | `0`                             |
 | offset_vertical    | Vertical tooltip offset (in px)                       | Real   | `10`                            |
-| show               | If to show the tooltip. This is handled automatically | Bool   | `false`                         |
 | show_delay         | Delay to show the tooltip (in milliseconds)           | Real   | `500`                           |
 | stay_within_gui    | Avoid to place the tooltip out of the GUI             | Bool   | `true`                          |
 
