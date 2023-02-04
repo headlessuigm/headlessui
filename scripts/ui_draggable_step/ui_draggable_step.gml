@@ -21,8 +21,9 @@ enum ui_enum_draggable_axis {
  *
  * @return {Struct}
  */
-function UiDraggableStep(_x, _y, _width, _height, _parent = undefined) : UiLayerStep(_x, _y, _width, _height, _parent) constructor {
+function UiDraggableStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
     skip_layer_checks = false;
+	disable_surface = true;
 
     // Default state
    with (state) {
@@ -80,7 +81,7 @@ function UiDraggableStep(_x, _y, _width, _height, _parent = undefined) : UiLayer
 		
         switch (state.status) {
             case ui_enum_draggable_status.idle:
-                if (is_hovered(children[0])) {
+                if (is_hovered()) {
                     set({ 
                         status: mouse_check_button_pressed(click_button)
                             ? ui_enum_draggable_status.drag
@@ -90,12 +91,9 @@ function UiDraggableStep(_x, _y, _width, _height, _parent = undefined) : UiLayer
                 break;
                 
             case ui_enum_draggable_status.hover:
-                if (is_hovered(children[0])) {
+                if (is_hovered()) {
                     if (mouse_check_button_pressed(click_button)) {
-                    	// Bring draggable on top
-                    	if (variable_struct_exists(parent, "focus")) {
-                    		parent.focus(self);
-                    	}
+                    	self.focus();
                     	
                     	// Update state to drag status
                         set({ 
@@ -135,7 +133,7 @@ function UiDraggableStep(_x, _y, _width, _height, _parent = undefined) : UiLayer
                 
                 if (mouse_check_button_released(click_button)) {
                     set({ 
-                        status: is_hovered(children[0])
+                        status: is_hovered()
                             ? ui_enum_draggable_status.hover
                             : ui_enum_draggable_status.idle,
                     });

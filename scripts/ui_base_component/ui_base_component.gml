@@ -278,13 +278,16 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 	function focus(recursive = true, elem = self) {
 		var elemParent = elem.parent;
 		var parentChildren = elemParent.children;
+		var ilen = array_length(parentChildren);
 			
-		for (var i=0, len=array_length(parentChildren); i<len; i++) {
+		for (var i=0; i<ilen; i++) {
 			if (parentChildren[i] == elem) {
-				array_delete(parentChildren, i, 1);
-				array_push(parentChildren, self);
+				if (i < ilen-1) {
+					array_delete(parentChildren, i, 1);
+					array_push(parentChildren, self);
+				}
 				
-				if (recursive) {
+				if (recursive && elemParent != global.ui_root_component) {
 					focus(recursive, elemParent);
 				}
 				break;
