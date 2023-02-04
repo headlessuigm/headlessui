@@ -307,6 +307,12 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 		var parentChildren = parent.children;
 		var parentState = parent.state;
 		
+		// Check that the mouse is inside the parent component
+		if (parent != global.ui_root_component && 
+			!point_in_rectangle(global.ui_mouse_x, global.ui_mouse_y, x_absolute, y_absolute, x_absolute + parentState.width, y_absolute + parentState.height)) {
+			return false;
+		}
+		
 		for (var i = array_length(parentChildren) - 1; i >= 0; i--) {
 			var child = parentChildren[i];
 			
