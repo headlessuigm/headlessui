@@ -14,23 +14,6 @@ function UiLayerStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCompo
 	disable_surface = true;
 
 	/**
-	  * Set the specified child component as focused (if not already)
-	  */
-	focus = function(child) {
-		var topIdx = array_length(children) - 1;
-	
-		// Find the element to focus and move it on the top
-		for (var i = topIdx; i >= 0; i--) {
-			var sortedChild = children[i];
-			if (sortedChild != child || sortedChild.skip_layer_checks) continue;
-			if (i == topIdx) return;
-			array_push(children, child);
-			array_delete(children, i, 1);
-			break;
-		}
-	};
-
-	/**
 	 * Check if the specified child component is the highest (on top) component, that is intersecting the mouse
 	 */
 	is_hovered = function(elem) {

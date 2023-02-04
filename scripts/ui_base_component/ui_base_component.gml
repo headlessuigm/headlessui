@@ -12,6 +12,7 @@ global.ui_root_component = new UiLayerStep(0, 0, room_width, room_height, {
 		return 0;
 	},
 	update: function() {},
+	focus: function() {},
 });
 
 global.ui_mouse_x = device_mouse_x_to_gui(0);
@@ -61,7 +62,16 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 		height: _height,
 		scroll_x: 0,
 		scroll_y: 0,
-		on_click: function() {}
+		on_click: function() {},
+		
+		/// Whether the component step/draw events are enabled
+		enabled: true,
+		
+		/// Whether the component step event is enabled
+		active: true,
+		
+		/// Whether the component draw event is enabled
+		visible: true
 	};
 	
 	// Reactive watchers
@@ -79,6 +89,7 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 		var names = variable_struct_get_names(partialState);
 		for (var i=0, ilen=array_length(names); i<ilen; i++) {
 			var name = names[i];
+			
 			if (state[$ name] != partialState[$ name]) {
 				var updatedValue = partialState[$ name];
 				state[$ name] = updatedValue;
@@ -225,6 +236,7 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 		if (!variable_struct_exists(watchers, prop)) {
 			watchers[$ prop] = {};
 		}
+		
 		var watcherCallbacks = watchers[$ prop];
 		var wid = watcherId++;
 		watcherCallbacks[$ wid] = callback;
@@ -259,18 +271,20 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 	 *
 	 * @param {Boolean} recursive When to recursively bring on top also the parent above theirs parents
 	 */
-	function bring_on_top(recursive = true, elem = self) {
-		var parentChildren = elem.parent.children;
+	function focus(recursive = true, elem = self) {
+		var elemParent = elem.parent;
+		var parentChildren = elemParent.children;
 			
 		for (var i=0, len=array_length(parentChildren); i<len; i++) {
-			if (parentChildren[i] != elem) continue;
-			array_delete(parentChildren, i, 1);
-			array_push(parentChildren, self);
+			if (parentChildren[i] == elem) {
+				array_delete(parentChildren, i, 1);
+				array_push(parentChildren, self);
 				
-			if (recursive && elem.parent != global.ui_root_component) {
-				bring_on_top(recursive, elem.parent);
+				if (recursive) {
+					focus(recursive, elemParent);
+				}
+				break;
 			}
-			break;
 		}
 	}
 		

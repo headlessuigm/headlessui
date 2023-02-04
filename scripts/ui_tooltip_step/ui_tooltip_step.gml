@@ -22,7 +22,6 @@ function UiTooltipStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCom
 		padding_vertical = 5;
 		offset_horizontal = 0;
 		offset_vertical = 10;
-		show = false;
 		show_delay = 500;
 		stay_within_gui = true;
 		
@@ -77,7 +76,7 @@ function UiTooltipStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCom
 		}
 		
 		// Start the show/hide animation when hovering over the linked component
-		if (!state.show && !state.__show_play) {
+		if (!state.visible && !state.__show_play) {
 			if (linked_component.parent.is_hovered(linked_component)) {
 				set({ 
 					__show_play: true,
@@ -88,7 +87,7 @@ function UiTooltipStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCom
 			if (!linked_component.parent.is_hovered(linked_component)) {
 				set({
 					__show_play: false,
-					show: false
+					visible: false
 				});
 			}
 		}
@@ -97,7 +96,7 @@ function UiTooltipStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCom
 		if (state.__show_play && current_time - state.__show_timer > state.show_delay) {
 			set({
 				__show_play: false,
-				show: true
+				visible: true
 			});
 		}
 	};

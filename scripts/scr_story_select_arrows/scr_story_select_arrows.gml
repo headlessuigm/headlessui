@@ -13,7 +13,7 @@ function scr_story_select_arrows(showcase) {
 	with (selectArrowsBtnPrev.state) {
 		text = "<";
 		if (!selectArrows.state.wrap_selection) {
-			enabled = false;	
+			enabled = false;
 		}
 	
 		on_click = method({ select: selectArrows, prevBtn: selectArrowsBtnPrev, nextBtn: selectArrowsBtnNext }, function() {

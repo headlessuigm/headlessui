@@ -27,13 +27,15 @@ function ui_draw(updated_components = [], component = global.ui_root_component, 
 			draw_clear_alpha(c_black, 0);
 
 			// Draw the component itself
-			var draw_state = __ui_draw_get_state();
-			component.draw();
-			__ui_draw_reset_state(draw_state);
+			if (component.state.enabled && component.state.visible) {
+				var draw_state = __ui_draw_get_state();
+				component.draw();
+				__ui_draw_reset_state(draw_state);
 
-			// Draw each children on the component surface
-			for (var i = 0, ilen = array_length(component.children); i < ilen; i++) {
-				ui_draw(updated_components, component.children[i], -component.state.scroll_x, -component.state.scroll_y);
+				// Draw each children on the component surface
+				for (var i = 0, ilen = array_length(component.children); i < ilen; i++) {
+					ui_draw(updated_components, component.children[i], -component.state.scroll_x, -component.state.scroll_y);
+				}
 			}
 
 			surface_reset_target();
