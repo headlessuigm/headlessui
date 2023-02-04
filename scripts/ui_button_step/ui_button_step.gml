@@ -59,10 +59,10 @@ function UiButtonStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComp
 		if (status != ui_enum_button_status.idle && mouse_check_button_released(click_button)) {
 			set({ status: ui_enum_button_status.idle });
 			
-			if (click_type == ui_enum_click_type.released && parent.is_hovered(self)) {
+			if (click_type == ui_enum_click_type.released && is_hovered()) {
 				click();
 			}
-		} else if (parent.is_hovered(self)) {
+		} else if (is_hovered()) {
 			if (mouse_check_button_pressed(click_button)) {
 				set({ status: ui_enum_button_status.clicked });
 				

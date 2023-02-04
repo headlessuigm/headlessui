@@ -287,6 +287,36 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 			}
 		}
 	}
+	
+	/**
+	 * Check if the component is interecting the mouse, while being above the other parent's children
+	 *
+	 * @return {Boolean}
+	 */
+	is_hovered = function() {
+		var x_absolute = parent.x_abs();
+		var y_absolute = parent.y_abs();
+		var parentChildren = parent.children;
+		var parentState = parent.state;
+		
+		for (var i = array_length(parentChildren) - 1; i >= 0; i--) {
+			var child = parentChildren[i];
+			
+			if (child.skip_layer_checks) {
+				continue;
+			}
+			
+			var child_x = x_absolute + child.state.x - parentState.scroll_x;
+			var child_y = y_absolute + child.state.y - parentState.scroll_y;
+			
+			if (!point_in_rectangle(global.ui_mouse_x, global.ui_mouse_y, child_x, child_y, child_x + child.state.width, child_y + child.state.height)) {
+				continue;
+			}
+			
+			return child == self;
+		}
+		return false;
+	};
 		
 	// Store the new element into the parent children
 	array_push(parent.children, self);
