@@ -54,6 +54,10 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 	/// Internal surface reference
 	surface = noone;
 	
+	/// Wheter the component pointer events are enabled
+	// @todo this is not used yet, will replace skip_layer_checks
+	pointer_events = true;
+	
 	// Default state
 	state = {
 		x: _x,
@@ -291,9 +295,10 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 	/**
 	 * Check if the component is interecting the mouse, while being above the other parent's children
 	 *
+	 * @param {Struct} [elem] Component to check
 	 * @return {Boolean}
 	 */
-	is_hovered = function() {
+	is_hovered = function(elem = self) {
 		var x_absolute = parent.x_abs();
 		var y_absolute = parent.y_abs();
 		var parentChildren = parent.children;
@@ -308,12 +313,14 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 			
 			var child_x = x_absolute + child.state.x - parentState.scroll_x;
 			var child_y = y_absolute + child.state.y - parentState.scroll_y;
+			var child_width = child.state.width;
+			var child_height = child.state.height;
 			
-			if (!point_in_rectangle(global.ui_mouse_x, global.ui_mouse_y, child_x, child_y, child_x + child.state.width, child_y + child.state.height)) {
+			if (!point_in_rectangle(global.ui_mouse_x, global.ui_mouse_y, child_x, child_y, child_x + child_width, child_y + child_height)) {
 				continue;
 			}
 			
-			return child == self;
+			return child == elem;
 		}
 		return false;
 	};

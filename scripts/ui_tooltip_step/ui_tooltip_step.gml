@@ -77,14 +77,14 @@ function UiTooltipStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCom
 		
 		// Start the show/hide animation when hovering over the linked component
 		if (!state.visible && !state.__show_play) {
-			if (linked_component.parent.is_hovered(linked_component)) {
+			if (linked_component.is_hovered()) {
 				set({ 
 					__show_play: true,
 					__show_timer: current_time
 				});
 			}
 		} else {
-			if (!linked_component.parent.is_hovered(linked_component)) {
+			if (!linked_component.is_hovered()) {
 				set({
 					__show_play: false,
 					visible: false

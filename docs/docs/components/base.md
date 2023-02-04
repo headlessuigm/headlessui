@@ -113,9 +113,13 @@ Bring the component above all other components in the parent's children list.
 |---------------|---------------------------|--------|-------------|
 | recursive     | If to recursively bring on top also the parent (and its ancestors) above their parent | Bool | `true` |
 
-#### is_hovered()
+#### is_hovered([component])
 
 Check if the component is interecting the mouse, while being above the other parent's children
+
+| Param         | Description               | Type   | Default     |
+|---------------|---------------------------|--------|-------------|
+| component     | Component to check        | Struct | `self`      |
 
 
 ### Globals
