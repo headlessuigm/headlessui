@@ -12,13 +12,6 @@
 function UiSlider(_x, _y, _width, _height, _parent = undefined) : UiSliderStep(_x, _y, _width, _height, _parent) constructor {
 	with (state) {
 		/**
-		 * Thumb's circle radius
-		 * @internal
-		 * @see set_thumb_radius
-		 */
-		__thumb_radius = 8;
-		
-		/**
 		 * Track's thickness
 		 * This value will be assigned to the track's width or height based on
 		 * the slider's direction
@@ -26,20 +19,6 @@ function UiSlider(_x, _y, _width, _height, _parent = undefined) : UiSliderStep(_
 		track_thickness = 5;
 	}
 
-	/**
-	 * Set the thumb's radius
-	 * @param {Real} value the radius of the slider's thumb
-	 */
-	set_thumb_radius = function(value) {
-		with (state) {
-			__thumb_radius = value;
-			track_margin = value;
-		}
-	};
-	
-	// Initialize thumb radius
-	set_thumb_radius(state.__thumb_radius);
-    
 	draw = function() {
 	    var half_width = round(state.width / 2);
 	    var half_height = round(state.height / 2);
@@ -50,18 +29,18 @@ function UiSlider(_x, _y, _width, _height, _parent = undefined) : UiSliderStep(_
 		draw_set_color(bgcolor);
 		
 		if (state.direction == ui_enum_slider_direction.vertical) {
-		 	draw_rectangle(half_width - half_thickness, state.track_margin, half_width + half_thickness, state.height - state.track_margin, false);   
+		 	draw_rectangle(half_width - half_thickness, 0, half_width + half_thickness, state.height, false);
 		} else{
-	    	draw_rectangle(state.track_margin, half_height - half_thickness, state.width - state.track_margin, half_height + half_thickness, false);
+	    	draw_rectangle(0, half_height - half_thickness, state.width, half_height + half_thickness, false);
 		}
 		
 		// Draw the thumb
 		var thumb_x, thumb_y;
 		if (state.direction == ui_enum_slider_direction.vertical) {
 			thumb_x = half_width - 1;
-			thumb_y = (state.height - state.track_margin * 2) * ((state.value - state.min_value) / state.max_value) + state.track_margin;
+			thumb_y = (state.height - state.thumb_radius * 2) * ((state.value - state.min_value) / state.max_value) + state.thumb_radius;
 		} else {
-			thumb_x = (state.width - state.track_margin * 2) * ((state.value - state.min_value) / state.max_value) + state.track_margin;
+			thumb_x = (state.width - state.thumb_radius * 2) * ((state.value - state.min_value) / state.max_value) + state.thumb_radius;
 			thumb_y = half_height - 1;
 		}
 			
@@ -76,8 +55,8 @@ function UiSlider(_x, _y, _width, _height, _parent = undefined) : UiSliderStep(_
 		
 		draw_set_color(thumb_color);
 		draw_set_alpha(.5);
-		draw_circle(thumb_x, thumb_y, state.__thumb_radius, true);
+		draw_circle(thumb_x, thumb_y, state.thumb_radius, true);
 		draw_set_alpha(1);
-		draw_circle(thumb_x, thumb_y, state.__thumb_radius, false);
+		draw_circle(thumb_x, thumb_y, state.thumb_radius, false);
 	};
 }

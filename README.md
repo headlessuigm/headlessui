@@ -34,7 +34,7 @@ ui_draw();
 
 ### DOCUMENTATION
 
-https://manuel-di-iorio.github.io/gmheadlessui
+https://headlessuigm.github.io/headlessui
 
 ### CONTRIBUTING
 

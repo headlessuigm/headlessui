@@ -1,3 +1,7 @@
+if (display_aa > 12) {
+	display_reset(8, false);
+}
+
 draw_debug = false;
 gui_width = display_get_gui_width();
 gui_height = display_get_gui_height();
