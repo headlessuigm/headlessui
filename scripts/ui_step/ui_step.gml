@@ -4,7 +4,7 @@
  */
 function __ui_step(component) {
 	// Run the step component method on component and its children
-	if (variable_struct_exists(component, "step") && component.step) {
+	if (variable_struct_exists(component, "step") && component.step && component.state.enabled && component.state.active) {
 		component.step();
 	}
 

@@ -11,11 +11,6 @@
  */
 function UiTooltip(_x, _y, _width, _height, _parent = undefined) : UiTooltipStep(_x, _y, _width, _height, _parent) constructor {	
 	draw = function() {
-		if (!state.show) {
-			draw_clear_alpha(c_white, 0);
-			return;
-		}
-		
 		var type = state.type;
 		
 		// Draw the background

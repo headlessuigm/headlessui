@@ -9,9 +9,8 @@
  *
  * @return {Struct}
  */
-function UiSelectArrowsStep(_x, _y, _width, _height, _parent = undefined) : UiLayerStep(_x, _y, _width, _height, _parent) constructor {
+function UiSelectArrowsStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
 	skip_layer_checks = true;
-	disable_surface = false;
 	
 	with (state) {
 		type = ui_enum_variants.primary;

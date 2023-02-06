@@ -14,8 +14,7 @@ function scr_story_notification(showcase) {
 		});
 	}
 
-	// @todo https://trello.com/c/xiU1PxPy/14-components-bringontop
-	// notification_elem.bring_on_top(); 
+	notification_elem.focus(); 
 	
 	return [
 		notification_elem,

@@ -19,7 +19,6 @@ function UiButtonStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComp
 	// Set the default button status
 	with (state) {
 		status = ui_enum_button_status.idle;
-		enabled = true;
 		click_type = ui_enum_click_type.released;
 		click_button = mb_left;
 	
@@ -52,10 +51,6 @@ function UiButtonStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComp
 	};
 		
 	step = function() {
-		if (!state.enabled) {
-			return;
-		}
-		
 		// Handle the button status
 		var status = state.status;
 		var click_type = state.click_type;
@@ -64,10 +59,10 @@ function UiButtonStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComp
 		if (status != ui_enum_button_status.idle && mouse_check_button_released(click_button)) {
 			set({ status: ui_enum_button_status.idle });
 			
-			if (click_type == ui_enum_click_type.released && parent.is_hovered(self)) {
+			if (click_type == ui_enum_click_type.released && is_hovered()) {
 				click();
 			}
-		} else if (parent.is_hovered(self)) {
+		} else if (is_hovered()) {
 			if (mouse_check_button_pressed(click_button)) {
 				set({ status: ui_enum_button_status.clicked });
 				

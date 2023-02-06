@@ -32,6 +32,9 @@ It is not meant for direct usage but this page acts as reference.
 | scroll_x | Current X scroll position | Real     | 0               |
 | scroll_y | Current Y scroll position | Real     | 0               |
 | on_click | Component state           | Function | `function() {}` |
+| enabled  | Whether the step/draw events are executed | Bool | `true` |
+| active   | Whether the step event is executed        | Bool | `true` |
+| visible  | Whether the draw event is executed        | Bool | `true` |
 
 
 ### Methods
@@ -102,7 +105,7 @@ Remove a watcher for the specified prop name. You can also pass undefined to rem
 | propName      | Specified property        | String |             |
 | watcherId     | Watcher callback to unset | Real   |             |
 
-#### bring_on_top([recursive])
+#### focus([recursive])
 
 Bring the component above all other components in the parent's children list.
 
@@ -110,7 +113,14 @@ Bring the component above all other components in the parent's children list.
 |---------------|---------------------------|--------|-------------|
 | recursive     | If to recursively bring on top also the parent (and its ancestors) above their parent | Bool | `true` |
 
----
+#### is_hovered([component])
+
+Check if the component is interecting the mouse, while being above the other parent's children
+
+| Param         | Description               | Type   | Default     |
+|---------------|---------------------------|--------|-------------|
+| component     | Component to check        | Struct | `self`      |
+
 
 ### Globals
 

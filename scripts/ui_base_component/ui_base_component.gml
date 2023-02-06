@@ -12,6 +12,7 @@ global.ui_root_component = new UiLayerStep(0, 0, room_width, room_height, {
 		return 0;
 	},
 	update: function() {},
+	focus: function() {},
 });
 
 global.ui_mouse_x = device_mouse_x_to_gui(0);
@@ -53,6 +54,10 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 	/// Internal surface reference
 	surface = noone;
 	
+	/// Wheter the component pointer events are enabled
+	// @todo this is not used yet, will replace skip_layer_checks
+	pointer_events = true;
+	
 	// Default state
 	state = {
 		x: _x,
@@ -61,7 +66,16 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 		height: _height,
 		scroll_x: 0,
 		scroll_y: 0,
-		on_click: function() {}
+		on_click: function() {},
+		
+		/// Whether the component step/draw events are enabled
+		enabled: true,
+		
+		/// Whether the component step event is enabled
+		active: true,
+		
+		/// Whether the component draw event is enabled
+		visible: true
 	};
 	
 	// Reactive watchers
@@ -79,6 +93,7 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 		var names = variable_struct_get_names(partialState);
 		for (var i=0, ilen=array_length(names); i<ilen; i++) {
 			var name = names[i];
+			
 			if (state[$ name] != partialState[$ name]) {
 				var updatedValue = partialState[$ name];
 				state[$ name] = updatedValue;
@@ -225,6 +240,7 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 		if (!variable_struct_exists(watchers, prop)) {
 			watchers[$ prop] = {};
 		}
+		
 		var watcherCallbacks = watchers[$ prop];
 		var wid = watcherId++;
 		watcherCallbacks[$ wid] = callback;
@@ -259,20 +275,64 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 	 *
 	 * @param {Boolean} recursive When to recursively bring on top also the parent above theirs parents
 	 */
-	function bring_on_top(recursive = true, elem = self) {
-		var parentChildren = elem.parent.children;
+	function focus(recursive = true, elem = self) {
+		var elemParent = elem.parent;
+		var parentChildren = elemParent.children;
+		var ilen = array_length(parentChildren);
 			
-		for (var i=0, len=array_length(parentChildren); i<len; i++) {
-			if (parentChildren[i] != elem) continue;
-			array_delete(parentChildren, i, 1);
-			array_push(parentChildren, self);
+		for (var i=0; i<ilen; i++) {
+			if (parentChildren[i] == elem) {
+				if (i < ilen-1) {
+					array_delete(parentChildren, i, 1);
+					array_push(parentChildren, self);
+				}
 				
-			if (recursive && elem.parent != global.ui_root_component) {
-				bring_on_top(recursive, elem.parent);
+				if (recursive && elemParent != global.ui_root_component) {
+					focus(recursive, elemParent);
+				}
+				break;
 			}
-			break;
 		}
 	}
+	
+	/**
+	 * Check if the component is interecting the mouse, while being above the other parent's children
+	 *
+	 * @param {Struct} [elem] Component to check
+	 * @return {Boolean}
+	 */
+	is_hovered = function(elem = self) {
+		var x_absolute = parent.x_abs();
+		var y_absolute = parent.y_abs();
+		var parentChildren = parent.children;
+		var parentState = parent.state;
+		
+		// Check that the mouse is inside the parent component
+		if (parent != global.ui_root_component && 
+			!point_in_rectangle(global.ui_mouse_x, global.ui_mouse_y, x_absolute, y_absolute, x_absolute + parentState.width, y_absolute + parentState.height)) {
+			return false;
+		}
+		
+		for (var i = array_length(parentChildren) - 1; i >= 0; i--) {
+			var child = parentChildren[i];
+			
+			if (child.skip_layer_checks) {
+				continue;
+			}
+			
+			var child_x = x_absolute + child.state.x - parentState.scroll_x;
+			var child_y = y_absolute + child.state.y - parentState.scroll_y;
+			var child_width = child.state.width;
+			var child_height = child.state.height;
+			
+			if (!point_in_rectangle(global.ui_mouse_x, global.ui_mouse_y, child_x, child_y, child_x + child_width, child_y + child_height)) {
+				continue;
+			}
+			
+			return child == elem;
+		}
+		return false;
+	};
 		
 	// Store the new element into the parent children
 	array_push(parent.children, self);

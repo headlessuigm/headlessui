@@ -33,7 +33,7 @@ function UiScrollbarStep(_x, _y, _width, _height, _parent = undefined) : UiBaseC
 
 	step = function() {
 		var status = state.status;
-		var hovered = parent.is_hovered(self);
+		var hovered = is_hovered();
 		
 		if (status != ui_enum_scrollbar_status.idle && mouse_check_button_released(mb_any)) {
 			set({ status: ui_enum_scrollbar_status.idle });

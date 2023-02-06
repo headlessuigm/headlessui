@@ -11,11 +11,6 @@
  */
 function UiButton(_x, _y, _width, _height, _parent = undefined) : UiButtonStep(_x, _y, _width, _height, _parent) constructor {	
 	draw = function() {
-		if (!state.enabled) {
-			draw_clear_alpha(c_red, 0);
-			return;
-		}
-		
 		var type = state.type;
 		
 		// Draw the background

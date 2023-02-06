@@ -14,9 +14,8 @@ enum ui_enum_scroll_direction {
  *
  * @return {Struct}
  */
-function UiScrollableContainerStep(_x, _y, _width, _height, _parent = undefined) : UiLayerStep(_x, _y, _width, _height, _parent) constructor {
+function UiScrollableContainerStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
 	skip_layer_checks = false;
-	disable_surface = false;
 	
 	with (state) {
 		scrollable_width = width;
@@ -28,7 +27,7 @@ function UiScrollableContainerStep(_x, _y, _width, _height, _parent = undefined)
 	step = function() {
 		var scrolled = undefined;
 		
-		if (parent.is_hovered(self)) {
+		if (is_hovered()) {
 			if (mouse_wheel_up()) {
 				if (keyboard_check(vk_shift)) {
 					set({ scroll_x: max(0, state.scroll_x - state.scroll_step) });
