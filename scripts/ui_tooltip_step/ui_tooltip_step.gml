@@ -24,6 +24,7 @@ function UiTooltipStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCom
 		offset_vertical = 10;
 		show_delay = 500;
 		stay_within_gui = true;
+		visible = false;
 		
 		// Internal state variables
 		__show_play = false;

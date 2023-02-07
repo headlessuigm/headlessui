@@ -30,7 +30,7 @@ function UiScrollbarStep(_x, _y, _width, _height, _parent = undefined) : UiBaseC
 		value = 0;
 		thumb_size = 0;
 	}
-
+	
 	step = function() {
 		var status = state.status;
 		var hovered = is_hovered();

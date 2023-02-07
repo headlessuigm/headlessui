@@ -23,6 +23,14 @@ function UiScrollableContainerStep(_x, _y, _width, _height, _parent = undefined)
 		scroll_step = 24;
 		on_scroll = function() {};
 	}
+	
+	on_mouse_enter = function() {
+		show_debug_message("scrollbar enter")
+	}
+	
+	on_mouse_leave = function() {
+		show_debug_message("scrollbar leave")	
+	}
 		
 	step = function() {
 		var scrolled = undefined;

@@ -13,7 +13,7 @@ var scrollbar_width = 15;
 var list_actual_width = showcase.list_width - scrollbar_width;
 var list_height = gui_height - 20;
 
-var scrollable_container = new UiScrollableContainer(0, 10, list_actual_width, list_height);
+//var scrollable_container = new UiScrollableContainer(0, 10, list_actual_width, list_height);
 //var scrollbar_vertical = new UiScrollbar(list_actual_width, 10, scrollbar_width, list_height);
 
 //with (scrollable_container.state) {
@@ -67,4 +67,4 @@ for (var i=0; i<components_count; i++) {
 	}
 }
 
-scrollable_container.set({ scrollable_height: components_count * 40 });
+//scrollable_container.set({ scrollable_height: components_count * 40 });
