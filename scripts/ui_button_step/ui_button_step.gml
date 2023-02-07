@@ -16,10 +16,10 @@ enum ui_enum_button_status {
  * @return {Struct}
  */
 function UiButtonStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
+	name = "Button";
+	
 	with (state) {
 		status = ui_enum_button_status.idle;
-		click_type = ui_enum_click_type.released;
-		click_button = mb_left;
 	
 		// Button style props
 		type = ui_enum_variants.primary;
@@ -58,10 +58,13 @@ function UiButtonStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComp
 	}
 	
 	on_mouse_leave = function() {
+		if (state.status != ui_enum_button_status.hover ) return;
 		set({ status: ui_enum_button_status.idle });
 	}
 	
-	on_mouse_release = function() {
-		set({ status: ui_enum_button_status.idle });
+	step = function() {
+		if (mouse_check_button_released(mb_any)) {
+			set({ status: !hovered ? ui_enum_button_status.idle : ui_enum_button_status.hover });
+		}
 	}
 }

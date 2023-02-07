@@ -25,8 +25,6 @@ with (checkbox.state) {
 | status        | Current status of the checkbox            | Real   | `ui_enum_checkbox_status.idle` |
 | type          | Checkbox type                             | Real   | `ui_enum_variants.primary`      |
 | checked       | If the input is currently checked         | Bool   | `false`                         |
-| click_button  | Which button to check for the click       | Real   | `mb_left`                       |
-| click_type    | Which mouse event to check for the click  | Real   | `ui_enum_click_type.released`   |
 
 ```js
 on_click(component)

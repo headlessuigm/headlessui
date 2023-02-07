@@ -10,6 +10,8 @@
  * @return {Struct}
  */
 function UiLabel(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
+	name = "Label";
+	
 	with (state) {
 		color = ui_variable_col_on_bg;
 		halign = fa_left;

@@ -15,7 +15,7 @@ enum ui_enum_scroll_direction {
  * @return {Struct}
  */
 function UiScrollableContainerStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
-	skip_layer_checks = false;
+	name = "ScrollableContainer";
 	
 	with (state) {
 		scrollable_width = width;
@@ -25,17 +25,17 @@ function UiScrollableContainerStep(_x, _y, _width, _height, _parent = undefined)
 	}
 	
 	on_mouse_enter = function() {
-		show_debug_message("scrollbar enter")
+		show_debug_message("ScrollableContainer enter")
 	}
 	
 	on_mouse_leave = function() {
-		show_debug_message("scrollbar leave")	
+		show_debug_message("ScrollableContainer leave")	
 	}
 		
 	step = function() {
 		var scrolled = undefined;
 		
-		if (is_hovered()) {
+		if (is_hovered) {
 			if (mouse_wheel_up()) {
 				if (keyboard_check(vk_shift)) {
 					set({ scroll_x: max(0, state.scroll_x - state.scroll_step) });

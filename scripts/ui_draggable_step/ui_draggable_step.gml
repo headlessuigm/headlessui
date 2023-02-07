@@ -22,10 +22,9 @@ enum ui_enum_draggable_axis {
  * @return {Struct}
  */
 function UiDraggableStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
-    skip_layer_checks = false;
-
-    // Default state
-   with (state) {
+   name = "Draggable";
+	
+	with (state) {
 		click_button = mb_left;
 		
    		/**

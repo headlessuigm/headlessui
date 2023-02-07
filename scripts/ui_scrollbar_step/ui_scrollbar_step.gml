@@ -22,6 +22,8 @@ enum ui_enum_scrollbar_direction {
  * @return {Struct}
  */
 function UiScrollbarStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
+	name = "Scrollbar";
+	
 	// Set the default scrollbar status
 	with (state) {
 		type = ui_enum_variants.primary;

@@ -21,6 +21,8 @@ enum ui_enum_slider_direction {
  * @return {Struct}
  */
 function UiSliderStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
+	name = "Slider";
+	
 	with (state) {
 		type = ui_enum_variants.primary;
 	

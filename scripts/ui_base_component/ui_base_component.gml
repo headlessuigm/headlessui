@@ -31,6 +31,7 @@ global.ui_mouse_y = device_mouse_y_to_gui(0);
  * @return {Struct}
  */
 function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_component) constructor {
+	name = "BaseComponent";
 	parent = _parent;
 	
 	/// Function called each tick to handle the component logic
@@ -39,9 +40,6 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 	/// Function called each tick to render the component
 	draw = undefined;
 
-	/// When this component should skip the parent layer hovering checks
-	skip_layer_checks = false;
-	
 	/// If to disable the component surface
 	disable_surface = false;
 	
@@ -129,7 +127,7 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 	 * Execute the onClick element handler, if defined
 	 */
 	click = function() {
-		//if (variable_struct_exists(self, "on_click")) on_click();
+		if (variable_struct_exists(self, "on_click")) on_click();
 		state.on_click(self);
 	};
 			
@@ -325,8 +323,7 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 		for (var i = array_length(parentChildren) - 1; i >= 0; i--) {
 			var child = parentChildren[i];
 			
-			// @todo skip_layer_checks is deprecated
-			if (child.skip_layer_checks || !child.pointer_events) {
+			if (!child.pointer_events) {
 				continue;
 			}
 			

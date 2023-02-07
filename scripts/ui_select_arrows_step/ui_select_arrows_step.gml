@@ -10,7 +10,8 @@
  * @return {Struct}
  */
 function UiSelectArrowsStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
-	skip_layer_checks = true;
+	name = "SelectArrows";	
+	pointer_events = false;
 	
 	with (state) {
 		type = ui_enum_variants.primary;

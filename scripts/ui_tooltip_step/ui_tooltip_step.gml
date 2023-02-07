@@ -10,7 +10,8 @@
  * @return {Struct}
  */
 function UiTooltipStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
-	skip_layer_checks = true;
+	name = "Tooltip";
+	pointer_events = false;
 	
 	with (state) {
 		linked_component = undefined;
@@ -78,14 +79,14 @@ function UiTooltipStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCom
 		
 		// Start the show/hide animation when hovering over the linked component
 		if (!state.visible && !state.__show_play) {
-			if (linked_component.is_hovered()) {
+			if (linked_component.hovered) {
 				set({ 
 					__show_play: true,
 					__show_timer: current_time
 				});
 			}
 		} else {
-			if (!linked_component.is_hovered()) {
+			if (!linked_component.hovered) {
 				set({
 					__show_play: false,
 					visible: false

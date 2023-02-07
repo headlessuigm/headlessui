@@ -4,11 +4,6 @@ enum ui_enum_variants {
 	secondary
 }
 
-enum ui_enum_click_type {
-	released,
-	pressed
-}
-
 // Primary - used to represent primary interface elements for a player.
 // It's the color displayed most frequently across your game's screens and components.
 #macro ui_variable_col_primary #3f51b5
