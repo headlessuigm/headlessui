@@ -25,17 +25,7 @@ with (slider.state) {
 | max_value    | Maximum selectable value                                                                | Real | 100                                  |
 | step         | Granularity of the slider. The step increment should be a divisor of the track's length | Real | 1                                    |
 | value        | Current selected value                                                                  | Real | 0                                    |
-| track_margin | The margin to apply to the start and the end of the slider track                        | Real | 0                                    |
-
-### Methods
-
-#### set_thumb_radius(radius)
-
- Set the thumb's radius
-
-| Param     | Description                  | Type  | Default |
-|-----------|------------------------------|-------|---------|
-| radius    | Radius of the slider's thumb | Real  |         |
+| thumb_radius |  Set the thumb's radius                                                                 | Real | 8                                    |
 
 ### Events
 

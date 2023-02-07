@@ -35,9 +35,9 @@ function UiScrollbarStep(_x, _y, _width, _height, _parent = undefined) : UiBaseC
 		var status = state.status;
 		var hovered = is_hovered();
 		
-		if (status != ui_enum_scrollbar_status.idle && mouse_check_button_released(mb_any)) {
+		if (status != ui_enum_scrollbar_status.idle && mouse_check_button_released(mb_left)) {
 			set({ status: ui_enum_scrollbar_status.idle });
-		} else if ((hovered && mouse_check_button_pressed(mb_any)) || state.status == ui_enum_scrollbar_status.dragging) {
+		} else if ((hovered && mouse_check_button_pressed(mb_left)) || state.status == ui_enum_scrollbar_status.dragging) {
 			// Update value if mouse pressed on scrollbar or if it is already being dragged
 			var mouse_delta = state.direction == ui_enum_scrollbar_direction.vertical
 				? global.ui_mouse_y - state.thumb_size / 2 - state.y

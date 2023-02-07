@@ -45,13 +45,11 @@ function UiSliderStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComp
 	     * be a multiple of state.step
 	     */
 		value = 0;
-    
-	    /** The margin to apply to the start and the end of the slider track; 
-	     * useful when the thumb can overflow outside the track;
-	     * the actual track's length will be the component's size (width or height
-	     * bases on state.direction) minus this track margin
-	     */
-		track_margin = 0;
+		
+		/**
+		 * Thumb's radius
+		 */
+		thumb_radius = 8;
 	}
     
     step = function() {
@@ -63,16 +61,16 @@ function UiSliderStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComp
 		} else if ((hovered && mouse_check_button_pressed(mb_left)) || state.status == ui_enum_slider_status.dragging) {
 			// Update value if mouse pressed on slider or if it is already being dragged
 			var mouse_delta = state.direction == ui_enum_slider_direction.vertical
-				? global.ui_mouse_y - state.y - state.track_margin
-				: global.ui_mouse_x - state.x - state.track_margin;
+				? global.ui_mouse_y - state.y - state.thumb_radius
+				: global.ui_mouse_x - state.x - state.thumb_radius;
 			var track_length = state.direction == ui_enum_slider_direction.vertical
-				? state.height - state.track_margin * 2
-				: state.width - state.track_margin * 2;
+				? state.height - state.thumb_radius * 2
+				: state.width - state.thumb_radius * 2;
 			var value = clamp(mouse_delta / track_length, 0, 1);
 			var stepped_value = round((state.max_value - state.min_value) * value / state.step) * state.step;
 			
-			set({ 
-				status: ui_enum_slider_status.dragging, 
+			set({
+				status: ui_enum_slider_status.dragging,
 				value: stepped_value,
 			});
 			
