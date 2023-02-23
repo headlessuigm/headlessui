@@ -23,6 +23,8 @@ function UiCheckboxStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCo
 		checked = false;
 		click_type = ui_enum_click_type.released;
 		click_button = mb_left;
+		sprite = undefined;
+		spriteChecked = undefined;
 	}
 		
 	step = function() {
