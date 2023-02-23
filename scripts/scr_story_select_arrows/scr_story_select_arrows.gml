@@ -5,7 +5,7 @@ function scr_story_select_arrows(showcase) {
 	var yy = showcase.y - round(h/2);
 	
 	var selectArrows = new UiSelectArrows(xx, yy, w, h);
-	selectArrows.set_items([{ key: "item0", label: "Item 0" }, { key: "item1", label: "Item 1" }, { key: "item2", label: "Item 2"} ]);
+	selectArrows.set_items([{ key: "item0", label: "Item 0" }, { key: "item1", label: "Item 1" }, { key: "item2", label: "Item 2"}, { key: "item3", label: "Item 3" } ]);
 
 	var selectArrowsBtnPrev = new UiButton(0, 0, 30, 30, selectArrows);
 	var selectArrowsBtnNext = new UiButton(170, 0, 30, 30, selectArrows);
@@ -46,7 +46,7 @@ function scr_story_select_arrows(showcase) {
 				}
 			}
 		
-			if (select.state.index == array_length(select.state.items)-1 && !select.state.wrap_selection) {
+			if (select.state.index == array_length(select.state.items) - 1 && !select.state.wrap_selection) {
 				with (self.nextBtn) {
 					set({ enabled: false });
 				}

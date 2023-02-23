@@ -24,9 +24,10 @@ function UiNotification(_x, _y, _width, _height, _parent = undefined) : UiNotifi
 		
 		for (var i=0, l=array_length(items); i<l; i++) {
 			var item = items[i];
+			var h = string_height(item) + 10;
 			var y1 = yOff;
-			var y2 = yOff + 30;
-			yOff += 40;
+			var y2 = yOff + h;
+			yOff += h + 10;
 			
 			// Animated alpha
 			draw_set_alpha(item.alpha);

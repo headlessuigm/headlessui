@@ -58,7 +58,7 @@ function UiButtonStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComp
 	}
 	
 	on_mouse_leave = function() {
-		if (state.status != ui_enum_button_status.hover ) return;
+		if (state.status != ui_enum_button_status.hover) return;
 		set({ status: ui_enum_button_status.idle });
 	}
 	

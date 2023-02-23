@@ -14,7 +14,7 @@ function __ui_check_pointer_events(parent, children_length) {
 
 		if (children_length) {
 			__ui_check_pointer_events(child, children_length);
-		} else if (child.pointer_events && child_state.active) {
+		} else if (child.pointer_events && child_state.active && child_state.enabled) {
 			var parent_state = parent.state;
 			var parent_x_abs = parent.x_abs();
 			var parent_y_abs = parent.y_abs();			

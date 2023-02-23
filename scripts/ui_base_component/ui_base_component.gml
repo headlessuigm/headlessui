@@ -1,3 +1,7 @@
+/**
+ * Headless UI 2.0.0
+ */
+
 // Default root layer component
 global.ui_root_component = new UiLayerStep(0, 0, room_width, room_height, { 
 	children: [],
