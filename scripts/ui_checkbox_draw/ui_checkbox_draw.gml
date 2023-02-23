@@ -20,7 +20,7 @@ function UiCheckbox(_x, _y, _width, _height, _parent = undefined) : UiCheckboxSt
 			draw_sprite(sprite, state.status, 0, 0);
 			
 			if (checked) {
-				draw_sprite(sprite, state.status, 3, 0);
+				draw_sprite(sprite, 3, 0, 0);
 			}
 		} else {
 			// Else draw a simple background
