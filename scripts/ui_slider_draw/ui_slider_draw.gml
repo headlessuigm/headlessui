@@ -53,7 +53,7 @@ function UiSlider(_x, _y, _width, _height, _parent = undefined) : UiSliderStep(_
 				thumb_color = state.type == ui_enum_variants.primary ? ui_variable_col_primary_light : ui_variable_col_secondary_light;
 				break;
 			default: 
-				thumb_color = state.type == ui_enum_variants.primary ? ui_variable_col_primary : ui_variable_col_primary;
+				thumb_color = state.type == ui_enum_variants.primary ? ui_variable_col_primary : ui_variable_col_secondary;
 		}
 		
 		draw_set_color(thumb_color);
