@@ -24,18 +24,10 @@ function UiScrollableContainerStep(_x, _y, _width, _height, _parent = undefined)
 		on_scroll = function() {};
 	}
 	
-	on_mouse_enter = function() {
-		show_debug_message("ScrollableContainer enter")
-	}
-	
-	on_mouse_leave = function() {
-		show_debug_message("ScrollableContainer leave")	
-	}
-		
 	step = function() {
 		var scrolled = undefined;
 		
-		if (is_hovered) {
+		if (hovered) {
 			if (mouse_wheel_up()) {
 				if (keyboard_check(vk_shift)) {
 					set({ scroll_x: max(0, state.scroll_x - state.scroll_step) });

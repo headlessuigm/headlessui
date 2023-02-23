@@ -47,6 +47,9 @@ function UiSlider(_x, _y, _width, _height, _parent = undefined) : UiSliderStep(_
 		var thumb_color;
 		switch (state.status) {
 			case ui_enum_slider_status.dragging:
+				thumb_color = state.type == ui_enum_variants.primary ? ui_variable_col_primary_dark : ui_variable_col_secondary_dark;
+				break;
+			case ui_enum_slider_status.hover:
 				thumb_color = state.type == ui_enum_variants.primary ? ui_variable_col_primary_light : ui_variable_col_secondary_light;
 				break;
 			default: 

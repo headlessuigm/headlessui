@@ -21,6 +21,7 @@ global.ui_root_component = new UiLayerStep(0, 0, room_width, room_height, {
 
 global.ui_mouse_x = device_mouse_x_to_gui(0);
 global.ui_mouse_y = device_mouse_y_to_gui(0);
+global.ui_hovered_component = undefined;
 
 /**
  * HEADLESS UI v1.0.0

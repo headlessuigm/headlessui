@@ -30,6 +30,7 @@ function UiCheckboxStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCo
 	};
 	
 	on_mouse_enter = function() {
+		if (state.status != ui_enum_checkbox_status.idle) return;
 		set({ status: ui_enum_checkbox_status.hover });	
 	}
 	

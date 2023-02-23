@@ -12,8 +12,7 @@
 function UiScrollableContainer(_x, _y, _width, _height, _parent = undefined) : UiScrollableContainerStep(_x, _y, _width, _height, _parent) constructor {	
 	draw = function() {		
 		// Draw the background		
-		//draw_set_color(ui_variable_col_bg);
-		draw_set_color(c_red);
+		draw_set_color(ui_variable_col_bg);
 		draw_rectangle(0, 0, state.width, state.height, false);
 	};
 }

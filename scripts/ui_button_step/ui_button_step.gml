@@ -54,6 +54,7 @@ function UiButtonStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComp
 	};
 	
 	on_mouse_enter = function() {
+		if (state.status != ui_enum_button_status.idle) return;
 		set({ status: ui_enum_button_status.hover });	
 	}
 	

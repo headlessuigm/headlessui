@@ -53,15 +53,25 @@ function UiSliderStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComp
 		 */
 		thumb_radius = 8;
 	}
-    
+	
+	on_mouse_enter = function() {
+		if (state.status != ui_enum_slider_status.idle) return;
+		set({ status: ui_enum_slider_status.hover });
+	};
+	
+	on_mouse_leave = function() {
+		if (state.status == ui_enum_slider_status.dragging) return;
+		set({ status: ui_enum_slider_status.idle });
+	}
+	
+	on_mouse_press = function() {
+		if (mouse_button != mb_left) return;
+		set({ status: ui_enum_slider_status.dragging });
+	}
+	
     step = function() {
-        var status = state.status;
-		var hovered = is_hovered();
-		
-		if (status != ui_enum_slider_status.idle && mouse_check_button_released(mb_left)) {
-			set({ status: ui_enum_slider_status.idle });
-		} else if ((hovered && mouse_check_button_pressed(mb_left)) || state.status == ui_enum_slider_status.dragging) {
-			// Update value if mouse pressed on slider or if it is already being dragged
+		// Update the track position while the slider is being dragged
+		if (mouse_check_button(mb_left) && state.status == ui_enum_slider_status.dragging) {
 			var mouse_delta = state.direction == ui_enum_slider_direction.vertical
 				? global.ui_mouse_y - state.y - state.thumb_radius
 				: global.ui_mouse_x - state.x - state.thumb_radius;
@@ -75,15 +85,13 @@ function UiSliderStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComp
 				status: ui_enum_slider_status.dragging,
 				value: stepped_value,
 			});
-			
+		
 			if (variable_struct_exists(state, "on_change")) {
 				state.on_change(self, stepped_value);
 			}
-		} else if (hovered) {
-			if (status != ui_enum_slider_status.hover) {
-				set({ status: ui_enum_slider_status.hover });	
-			}
-		} else if (status != ui_enum_slider_status.idle) {
+		}
+		
+		if (mouse_check_button_released(mb_left)) {
 			set({ status: ui_enum_slider_status.idle });
 		}
     };

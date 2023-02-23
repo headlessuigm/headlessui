@@ -22,13 +22,17 @@ function scr_story_select_arrows(showcase) {
 		
 			if (!select.state.wrap_selection && !self.nextBtn.state.enabled) {
 				with (self.nextBtn) {
-					set({ enabled: true });
+					set({
+						enabled: true
+					});
 				}
 			}
 		
 			if (!select.state.index && !select.state.wrap_selection) {
 				with (self.prevBtn) {
-					set({ enabled: false });
+					set({ 
+						enabled: false,
+					});
 				}
 			}
 		});
@@ -42,13 +46,17 @@ function scr_story_select_arrows(showcase) {
 		
 			if (!select.state.wrap_selection && !self.prevBtn.state.enabled) {
 				with (self.prevBtn) {
-					set({ enabled: true });
+					set({ 
+						enabled: true
+					});
 				}
 			}
 		
 			if (select.state.index == array_length(select.state.items) - 1 && !select.state.wrap_selection) {
 				with (self.nextBtn) {
-					set({ enabled: false });
+					set({ 
+						enabled: false,
+					});
 				}
 			}
 		});
