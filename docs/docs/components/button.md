@@ -21,8 +21,9 @@ with (button.state) {
 | Variable           | Description                                         | Type   | Default                       |
 |--------------------|-----------------------------------------------------|--------|-------------------------------|
 | text               | Button displayed text                               | String |                               |
-| status             | Current status of the button                        | Real   | `ui_enum_button_status.idle` |
+| status             | Current status of the button                        | Real   | `ui_enum_button_status.idle`  |
 | type               | Button type                                         | Real   | `ui_enum_variants.primary`    |
+| sprite             | Button sprite (with 3 frames for the idle/hover/click state) | Real |                        |                                       
 | text_sep           | Distance in px between each line                    | Real   | `-1` (default spacing)        |
 | text_max_width     | Row max width before going on a newline             | Real   | `-1` (no newlines by default) |
 | padding_horizontal | Horizontal button padding (in px)                   | Real   | `40`                          |
