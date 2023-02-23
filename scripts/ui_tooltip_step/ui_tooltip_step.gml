@@ -24,6 +24,7 @@ function UiTooltipStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCom
 		offset_vertical = 10;
 		show_delay = 500;
 		stay_within_gui = true;
+		visible = false;
 		
 		// Internal state variables
 		__show_play = false;
@@ -44,6 +45,7 @@ function UiTooltipStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCom
 			string_height_ext(text, text_sep, text_max_width) + state.padding_vertical * 2
 		);
 		state.text = text;
+		move();
 	}
 	
 	/** 
@@ -58,7 +60,7 @@ function UiTooltipStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCom
 			return;
 		}
 		
-		var xx = linked_component.state.x - linked_component.state.width/2 + state.offset_horizontal;
+		var xx = round(linked_component.state.x + linked_component.state.width/2 - state.width/2 + state.offset_horizontal);
 		var yy = linked_component.state.y - state.offset_vertical - state.height;
 		
 		if (state.stay_within_gui) {
