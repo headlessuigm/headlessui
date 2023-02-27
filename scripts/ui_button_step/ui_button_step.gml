@@ -28,6 +28,7 @@ function UiButtonStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComp
 		padding_vertical = 20;
 		text_sep = -1;
 		text_max_width = -1;
+		sprite = undefined;
 	}
 	
 	/**
