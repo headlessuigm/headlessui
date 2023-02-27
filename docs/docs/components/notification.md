@@ -14,9 +14,11 @@ var notif = new UiNotification(0, 0, 300, 300);
 
 ### State reference
 
-| Variable | Description                                                         | Type             | Default  |
-|----------|---------------------------------------------------------------------|------------------|----------|
-| items    | List of currently displayed items. This is used internally          | Array<Struct\>   | `[]`     |
+| Variable         | Description                                                 | Type             | Default  |
+|------------------|-------------------------------------------------------------|------------------|----------|
+| items            | List of currently displayed items. This is used internally  | Array<Struct\>   | `[]`     |
+| padding_vertical | Vertical padding of the items                               | Real             | `10`     |
+| margin_vertical  | Vertical margin between items                               | Real             | `10`     |
 
 
 ### Methods

@@ -16,6 +16,8 @@ function UiNotification(_x, _y, _width, _height, _parent = undefined) : UiNotifi
 		var x1 = 0;
 		var x2 = state.width;
 		var yOff = 0;
+		var padding_vertical = state.padding_vertical;
+		var margin_vertical = state.margin_vertical;
 		
 		// Draw the items
 		draw_set_halign(fa_center); 
@@ -25,8 +27,9 @@ function UiNotification(_x, _y, _width, _height, _parent = undefined) : UiNotifi
 		for (var i=0, l=array_length(items); i<l; i++) {
 			var item = items[i];
 			var y1 = yOff;
-			var y2 = yOff + 30;
-			yOff += 40;
+			var h = string_height(item) + padding_vertical;
+			var y2 = yOff + h;			
+			yOff += h + margin_vertical;
 			
 			// Animated alpha
 			draw_set_alpha(item.alpha);
