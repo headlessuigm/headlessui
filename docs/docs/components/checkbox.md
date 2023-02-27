@@ -26,8 +26,6 @@ with (checkbox.state) {
 | type          | Checkbox type                             | Real   | `ui_enum_variants.primary`      |
 | sprite        | Checkbox sprite (with 4 frames for the idle/hover/click/checked state) | Real |      |    
 | checked       | If the input is currently checked         | Bool   | `false`                         |
-| click_button  | Which button to check for the click       | Real   | `mb_left`                       |
-| click_type    | Which mouse event to check for the click  | Real   | `ui_enum_click_type.released`   |
 
 ```js
 on_click(component)

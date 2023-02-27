@@ -10,7 +10,8 @@
  * @return {Struct}
  */
 function UiNotificationStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
-	skip_layer_checks = true;
+  name = "Notification";
+  pointer_events = false;
 	
 	with (state) {
 		items = [];

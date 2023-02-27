@@ -22,6 +22,8 @@ enum ui_enum_scrollbar_direction {
  * @return {Struct}
  */
 function UiScrollbarStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
+	name = "Scrollbar";
+	
 	// Set the default scrollbar status
 	with (state) {
 		type = ui_enum_variants.primary;
@@ -30,14 +32,24 @@ function UiScrollbarStep(_x, _y, _width, _height, _parent = undefined) : UiBaseC
 		value = 0;
 		thumb_size = 0;
 	}
-
+	
+	on_mouse_enter = function() {
+		if (state.status != ui_enum_scrollbar_status.idle) return;
+		set({ status: ui_enum_scrollbar_status.hover });
+	};
+	
+	on_mouse_leave = function() {
+		if (state.status == ui_enum_scrollbar_status.dragging) return;
+		set({ status: ui_enum_scrollbar_status.idle });
+	}
+	
+	on_mouse_press = function() {
+		if (mouse_button != mb_left) return;
+		set({ status: ui_enum_scrollbar_status.dragging });
+	}
+	
 	step = function() {
-		var status = state.status;
-		var hovered = is_hovered();
-		
-		if (status != ui_enum_scrollbar_status.idle && mouse_check_button_released(mb_left)) {
-			set({ status: ui_enum_scrollbar_status.idle });
-		} else if ((hovered && mouse_check_button_pressed(mb_left)) || state.status == ui_enum_scrollbar_status.dragging) {
+		if (mouse_check_button(mb_left) && state.status == ui_enum_scrollbar_status.dragging) {
 			// Update value if mouse pressed on scrollbar or if it is already being dragged
 			var mouse_delta = state.direction == ui_enum_scrollbar_direction.vertical
 				? global.ui_mouse_y - state.thumb_size / 2 - state.y
@@ -55,11 +67,9 @@ function UiScrollbarStep(_x, _y, _width, _height, _parent = undefined) : UiBaseC
 			if (variable_struct_exists(state, "on_change")) {
 				state.on_change(self, value);
 			}
-		} else if (hovered) {
-			if (status != ui_enum_scrollbar_status.hover) {
-				set({ status: ui_enum_scrollbar_status.hover });	
-			}
-		} else if (status != ui_enum_scrollbar_status.idle) {
+		}
+		
+		if (mouse_check_button_released(mb_left)) {
 			set({ status: ui_enum_scrollbar_status.idle });
 		}
 	};

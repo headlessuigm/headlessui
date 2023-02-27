@@ -52,6 +52,7 @@
     {"id":{"name":"ui_checkbox_draw","path":"scripts/ui_checkbox_draw/ui_checkbox_draw.yy",},"order":0,},
     {"id":{"name":"scr_story_slider","path":"scripts/scr_story_slider/scr_story_slider.yy",},"order":0,},
     {"id":{"name":"ui_button_step","path":"scripts/ui_button_step/ui_button_step.yy",},"order":0,},
+    {"id":{"name":"ui_check_pointer_events","path":"scripts/ui_check_pointer_events/ui_check_pointer_events.yy",},"order":0,},
     {"id":{"name":"scr_create_showcase","path":"scripts/scr_create_showcase/scr_create_showcase.yy",},"order":0,},
     {"id":{"name":"ui_variables","path":"scripts/ui_variables/ui_variables.yy",},"order":0,},
     {"id":{"name":"scr_story_select_arrows","path":"scripts/scr_story_select_arrows/scr_story_select_arrows.yy",},"order":0,},

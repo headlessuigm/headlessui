@@ -16,39 +16,37 @@ enum ui_enum_checkbox_status {
  * @return {Struct}
  */
 function UiCheckboxStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
+	name = "Checkbox";
+	
 	// Set the default checkbox status
 	with (state) {
 		status = ui_enum_checkbox_status.idle;
 		type = ui_enum_variants.primary;
 		checked = false;
-		click_type = ui_enum_click_type.released;
-		click_button = mb_left;
 		sprite = undefined;
 	}
-		
-	step = function() {
-		var status = state.status;
-		var click_type = state.click_type;
-		var click_button = state.click_button;
-
-		if (status != ui_enum_checkbox_status.idle && mouse_check_button_released(click_button)) {
-			set({ status: ui_enum_checkbox_status.idle });
-			
-			if (click_type == ui_enum_click_type.released && is_hovered()) {
-				click();
-			}
-		} else if (is_hovered()) {
-			if (mouse_check_button_pressed(click_button)) {
-				set({ status: ui_enum_checkbox_status.clicked, checked: !state.checked });
-				
-				if (click_type == ui_enum_click_type.pressed) {
-					click();	
-				}
-			} else if (status == ui_enum_checkbox_status.idle) {
-				set({ status: ui_enum_checkbox_status.hover });
-			}
-		} else if (status == ui_enum_checkbox_status.hover) {
-			set({ status: ui_enum_checkbox_status.idle });
-		}
+	
+	on_mouse_press = function() {
+		set({ status: ui_enum_checkbox_status.clicked });
 	};
+	
+	on_mouse_enter = function() {
+		if (state.status != ui_enum_checkbox_status.idle) return;
+		set({ status: ui_enum_checkbox_status.hover });	
+	}
+	
+	on_mouse_leave = function() {
+		if (state.status != ui_enum_checkbox_status.hover ) return;
+		set({ status: ui_enum_checkbox_status.idle });
+	}
+	
+	on_click = function() {
+		set({ checked: !state.checked });
+	};
+	
+	step = function() {
+		if (mouse_check_button_released(mb_any)) {
+			set({ status: !hovered ? ui_enum_checkbox_status.idle : ui_enum_checkbox_status.hover });
+		}
+	}
 }

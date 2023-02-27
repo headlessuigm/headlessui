@@ -30,7 +30,7 @@ function UiNotification(_x, _y, _width, _height, _parent = undefined) : UiNotifi
 			var h = string_height(item) + padding_vertical;
 			var y2 = yOff + h;			
 			yOff += h + margin_vertical;
-			
+		
 			// Animated alpha
 			draw_set_alpha(item.alpha);
 			

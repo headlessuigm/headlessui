@@ -28,8 +28,6 @@ with (button.state) {
 | text_max_width     | Row max width before going on a newline             | Real   | `-1` (no newlines by default) |
 | padding_horizontal | Horizontal button padding (in px)                   | Real   | `40`                          |
 | padding_vertical   | Vertical button padding (in px)                     | Real   | `20`                          |
-| click_button       | Which button to check for the click                 | Real   | `mb_left`                     |
-| click_type         | Which mouse event to check for the click            | Real   | `ui_enum_click_type.released` |
 
 ### Methods
 

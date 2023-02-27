@@ -1,3 +1,7 @@
+/**
+ * Headless UI 2.0.0
+ */
+
 // Default root layer component
 global.ui_root_component = new UiLayerStep(0, 0, room_width, room_height, { 
 	children: [],
@@ -17,6 +21,7 @@ global.ui_root_component = new UiLayerStep(0, 0, room_width, room_height, {
 
 global.ui_mouse_x = device_mouse_x_to_gui(0);
 global.ui_mouse_y = device_mouse_y_to_gui(0);
+global.ui_hovered_component = undefined;
 
 /**
  * HEADLESS UI v1.0.0
@@ -31,6 +36,7 @@ global.ui_mouse_y = device_mouse_y_to_gui(0);
  * @return {Struct}
  */
 function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_component) constructor {
+	name = "BaseComponent";
 	parent = _parent;
 	
 	/// Function called each tick to handle the component logic
@@ -39,9 +45,6 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 	/// Function called each tick to render the component
 	draw = undefined;
 
-	/// When this component should skip the parent layer hovering checks
-	skip_layer_checks = false;
-	
 	/// If to disable the component surface
 	disable_surface = false;
 	
@@ -54,9 +57,11 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 	/// Internal surface reference
 	surface = noone;
 	
-	/// Wheter the component pointer events are enabled
-	// @todo this is not used yet, will replace skip_layer_checks
+	/// Whether the component pointer events are enabled
 	pointer_events = true;
+	
+	/// Whether the component is currently hovered
+	hovered = false;
 	
 	// Default state
 	state = {
@@ -66,7 +71,12 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 		height: _height,
 		scroll_x: 0,
 		scroll_y: 0,
+		on_mouse_enter: function() {},
+		on_mouse_leave: function() {},
 		on_click: function() {},
+		on_mouse_press: function() {},
+		on_mouse_hold: function() {},
+		on_mouse_release: function() {},
 		
 		/// Whether the component step/draw events are enabled
 		enabled: true,
@@ -122,6 +132,7 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 	 * Execute the onClick element handler, if defined
 	 */
 	click = function() {
+		if (variable_struct_exists(self, "on_click")) on_click();
 		state.on_click(self);
 	};
 			
@@ -297,6 +308,7 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 	
 	/**
 	 * Check if the component is interecting the mouse, while being above the other parent's children
+	 * @deprecated
 	 *
 	 * @param {Struct} [elem] Component to check
 	 * @return {Boolean}
@@ -316,7 +328,7 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 		for (var i = array_length(parentChildren) - 1; i >= 0; i--) {
 			var child = parentChildren[i];
 			
-			if (child.skip_layer_checks) {
+			if (!child.pointer_events) {
 				continue;
 			}
 			
@@ -332,8 +344,8 @@ function UiBaseComponent(_x, _y, _width, _height, _parent = global.ui_root_compo
 			return child == elem;
 		}
 		return false;
-	};
-		
+	}
+	
 	// Store the new element into the parent children
 	array_push(parent.children, self);
 }

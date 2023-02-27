@@ -16,11 +16,10 @@ enum ui_enum_button_status {
  * @return {Struct}
  */
 function UiButtonStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
-	// Set the default button status
+	name = "Button";
+	
 	with (state) {
 		status = ui_enum_button_status.idle;
-		click_type = ui_enum_click_type.released;
-		click_button = mb_left;
 	
 		// Button style props
 		type = ui_enum_variants.primary;
@@ -50,31 +49,24 @@ function UiButtonStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComp
 			string_height_ext(text, sep, max_width) + state.padding_vertical
 		);
 	};
-		
-	step = function() {
-		// Handle the button status
-		var status = state.status;
-		var click_type = state.click_type;
-		var click_button = state.click_button;
-
-		if (status != ui_enum_button_status.idle && mouse_check_button_released(click_button)) {
-			set({ status: ui_enum_button_status.idle });
-			
-			if (click_type == ui_enum_click_type.released && is_hovered()) {
-				click();
-			}
-		} else if (is_hovered()) {
-			if (mouse_check_button_pressed(click_button)) {
-				set({ status: ui_enum_button_status.clicked });
-				
-				if (click_type == ui_enum_click_type.pressed) {
-					click();	
-				}
-			} else if (status == ui_enum_button_status.idle) {
-				set({ status: ui_enum_button_status.hover });
-			}
-		} else if (status == ui_enum_button_status.hover) {
-			set({ status: ui_enum_button_status.idle });
-		}
+	
+	on_mouse_press = function() {
+		set({ status: ui_enum_button_status.clicked });
 	};
+	
+	on_mouse_enter = function() {
+		if (state.status != ui_enum_button_status.idle) return;
+		set({ status: ui_enum_button_status.hover });	
+	}
+	
+	on_mouse_leave = function() {
+		if (state.status != ui_enum_button_status.hover) return;
+		set({ status: ui_enum_button_status.idle });
+	}
+	
+	step = function() {
+		if (mouse_check_button_released(mb_any)) {
+			set({ status: !hovered ? ui_enum_button_status.idle : ui_enum_button_status.hover });
+		}
+	}
 }

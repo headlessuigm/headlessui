@@ -13,28 +13,34 @@ It is not meant for direct usage but this page acts as reference.
 
 | Variable          | Description                                                      | Type           | Default                       |
 |-------------------|------------------------------------------------------------------|----------------| ------------------------------|
-| parent            | Parent component                                                 | Real           | `global.ui_root_component`   |
+| parent            | Parent component                                                 | Real           | `global.ui_root_component`    |
 | step              | Function called each tick to handle the component logic          | Function       |                               |
 | draw              | Function called each tick to render the component                | Function       |                               |
-| skip_layer_checks | When this component should skip the parent layer hovering checks | Bool           | `false`                       |
 | disable_surface   | If to disable the component surface                              | Bool           | `false`                       |
 | children          | List of the children components                                  | Array<Struct\> | `[]`                          |
 | state             | Component state                                                  | Struct         | [See below](#state-reference) |
+| pointer_events    | Whether the component pointer events are enabled                 | Bool           | `true`                        |
+| hovered           | If the component is currently hovered                            | Bool           | `true`                        |
 
 ### State reference
 
-| Variable | Description               | Type     | Default         |
-|----------|---------------------------|----------|-----------------|
-| x        | Component X               | Real     |                 |
-| y        | Component Y               | Real     |                 |
-| width    | Component width           | Real     |                 |
-| height   | Component height          | Real     |                 |
-| scroll_x | Current X scroll position | Real     | 0               |
-| scroll_y | Current Y scroll position | Real     | 0               |
-| on_click | Component state           | Function | `function() {}` |
-| enabled  | Whether the step/draw events are executed | Bool | `true` |
-| active   | Whether the step event is executed        | Bool | `true` |
-| visible  | Whether the draw event is executed        | Bool | `true` |
+| Variable         | Description                                                        | Type     | Default         |
+|------------------|--------------------------------------------------------------------|----------|-----------------|
+| x                | Component X                                                        | Real     |                 |
+| y                | Component Y                                                        | Real     |                 |
+| width            | Component width                                                    | Real     |                 |
+| height           | Component height                                                   | Real     |                 |
+| scroll_x         | Current X scroll position                                          | Real     | 0               |
+| scroll_y         | Current Y scroll position                                          | Real     | 0               |
+| enabled          | Whether the step/draw events are executed                          | Bool     | `true`          |
+| active           | Whether the step/pointer events are executed                       | Bool     | `true`          |
+| visible          | Whether the draw event is executed                                 | Bool     | `true`          |
+| on_click         | Executed when the component is clicked (by release on left button) | Function | `function() {}` |
+| on_mouse_enter   | Executed when the mouse enters the component                       | Function | `function() {}` |
+| on_mouse_leave   | Executed when the mouse leaves the component                       | Function | `function() {}` |
+| on_mouse_press   | Executed when the mouse is pressed                                 | Function | `function() {}` |
+| on_mouse_hold    | Executed when the mouse is holding                                 | Function | `function() {}` |
+| on_mouse_release | Executed when the mouse is released                                | Function | `function() {}` |
 
 
 ### Methods
@@ -112,15 +118,6 @@ Bring the component above all other components in the parent's children list.
 | Param         | Description               | Type   | Default     |
 |---------------|---------------------------|--------|-------------|
 | recursive     | If to recursively bring on top also the parent (and its ancestors) above their parent | Bool | `true` |
-
-#### is_hovered([component])
-
-Check if the component is interecting the mouse, while being above the other parent's children
-
-| Param         | Description               | Type   | Default     |
-|---------------|---------------------------|--------|-------------|
-| component     | Component to check        | Struct | `self`      |
-
 
 ### Globals
 
