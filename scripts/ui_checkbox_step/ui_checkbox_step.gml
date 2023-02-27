@@ -23,6 +23,7 @@ function UiCheckboxStep(_x, _y, _width, _height, _parent = undefined) : UiBaseCo
 		status = ui_enum_checkbox_status.idle;
 		type = ui_enum_variants.primary;
 		checked = false;
+		sprite = undefined;
 	}
 	
 	on_mouse_press = function() {

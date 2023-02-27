@@ -22,8 +22,9 @@ with (checkbox.state) {
 | Variable      | Description                               | Type   | Default                         |
 |---------------|-------------------------------------------|--------|---------------------------------|
 | text          | Checkbox displayed text                   | String |                                 |
-| status        | Current status of the checkbox            | Real   | `ui_enum_checkbox_status.idle` |
+| status        | Current status of the checkbox            | Real   | `ui_enum_checkbox_status.idle`  |
 | type          | Checkbox type                             | Real   | `ui_enum_variants.primary`      |
+| sprite        | Checkbox sprite (with 4 frames for the idle/hover/click/checked state) | Real |      |    
 | checked       | If the input is currently checked         | Bool   | `false`                         |
 
 ```js

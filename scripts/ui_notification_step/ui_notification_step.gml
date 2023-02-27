@@ -10,9 +10,14 @@
  * @return {Struct}
  */
 function UiNotificationStep(_x, _y, _width, _height, _parent = undefined) : UiBaseComponent(_x, _y, _width, _height, _parent) constructor {
-	name = "Notification";
-	pointer_events = false;
-	state.items = [];
+  name = "Notification";
+  pointer_events = false;
+	
+	with (state) {
+		items = [];
+		padding_vertical = 10;
+		margin_vertical = 10;
+	}
 
 	/** 
 	 * Add a notification item into the list

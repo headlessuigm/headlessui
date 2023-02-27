@@ -15,7 +15,6 @@ function scr_story_tooltip(showcase) {
 		text_max_width = 250;
 	}
 	tooltip.set_text("Tooltip shown on button hover, with the text going on a newline");
-	tooltip.move();
 	
 	return [
 		tooltipBtn,
